@@ -1,8 +1,8 @@
 # Setup
-name: huamurui
-tagline: A responsive theme for your project on GitHub Pages
-baseurl: ""
-locale: "en"
+name:         huamurui
+tagline:      A responsive theme for your project on GitHub Pages
+baseurl:      ""
+locale:       "en"
 
 # Gems
 gems:
