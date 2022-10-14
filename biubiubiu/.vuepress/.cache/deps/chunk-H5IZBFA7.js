@@ -77,7 +77,7 @@ var renderChildren = (children) => {
 var resolvePrefix = (prefix = "", path = "") => path.startsWith("/") ? path : `${ensureEndingSlash(prefix)}${path}`;
 
 // biubiubiu/.vuepress/.temp/theme-hope/sidebar.js
-var sidebarData = { "/demo/": ["page.md", "markdown.md", "disable.md", "slides.md", "encrypt.md"], "/posts/learn-dialectic/": ["README.md", "inevitable_failure.md", { "text": "\u5F00\u7AEF", "icon": "edit", "collapsable": true, "prefix": "Anfang/", "children": ["README.md", "anfang.md"] }, "what_is_matter.md", { "text": "\u778E\u80E1\u626F", "icon": "edit", "collapsable": true, "prefix": "others/", "children": ["README.md", "madness_and_revolution.md", "ntr_and_class.md"] }, "formalism.md", "ideology.md"], "/posts/CS/": [{ "text": "HelloWorld", "icon": "creative", "collapsable": true, "prefix": "helloworld/", "children": [] }] };
+var sidebarData = { "/demo/": ["page.md", "markdown.md", "disable.md", "slides.md", "encrypt.md"], "/posts/learn-dialectic/": ["README.md", "inevitable_failure.md", { "text": "\u5F00\u7AEF", "icon": "edit", "collapsable": true, "prefix": "Anfang/", "children": ["README.md", "anfang.md"] }, "what_is_matter.md", { "text": "\u778E\u80E1\u626F", "icon": "edit", "collapsable": true, "prefix": "others/", "children": ["README.md", "madness_and_revolution.md", "ntr_and_class.md"] }, "formalism.md", "ideology.md"], "/posts/CS/": [{ "text": "HelloWorld", "icon": "creative", "collapsable": true, "prefix": "helloworld/", "children": [{ "text": "", "collapsable": true, "prefix": "screenshots/", "children": ["README.md"] }] }] };
 
 // node_modules/vuepress-theme-hope/lib/client/modules/sidebar/composables/resolveConfig.js
 var headerToSidebarItem = (header, headerDepth) => {
@@ -170,4 +170,4 @@ export {
   setupSidebarItems,
   useSidebarItems
 };
-//# sourceMappingURL=chunk-RMHF3TFI.js.map
+//# sourceMappingURL=chunk-H5IZBFA7.js.map

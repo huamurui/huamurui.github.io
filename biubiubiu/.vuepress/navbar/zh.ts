@@ -14,9 +14,9 @@ export const zhNavbar = navbar([
     icon: "edit",
     link: "/posts/CS",
   },
-  {
-    text: "V2 文档",
-    icon: "note",
-    link: "https://vuepress-theme-hope.github.io/v2/zh/",
-  },
+  // {
+  //   text: "V2 文档",
+  //   icon: "note",
+  //   link: "https://vuepress-theme-hope.github.io/v2/zh/",
+  // },
 ]);

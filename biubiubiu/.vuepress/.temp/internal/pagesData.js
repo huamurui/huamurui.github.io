@@ -39,6 +39,8 @@ export const pagesData = {
   "v-d62bd98a": () => import(/* webpackChunkName: "v-d62bd98a" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/others/ntr_and_class.html.js").then(({ data }) => data),
   // path: /posts/learn-dialectic/others/
   "v-21d115ff": () => import(/* webpackChunkName: "v-21d115ff" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/others/index.html.js").then(({ data }) => data),
+  // path: /posts/CS/helloworld/screenshots/
+  "v-496ac872": () => import(/* webpackChunkName: "v-496ac872" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/CS/helloworld/screenshots/index.html.js").then(({ data }) => data),
   // path: /404.html
   "v-3706649a": () => import(/* webpackChunkName: "v-3706649a" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/404.html.js").then(({ data }) => data),
   // path: /category/

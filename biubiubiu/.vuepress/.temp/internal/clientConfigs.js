@@ -10,6 +10,8 @@ import clientConfig8 from 'E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.tem
 import clientConfig9 from 'E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-photo-swipe/lib/client/config.js'
 import clientConfig10 from 'E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pwa2/config.js'
 import clientConfig11 from 'E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/theme-hope/config.js'
+import clientConfig12 from 'E:/GitHub/vuepress-biubiubiu/node_modules/@vuepress/plugin-search/lib/client/config.js'
+import clientConfig13 from 'E:/GitHub/vuepress-biubiubiu/node_modules/@vuepress/plugin-docsearch/lib/client/config.js'
 
 export const clientConfigs = [
   clientConfig0,
@@ -24,4 +26,6 @@ export const clientConfigs = [
   clientConfig9,
   clientConfig10,
   clientConfig11,
+  clientConfig12,
+  clientConfig13,
 ]

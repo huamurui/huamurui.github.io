@@ -7,14 +7,22 @@ export default hopeTheme({
 
   author: {
     name: "花木瑞",
-    url: "https://",
+    url: "https://flower-dance.life",
+  },
+
+  themeColor: {
+    blue: "#87CEFA",
+    red: "#f26d6d",
+    green: "#3eaf7c",
+    orange: "#fb9b5f",
+    pink: "#FFC0CB",
   },
 
   iconAssets: "iconfont",
 
   logo: "/logo.svg",
 
-  repo: "vuepress-theme-hope/vuepress-theme-hope",
+  repo: "huamurui/huamurui.github.io",
 
   docsDir: "docs",
 
