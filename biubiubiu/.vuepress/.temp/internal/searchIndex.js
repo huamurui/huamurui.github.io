@@ -281,6 +281,42 @@ export const searchIndex = [
     "extraFields": []
   },
   {
+    "title": "hurt。",
+    "headers": [
+      {
+        "level": 3,
+        "title": "创伤",
+        "slug": "创伤",
+        "link": "#创伤",
+        "children": []
+      }
+    ],
+    "path": "/posts/learn-dialectic/others/hurt.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "发癫与革命。",
+    "headers": [],
+    "path": "/posts/learn-dialectic/others/madness_and_revolution.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "ntr与阶级",
+    "headers": [],
+    "path": "/posts/learn-dialectic/others/ntr_and_class.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "瞎胡扯",
+    "headers": [],
+    "path": "/posts/learn-dialectic/others/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
     "title": "开端。",
     "headers": [
       {
@@ -377,42 +413,6 @@ export const searchIndex = [
     "title": "开端",
     "headers": [],
     "path": "/posts/learn-dialectic/Anfang/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "hurt。",
-    "headers": [
-      {
-        "level": 3,
-        "title": "创伤",
-        "slug": "创伤",
-        "link": "#创伤",
-        "children": []
-      }
-    ],
-    "path": "/posts/learn-dialectic/others/hurt.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "发癫与革命。",
-    "headers": [],
-    "path": "/posts/learn-dialectic/others/madness_and_revolution.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "ntr与阶级",
-    "headers": [],
-    "path": "/posts/learn-dialectic/others/ntr_and_class.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "瞎胡扯",
-    "headers": [],
-    "path": "/posts/learn-dialectic/others/",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -606,13 +606,6 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "开端 标签",
-    "headers": [],
-    "path": "/tag/%E5%BC%80%E7%AB%AF/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
     "title": "hurt 标签",
     "headers": [],
     "path": "/tag/hurt/",
@@ -644,6 +637,13 @@ export const searchIndex = [
     "title": "瞎胡扯 标签",
     "headers": [],
     "path": "/tag/%E7%9E%8E%E8%83%A1%E6%89%AF/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "开端 标签",
+    "headers": [],
+    "path": "/tag/%E5%BC%80%E7%AB%AF/",
     "pathLocale": "/",
     "extraFields": []
   }

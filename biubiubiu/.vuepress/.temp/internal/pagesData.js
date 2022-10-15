@@ -37,10 +37,6 @@ export const pagesData = {
   "v-0f1a6fcc": () => import(/* webpackChunkName: "v-0f1a6fcc" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/CS/strange/encapsulates.html.js").then(({ data }) => data),
   // path: /posts/CS/strange/
   "v-74c48e46": () => import(/* webpackChunkName: "v-74c48e46" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/CS/strange/index.html.js").then(({ data }) => data),
-  // path: /posts/learn-dialectic/Anfang/anfang.html
-  "v-b2297452": () => import(/* webpackChunkName: "v-b2297452" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/Anfang/anfang.html.js").then(({ data }) => data),
-  // path: /posts/learn-dialectic/Anfang/
-  "v-d3d168be": () => import(/* webpackChunkName: "v-d3d168be" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/Anfang/index.html.js").then(({ data }) => data),
   // path: /posts/learn-dialectic/others/hurt.html
   "v-7cb2c1ea": () => import(/* webpackChunkName: "v-7cb2c1ea" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/others/hurt.html.js").then(({ data }) => data),
   // path: /posts/learn-dialectic/others/madness_and_revolution.html
@@ -49,6 +45,10 @@ export const pagesData = {
   "v-d62bd98a": () => import(/* webpackChunkName: "v-d62bd98a" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/others/ntr_and_class.html.js").then(({ data }) => data),
   // path: /posts/learn-dialectic/others/
   "v-21d115ff": () => import(/* webpackChunkName: "v-21d115ff" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/others/index.html.js").then(({ data }) => data),
+  // path: /posts/learn-dialectic/Anfang/anfang.html
+  "v-b2297452": () => import(/* webpackChunkName: "v-b2297452" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/Anfang/anfang.html.js").then(({ data }) => data),
+  // path: /posts/learn-dialectic/Anfang/
+  "v-d3d168be": () => import(/* webpackChunkName: "v-d3d168be" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/Anfang/index.html.js").then(({ data }) => data),
   // path: /404.html
   "v-3706649a": () => import(/* webpackChunkName: "v-3706649a" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/404.html.js").then(({ data }) => data),
   // path: /category/
@@ -103,8 +103,6 @@ export const pagesData = {
   "v-433e1234": () => import(/* webpackChunkName: "v-433e1234" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/记录/index.html.js").then(({ data }) => data),
   // path: /tag/%E6%80%AA/
   "v-d5884482": () => import(/* webpackChunkName: "v-d5884482" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/怪/index.html.js").then(({ data }) => data),
-  // path: /tag/%E5%BC%80%E7%AB%AF/
-  "v-68614bb2": () => import(/* webpackChunkName: "v-68614bb2" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/开端/index.html.js").then(({ data }) => data),
   // path: /tag/hurt/
   "v-288eb472": () => import(/* webpackChunkName: "v-288eb472" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/hurt/index.html.js").then(({ data }) => data),
   // path: /tag/%E5%8F%91%E7%99%AB/
@@ -115,4 +113,6 @@ export const pagesData = {
   "v-cc8479be": () => import(/* webpackChunkName: "v-cc8479be" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/阶级/index.html.js").then(({ data }) => data),
   // path: /tag/%E7%9E%8E%E8%83%A1%E6%89%AF/
   "v-badc7d90": () => import(/* webpackChunkName: "v-badc7d90" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/瞎胡扯/index.html.js").then(({ data }) => data),
+  // path: /tag/%E5%BC%80%E7%AB%AF/
+  "v-68614bb2": () => import(/* webpackChunkName: "v-68614bb2" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/开端/index.html.js").then(({ data }) => data),
 }

@@ -2,6 +2,8 @@ import { defineUserConfig } from "vuepress";
 import { searchPlugin } from "@vuepress/plugin-search";
 import { docsearchPlugin } from "@vuepress/plugin-docsearch";
 
+
+
 import theme from "./theme.js";
 
 
@@ -19,8 +21,6 @@ export default defineUserConfig({
 
 
   plugins: [
-
-
     searchPlugin({
       // 你的选项
       locales: {

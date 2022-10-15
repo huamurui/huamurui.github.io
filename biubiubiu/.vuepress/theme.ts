@@ -3,7 +3,9 @@ import { zhNavbar } from "./navbar/index.js";
 import { zhSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
-  hostname: "https://",
+  hostname: 'https://flower-dance.life/',
+  //这个妈蛋的hostname是sitemap2的，打包一直报错，可能快十几天了我才找到这里。
+  //所以这个页面里还有好多tmd插件是自动配到hopeTheme里了吗。。艹艹艹cccccccccccccc
 
   author: {
     name: "花木瑞",
