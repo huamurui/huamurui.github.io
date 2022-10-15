@@ -1,4 +1,4 @@
-import { useStyleTag } from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-components/lib/client/composables/index.js";
+import { useStyleTag } from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-components/lib/client/vueuse.js";
 import { h } from "vue";
 import { defineClientConfig } from "@vuepress/client";
 import Badge from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-components/lib/client/components/Badge.js";

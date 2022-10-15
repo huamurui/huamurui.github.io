@@ -1,6 +1,6 @@
 import {
   useDarkMode
-} from "./chunk-26COAL2G.js";
+} from "./chunk-N3XJTWKN.js";
 import {
   resolveRepoType
 } from "./chunk-TQJYOK4F.js";
@@ -10,11 +10,11 @@ import {
   usePure,
   useThemeData,
   useThemeLocaleData
-} from "./chunk-U5WRW4JM.js";
+} from "./chunk-JKZR3A7R.js";
 import {
   Ae,
   et
-} from "./chunk-VHNLTIDY.js";
+} from "./chunk-KQE3HMGK.js";
 import {
   AutoLink_default
 } from "./chunk-SA6HJ7ZD.js";
@@ -732,19 +732,19 @@ var Navbar_default = defineComponent({
                 emit("toggle-sidebar");
               }
             }),
-            (_a = slots["left-start"]) == null ? void 0 : _a.call(slots),
+            (_a = slots["leftStart"]) == null ? void 0 : _a.call(slots),
             ...navbarLayout.value.left.map((item) => map[item]),
-            (_b = slots["left-end"]) == null ? void 0 : _b.call(slots)
+            (_b = slots["leftEnd"]) == null ? void 0 : _b.call(slots)
           ]),
           h("div", { class: "navbar-center" }, [
-            (_c = slots["center-start"]) == null ? void 0 : _c.call(slots),
+            (_c = slots["centerStart"]) == null ? void 0 : _c.call(slots),
             ...navbarLayout.value.center.map((item) => map[item]),
-            (_d = slots["center-end"]) == null ? void 0 : _d.call(slots)
+            (_d = slots["centerEnd"]) == null ? void 0 : _d.call(slots)
           ]),
           h("div", { class: "navbar-right" }, [
-            (_e = slots["right-start"]) == null ? void 0 : _e.call(slots),
+            (_e = slots["rightStart"]) == null ? void 0 : _e.call(slots),
             ...navbarLayout.value.right.map((item) => map[item]),
-            (_f = slots["right-start"]) == null ? void 0 : _f.call(slots),
+            (_f = slots["rightEnd"]) == null ? void 0 : _f.call(slots),
             h(ToggleNavbarButton_default, {
               active: showScreen.value,
               onToggle: () => {

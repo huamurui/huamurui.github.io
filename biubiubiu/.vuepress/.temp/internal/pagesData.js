@@ -15,6 +15,8 @@ export const pagesData = {
   "v-1473bf53": () => import(/* webpackChunkName: "v-1473bf53" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/demo/index.html.js").then(({ data }) => data),
   // path: /demo/slides.html
   "v-8b9af7f8": () => import(/* webpackChunkName: "v-8b9af7f8" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/demo/slides.html.js").then(({ data }) => data),
+  // path: /posts/CS/CS.html
+  "v-b5490f02": () => import(/* webpackChunkName: "v-b5490f02" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/CS/CS.html.js").then(({ data }) => data),
   // path: /posts/CS/
   "v-76d112aa": () => import(/* webpackChunkName: "v-76d112aa" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/CS/index.html.js").then(({ data }) => data),
   // path: /posts/learn-dialectic/formalism.html
@@ -27,20 +29,26 @@ export const pagesData = {
   "v-56786a8d": () => import(/* webpackChunkName: "v-56786a8d" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/index.html.js").then(({ data }) => data),
   // path: /posts/learn-dialectic/what_is_matter.html
   "v-0fdd7a51": () => import(/* webpackChunkName: "v-0fdd7a51" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/what_is_matter.html.js").then(({ data }) => data),
+  // path: /posts/CS/helloworld/beginning.html
+  "v-7a0ecabe": () => import(/* webpackChunkName: "v-7a0ecabe" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/CS/helloworld/beginning.html.js").then(({ data }) => data),
   // path: /posts/CS/helloworld/
   "v-651d8945": () => import(/* webpackChunkName: "v-651d8945" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/CS/helloworld/index.html.js").then(({ data }) => data),
+  // path: /posts/CS/strange/encapsulates.html
+  "v-0f1a6fcc": () => import(/* webpackChunkName: "v-0f1a6fcc" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/CS/strange/encapsulates.html.js").then(({ data }) => data),
+  // path: /posts/CS/strange/
+  "v-74c48e46": () => import(/* webpackChunkName: "v-74c48e46" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/CS/strange/index.html.js").then(({ data }) => data),
   // path: /posts/learn-dialectic/Anfang/anfang.html
   "v-b2297452": () => import(/* webpackChunkName: "v-b2297452" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/Anfang/anfang.html.js").then(({ data }) => data),
   // path: /posts/learn-dialectic/Anfang/
   "v-d3d168be": () => import(/* webpackChunkName: "v-d3d168be" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/Anfang/index.html.js").then(({ data }) => data),
+  // path: /posts/learn-dialectic/others/hurt.html
+  "v-7cb2c1ea": () => import(/* webpackChunkName: "v-7cb2c1ea" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/others/hurt.html.js").then(({ data }) => data),
   // path: /posts/learn-dialectic/others/madness_and_revolution.html
   "v-db91f25e": () => import(/* webpackChunkName: "v-db91f25e" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/others/madness_and_revolution.html.js").then(({ data }) => data),
   // path: /posts/learn-dialectic/others/ntr_and_class.html
   "v-d62bd98a": () => import(/* webpackChunkName: "v-d62bd98a" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/others/ntr_and_class.html.js").then(({ data }) => data),
   // path: /posts/learn-dialectic/others/
   "v-21d115ff": () => import(/* webpackChunkName: "v-21d115ff" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/learn-dialectic/others/index.html.js").then(({ data }) => data),
-  // path: /posts/CS/helloworld/screenshots/
-  "v-496ac872": () => import(/* webpackChunkName: "v-496ac872" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/posts/CS/helloworld/screenshots/index.html.js").then(({ data }) => data),
   // path: /404.html
   "v-3706649a": () => import(/* webpackChunkName: "v-3706649a" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/404.html.js").then(({ data }) => data),
   // path: /category/
@@ -69,12 +77,16 @@ export const pagesData = {
   "v-06c25de5": () => import(/* webpackChunkName: "v-06c25de5" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/category/辩证法/index.html.js").then(({ data }) => data),
   // path: /tag/markdown/
   "v-484552dc": () => import(/* webpackChunkName: "v-484552dc" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/markdown/index.html.js").then(({ data }) => data),
-  // path: /category/%E8%AE%B0%E5%BD%95/
-  "v-1956e42a": () => import(/* webpackChunkName: "v-1956e42a" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/category/记录/index.html.js").then(({ data }) => data),
+  // path: /category/%E6%97%A5%E8%AE%B0/
+  "v-65c98e81": () => import(/* webpackChunkName: "v-65c98e81" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/category/日记/index.html.js").then(({ data }) => data),
   // path: /tag/%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE/
   "v-a378ad66": () => import(/* webpackChunkName: "v-a378ad66" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/页面配置/index.html.js").then(({ data }) => data),
+  // path: /category/%E8%AE%B0%E5%BD%95/
+  "v-1956e42a": () => import(/* webpackChunkName: "v-1956e42a" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/category/记录/index.html.js").then(({ data }) => data),
   // path: /tag/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/
   "v-7b167472": () => import(/* webpackChunkName: "v-7b167472" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/使用指南/index.html.js").then(({ data }) => data),
+  // path: /category/%E6%80%AA%E4%B8%9C%E8%A5%BF/
+  "v-5d003a09": () => import(/* webpackChunkName: "v-5d003a09" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/category/怪东西/index.html.js").then(({ data }) => data),
   // path: /tag/%E5%BD%A2%E5%BC%8F%E4%B8%BB%E4%B9%89/
   "v-3da2cc3a": () => import(/* webpackChunkName: "v-3da2cc3a" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/形式主义/index.html.js").then(({ data }) => data),
   // path: /tag/%E7%AC%91%E8%AF%9D/
@@ -87,8 +99,14 @@ export const pagesData = {
   "v-01302d47": () => import(/* webpackChunkName: "v-01302d47" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/碎大石/index.html.js").then(({ data }) => data),
   // path: /tag/%E7%89%A9%E8%B4%A8/
   "v-c2da565c": () => import(/* webpackChunkName: "v-c2da565c" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/物质/index.html.js").then(({ data }) => data),
+  // path: /tag/%E8%AE%B0%E5%BD%95/
+  "v-433e1234": () => import(/* webpackChunkName: "v-433e1234" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/记录/index.html.js").then(({ data }) => data),
+  // path: /tag/%E6%80%AA/
+  "v-d5884482": () => import(/* webpackChunkName: "v-d5884482" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/怪/index.html.js").then(({ data }) => data),
   // path: /tag/%E5%BC%80%E7%AB%AF/
   "v-68614bb2": () => import(/* webpackChunkName: "v-68614bb2" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/开端/index.html.js").then(({ data }) => data),
+  // path: /tag/hurt/
+  "v-288eb472": () => import(/* webpackChunkName: "v-288eb472" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/hurt/index.html.js").then(({ data }) => data),
   // path: /tag/%E5%8F%91%E7%99%AB/
   "v-19d94128": () => import(/* webpackChunkName: "v-19d94128" */"E:/GitHub/vuepress-biubiubiu/biubiubiu/.vuepress/.temp/pages/tag/发癫/index.html.js").then(({ data }) => data),
   // path: /tag/%E9%9D%A9%E5%91%BD/

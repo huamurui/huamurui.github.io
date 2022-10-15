@@ -4,11 +4,11 @@ import {
   renderChildren,
   renderItem,
   useSidebarItems
-} from "./chunk-H5IZBFA7.js";
+} from "./chunk-MBF4EISV.js";
 import {
   useThemeLocaleData
-} from "./chunk-U5WRW4JM.js";
-import "./chunk-VHNLTIDY.js";
+} from "./chunk-JKZR3A7R.js";
+import "./chunk-KQE3HMGK.js";
 import "./chunk-SA6HJ7ZD.js";
 import {
   Icon_default
@@ -140,7 +140,7 @@ var Sidebar_default = defineComponent({
     const route = useRoute();
     const themeLocale = useThemeLocaleData();
     const sidebarItems = useSidebarItems();
-    const sidebar = ref(null);
+    const sidebar = ref();
     onMounted(() => {
       watch(() => route.hash, (hash) => {
         const activeSidebarItem = document.querySelector(`.sidebar a.sidebar-link[href="${route.path}${hash}"]`);

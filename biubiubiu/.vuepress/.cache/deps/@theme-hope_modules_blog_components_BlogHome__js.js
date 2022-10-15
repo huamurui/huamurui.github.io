@@ -1,8 +1,8 @@
 import {
   ArticleList_default,
   InfoPanel_default
-} from "./chunk-ZN2WQDCO.js";
-import "./chunk-4ZT4TUVR.js";
+} from "./chunk-IDGJWUIS.js";
+import "./chunk-GHKR2YHE.js";
 import {
   ArticleIcon,
   BookIcon,
@@ -10,21 +10,21 @@ import {
   LinkIcon,
   ProjectIcon,
   SlideDownIcon
-} from "./chunk-UWMSOX7G.js";
-import "./chunk-BUKOQAXY.js";
+} from "./chunk-OUAF3RCJ.js";
+import "./chunk-G6WZ626G.js";
 import {
   useArticles
-} from "./chunk-LJZGGIJJ.js";
+} from "./chunk-5PC2WA6U.js";
 import {
   DropTransition_default
 } from "./chunk-IG3IAW45.js";
-import "./chunk-NQYTTWED.js";
+import "./chunk-3SEXUNQM.js";
 import "./chunk-TQJYOK4F.js";
 import {
   useNavigate,
   usePure
-} from "./chunk-U5WRW4JM.js";
-import "./chunk-VHNLTIDY.js";
+} from "./chunk-JKZR3A7R.js";
+import "./chunk-KQE3HMGK.js";
 import {
   MarkdownContent_default
 } from "./chunk-BPXOLMLA.js";
@@ -56,7 +56,7 @@ var BlogHero_default = defineComponent({
   setup(_props, { slots }) {
     const title = (0, client_exports.usePageHeadTitle)();
     const frontmatter = (0, client_exports.usePageFrontmatter)();
-    const hero = ref(null);
+    const hero = ref();
     const heroImage = computed(() => frontmatter.value.heroImage || null);
     const isFullScreen = computed(() => frontmatter.value.heroFullScreen || false);
     const heroImageStyle = computed(() => {

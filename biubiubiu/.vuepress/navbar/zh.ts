@@ -12,7 +12,7 @@ export const zhNavbar = navbar([
   {
     text: "编程，碎碎念",
     icon: "edit",
-    link: "/posts/CS",
+    link: "/posts/CS/",
   },
   // {
   //   text: "V2 文档",

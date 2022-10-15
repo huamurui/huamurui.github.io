@@ -1,5 +1,5 @@
 import { defineClientConfig } from "@vuepress/client";
-    import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent } from "vue";
 import ChartJS from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-md-enhance/lib/client/components/ChartJS.js";
 import CodeTabs from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-md-enhance/lib/client/components/CodeTabs.js";
 import "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-md-enhance/lib/client/styles/container/index.scss";
@@ -8,6 +8,7 @@ import ECharts from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-m
 import FlowChart from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-md-enhance/lib/client/components/FlowChart.js";
 import "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-md-enhance/lib/client/styles/footnote.scss";
 import "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-md-enhance/lib/client/styles/image-mark.scss";
+import "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-md-enhance/lib/client/styles/image-title.scss";
 import Mermaid from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-md-enhance/lib/client/components/Mermaid.js";
 import Presentation from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-md-enhance/lib/client/components/Presentation.js";
 import Playground from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-md-enhance/lib/client/components/Playground.js";

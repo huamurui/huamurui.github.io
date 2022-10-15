@@ -1,6 +1,5 @@
 ---
 title: HelloWorld
-index: false
 icon: creative
 category:
   - 记录
