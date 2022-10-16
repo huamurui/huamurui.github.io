@@ -62,8 +62,8 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         env:
             SSH_PRIVATE_KEY: ${{ secrets.XIAOXIN_SSH_PRIVATE_KEY }}
-            ARGS: -avzr --delete
-            SOURCE: /biubiubiu/.vuepress/dist
-            REMOTE_HOST: flower-dance.life
-            REMOTE_USER: root
-            TARGET: /www/vuepress
+            ARGS: "-rltgoDzvO"
+            SOURCE: "/biubiubiu/.vuepress/dist"
+            REMOTE_HOST: "flower-dance.life"
+            REMOTE_USER: "root"
+            TARGET: "/www/vuepress"
