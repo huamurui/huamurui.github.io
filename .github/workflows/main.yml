@@ -17,8 +17,8 @@ jobs:
           # 如果你文档需要 Git 子模块，取消注释下一行
           # submodules: true
 
-      - name: Install npm
-        uses: npm/action-setup@v2
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 7
           run_install: true
