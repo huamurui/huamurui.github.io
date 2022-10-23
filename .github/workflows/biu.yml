@@ -58,12 +58,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
           
-      - name: deploy to digitalOeacon server
-        uses: easingthemes/ssh-deploy@main
-        env:
-            SSH_PRIVATE_KEY: ${{ secrets.XIAOXIN_SSH_PK }}
-            ARGS: "-rltgoDzvO"
-            SOURCE: "/biubiubiu/.vuepress/dist"
-            REMOTE_HOST: "flower-dance.life"
-            REMOTE_USER: "root"
-            TARGET: "/www/vuepress"
+#       - name: deploy to digitalOeacon server
+#         uses: easingthemes/ssh-deploy@main
+#         env:
+#             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#             SSH_PRIVATE_KEY: ${{ secrets.XIAOXIN_SSH_PK }}
+#             ARGS: "-rltgoDzvO"
+#             SOURCE: "/biubiubiu/.vuepress/dist"
+#             REMOTE_HOST: "flower-dance.life"
+#             REMOTE_USER: "root"
+#             TARGET: "/www/vuepress"
