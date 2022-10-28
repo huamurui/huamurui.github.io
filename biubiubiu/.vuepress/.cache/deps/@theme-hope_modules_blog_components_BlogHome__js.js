@@ -1,7 +1,7 @@
 import {
   ArticleList_default,
   InfoPanel_default
-} from "./chunk-IDGJWUIS.js";
+} from "./chunk-EOJZXZJI.js";
 import "./chunk-GHKR2YHE.js";
 import {
   ArticleIcon,
@@ -10,15 +10,15 @@ import {
   LinkIcon,
   ProjectIcon,
   SlideDownIcon
-} from "./chunk-OUAF3RCJ.js";
-import "./chunk-G6WZ626G.js";
+} from "./chunk-7HPH6GUL.js";
+import "./chunk-JZK5YYTA.js";
 import {
   useArticles
 } from "./chunk-5PC2WA6U.js";
 import {
   DropTransition_default
 } from "./chunk-IG3IAW45.js";
-import "./chunk-3SEXUNQM.js";
+import "./chunk-YVUTGLTR.js";
 import "./chunk-TQJYOK4F.js";
 import {
   useNavigate,
@@ -49,8 +49,8 @@ import "./chunk-XYQ66V4O.js";
 import "./chunk-5E3NKPRU.js";
 
 // node_modules/vuepress-theme-hope/lib/client/modules/blog/components/BlogHero.js
-import defaultHeroBgImagePath from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-theme-hope/lib/client/modules/blog/assets/hero.jpg";
-import "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-theme-hope/lib/client/modules/blog/styles/blog-hero.scss";
+import defaultHeroBgImagePath from "E:/GitHub/huamurui.github.io/node_modules/vuepress-theme-hope/lib/client/modules/blog/assets/hero.jpg";
+import "E:/GitHub/huamurui.github.io/node_modules/vuepress-theme-hope/lib/client/modules/blog/styles/blog-hero.scss";
 var BlogHero_default = defineComponent({
   name: "BlogHero",
   setup(_props, { slots }) {
@@ -123,7 +123,7 @@ var BlogHero_default = defineComponent({
 });
 
 // node_modules/vuepress-theme-hope/lib/client/modules/blog/components/ProjectPanel.js
-import "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-theme-hope/lib/client/modules/blog/styles/project-panel.scss";
+import "E:/GitHub/huamurui.github.io/node_modules/vuepress-theme-hope/lib/client/modules/blog/styles/project-panel.scss";
 var AVAILABLE_PROJECT_TYPES = [
   "link",
   "article",
@@ -165,7 +165,7 @@ var ProjectPanel_default = defineComponent({
 });
 
 // node_modules/vuepress-theme-hope/lib/client/modules/blog/components/BlogHome.js
-import "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-theme-hope/lib/client/modules/blog/styles/home.scss";
+import "E:/GitHub/huamurui.github.io/node_modules/vuepress-theme-hope/lib/client/modules/blog/styles/home.scss";
 var BlogHome_default = defineComponent({
   name: "BlogHome",
   setup() {

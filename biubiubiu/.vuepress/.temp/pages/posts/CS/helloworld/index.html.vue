@@ -1,4 +1,6 @@
-<template><div><p>我要放一堆helloworld...嗯。</p>
+<template><div><p>我要放一堆 helloworld...嗯。</p>
+<p><RouterLink to="/posts/CS/helloworld/beginning.html">搞网站</RouterLink></p>
+<p><RouterLink to="/posts/CS/helloworld/strange-things.html">怪东西</RouterLink></p>
 <p><img src="@source/posts/CS/helloworld/screenshots/QQ截图20220906073236.png" alt="1" loading="lazy">
 <img src="@source/posts/CS/helloworld/screenshots/QQ截图20220908100005.png" alt="2" loading="lazy">
 <img src="@source/posts/CS/helloworld/screenshots/QQ截图20220909183128.png" alt="3" loading="lazy">

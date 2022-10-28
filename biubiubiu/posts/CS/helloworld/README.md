@@ -5,8 +5,11 @@ category:
   - 记录
 ---
 
-我要放一堆helloworld...嗯。
+我要放一堆 helloworld...嗯。
 
+[搞网站](beginning.md)
+
+[怪东西](strange-things.md)
 
 ![1](./screenshots/QQ%E6%88%AA%E5%9B%BE20220906073236.png)
 ![2](./screenshots/QQ%E6%88%AA%E5%9B%BE20220908100005.png)

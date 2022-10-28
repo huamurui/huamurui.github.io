@@ -1,9 +1,9 @@
-import { useStyleTag } from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-components/lib/client/vueuse.js";
+import { useStyleTag } from "E:/GitHub/huamurui.github.io/node_modules/vuepress-plugin-components/lib/client/vueuse.js";
 import { h } from "vue";
 import { defineClientConfig } from "@vuepress/client";
-import Badge from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-components/lib/client/components/Badge.js";
-import FontIcon from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-components/lib/client/components/FontIcon.js";
-import BackToTop from "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-plugin-components/lib/client/components/BackToTop.js";
+import Badge from "E:/GitHub/huamurui.github.io/node_modules/vuepress-plugin-components/lib/client/components/Badge.js";
+import FontIcon from "E:/GitHub/huamurui.github.io/node_modules/vuepress-plugin-components/lib/client/components/FontIcon.js";
+import BackToTop from "E:/GitHub/huamurui.github.io/node_modules/vuepress-plugin-components/lib/client/components/BackToTop.js";
 
 
 export default defineClientConfig({

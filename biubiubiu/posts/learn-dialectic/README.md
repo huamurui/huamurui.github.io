@@ -5,9 +5,6 @@ category:
   - 辩证法
 tag:
   - 碎大石
-  
-star: true
-sticky: true
 ---
 
 # 辩证法碎大石。
@@ -18,16 +15,12 @@ sticky: true
 
 至于它们有什么用？我也不知道，也许它们解决了它们带给我让我看到的一些问题...或者就只是带给了我一堆问题，但如果可以的话，我希望辩证法能像空手道一样，碎大石。
 
-
-La dialectique peut casser des briques！
---
+## La dialectique peut casser des briques！
 
 - [开端](Anfang/anfang.md)
 - [意识形态](ideology.md)
 - [形式主义](formalism.md)
 - [必然失败](inevitable_failure.md)
 
-
 - [发癫与革命](others/madness_and_revolution.md)
-- [ntr与阶级](others/ntr_and_class.md)
-
+- [ntr 与阶级](others/ntr_and_class.md)

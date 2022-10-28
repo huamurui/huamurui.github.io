@@ -4,7 +4,7 @@ import {
   renderChildren,
   renderItem,
   useSidebarItems
-} from "./chunk-MBF4EISV.js";
+} from "./chunk-25UN42VK.js";
 import {
   useThemeLocaleData
 } from "./chunk-JKZR3A7R.js";
@@ -33,7 +33,7 @@ import "./chunk-XYQ66V4O.js";
 import "./chunk-5E3NKPRU.js";
 
 // node_modules/vuepress-theme-hope/lib/client/modules/sidebar/components/SidebarChild.js
-import "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-theme-hope/lib/client/modules/sidebar/styles/sidebar-child.scss";
+import "E:/GitHub/huamurui.github.io/node_modules/vuepress-theme-hope/lib/client/modules/sidebar/styles/sidebar-child.scss";
 var SidebarChild_default = defineComponent({
   name: "SidebarChild",
   props: {
@@ -59,7 +59,7 @@ var SidebarChild_default = defineComponent({
 });
 
 // node_modules/vuepress-theme-hope/lib/client/modules/sidebar/components/SidebarGroup.js
-import "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-theme-hope/lib/client/modules/sidebar/styles/sidebar-group.scss";
+import "E:/GitHub/huamurui.github.io/node_modules/vuepress-theme-hope/lib/client/modules/sidebar/styles/sidebar-group.scss";
 var SidebarGroup_default = defineComponent({
   name: "SidebarGroup",
   props: {
@@ -105,7 +105,7 @@ var SidebarGroup_default = defineComponent({
 });
 
 // node_modules/vuepress-theme-hope/lib/client/modules/sidebar/components/SidebarLinks.js
-import "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-theme-hope/lib/client/modules/sidebar/styles/sidebar-links.scss";
+import "E:/GitHub/huamurui.github.io/node_modules/vuepress-theme-hope/lib/client/modules/sidebar/styles/sidebar-links.scss";
 var SidebarLinks_default = defineComponent({
   name: "SidebarLinks",
   props: {
@@ -133,7 +133,7 @@ var SidebarLinks_default = defineComponent({
 });
 
 // node_modules/vuepress-theme-hope/lib/client/modules/sidebar/components/Sidebar.js
-import "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-theme-hope/lib/client/modules/sidebar/styles/sidebar.scss";
+import "E:/GitHub/huamurui.github.io/node_modules/vuepress-theme-hope/lib/client/modules/sidebar/styles/sidebar.scss";
 var Sidebar_default = defineComponent({
   name: "SideBar",
   setup(_props, { slots }) {

@@ -27,7 +27,7 @@ import {
 } from "./chunk-BGOVVDTY.js";
 
 // node_modules/vuepress-theme-hope/lib/client/modules/encrypt/components/PasswordModal.js
-import "E:/GitHub/vuepress-biubiubiu/node_modules/vuepress-theme-hope/lib/client/modules/encrypt/styles/password-modal.scss";
+import "E:/GitHub/huamurui.github.io/node_modules/vuepress-theme-hope/lib/client/modules/encrypt/styles/password-modal.scss";
 var PasswordModal_default = defineComponent({
   name: "PasswordModal",
   props: {
@@ -161,4 +161,4 @@ export {
   useGlobalEcrypt,
   usePathEncrypt
 };
-//# sourceMappingURL=chunk-QLLCARTH.js.map
+//# sourceMappingURL=chunk-HZWHOLPO.js.map

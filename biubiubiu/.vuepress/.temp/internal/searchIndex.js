@@ -14,130 +14,7 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "布局与功能禁用",
-    "headers": [],
-    "path": "/demo/disable.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "密码加密的文章",
-    "headers": [],
-    "path": "/demo/encrypt.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "Markdown 展示",
-    "headers": [
-      {
-        "level": 2,
-        "title": "Markdown 介绍",
-        "slug": "markdown-介绍",
-        "link": "#markdown-介绍",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Markdown 配置",
-        "slug": "markdown-配置",
-        "link": "#markdown-配置",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Markdown 扩展",
-        "slug": "markdown-扩展",
-        "link": "#markdown-扩展",
-        "children": [
-          {
-            "level": 3,
-            "title": "VuePress 扩展",
-            "slug": "vuepress-扩展",
-            "link": "#vuepress-扩展",
-            "children": []
-          },
-          {
-            "level": 3,
-            "title": "主题扩展",
-            "slug": "主题扩展",
-            "link": "#主题扩展",
-            "children": []
-          },
-          {
-            "level": 3,
-            "title": "图片增强",
-            "slug": "图片增强",
-            "link": "#图片增强",
-            "children": []
-          }
-        ]
-      }
-    ],
-    "path": "/demo/markdown.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "页面配置",
-    "headers": [
-      {
-        "level": 2,
-        "title": "页面信息",
-        "slug": "页面信息",
-        "link": "#页面信息",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "页面内容",
-        "slug": "页面内容",
-        "link": "#页面内容",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "页面结构",
-        "slug": "页面结构",
-        "link": "#页面结构",
-        "children": []
-      }
-    ],
-    "path": "/demo/page.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "主要功能与配置演示",
-    "headers": [
-      {
-        "level": 2,
-        "title": "目录",
-        "slug": "目录",
-        "link": "#目录",
-        "children": []
-      }
-    ],
-    "path": "/demo/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "幻灯片页",
-    "headers": [],
-    "path": "/demo/slides.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "为什么是计算机...",
-    "headers": [],
-    "path": "/posts/CS/CS.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "编程相关...",
+    "title": "编程相关...and 为什么是编程...",
     "headers": [],
     "path": "/posts/CS/",
     "pathLocale": "/",
@@ -217,6 +94,13 @@ export const searchIndex = [
     "extraFields": []
   },
   {
+    "title": "HelloWorld-FrontEnd",
+    "headers": [],
+    "path": "/posts/CS/front-end/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
     "title": "搞网站的记录",
     "headers": [
       {
@@ -267,52 +151,45 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "封装...",
-    "headers": [],
-    "path": "/posts/CS/strange/encapsulates.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "怪东西...",
-    "headers": [],
-    "path": "/posts/CS/strange/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "hurt。",
+    "title": "怪东西(编程x精神分析)",
     "headers": [
       {
         "level": 3,
-        "title": "创伤",
-        "slug": "创伤",
-        "link": "#创伤",
+        "title": "封装。",
+        "slug": "封装。",
+        "link": "#封装。",
+        "children": []
+      },
+      {
+        "level": 3,
+        "title": "props。",
+        "slug": "props。",
+        "link": "#props。",
+        "children": []
+      },
+      {
+        "level": 3,
+        "title": "加层数，其实是在让时间变慢。",
+        "slug": "加层数-其实是在让时间变慢。",
+        "link": "#加层数-其实是在让时间变慢。",
+        "children": []
+      },
+      {
+        "level": 3,
+        "title": "软件工程与卫生纸。",
+        "slug": "软件工程与卫生纸。",
+        "link": "#软件工程与卫生纸。",
+        "children": []
+      },
+      {
+        "level": 3,
+        "title": "人与事。",
+        "slug": "人与事。",
+        "link": "#人与事。",
         "children": []
       }
     ],
-    "path": "/posts/learn-dialectic/others/hurt.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "发癫与革命。",
-    "headers": [],
-    "path": "/posts/learn-dialectic/others/madness_and_revolution.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "ntr与阶级",
-    "headers": [],
-    "path": "/posts/learn-dialectic/others/ntr_and_class.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "瞎胡扯",
-    "headers": [],
-    "path": "/posts/learn-dialectic/others/",
+    "path": "/posts/CS/helloworld/strange-things.html",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -417,6 +294,42 @@ export const searchIndex = [
     "extraFields": []
   },
   {
+    "title": "hurt。",
+    "headers": [
+      {
+        "level": 3,
+        "title": "创伤",
+        "slug": "创伤",
+        "link": "#创伤",
+        "children": []
+      }
+    ],
+    "path": "/posts/learn-dialectic/others/hurt.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "发癫与革命。",
+    "headers": [],
+    "path": "/posts/learn-dialectic/others/madness_and_revolution.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "ntr 与阶级",
+    "headers": [],
+    "path": "/posts/learn-dialectic/others/ntr_and_class.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "瞎胡扯",
+    "headers": [],
+    "path": "/posts/learn-dialectic/others/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
     "title": "",
     "headers": [],
     "path": "/404.html",
@@ -473,79 +386,9 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "使用指南 分类",
-    "headers": [],
-    "path": "/category/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "禁用 标签",
-    "headers": [],
-    "path": "/tag/%E7%A6%81%E7%94%A8/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
     "title": "指南 分类",
     "headers": [],
     "path": "/category/%E6%8C%87%E5%8D%97/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "文章加密 标签",
-    "headers": [],
-    "path": "/tag/%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "辩证法 分类",
-    "headers": [],
-    "path": "/category/%E8%BE%A9%E8%AF%81%E6%B3%95/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "Markdown 标签",
-    "headers": [],
-    "path": "/tag/markdown/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "日记 分类",
-    "headers": [],
-    "path": "/category/%E6%97%A5%E8%AE%B0/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "页面配置 标签",
-    "headers": [],
-    "path": "/tag/%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "记录 分类",
-    "headers": [],
-    "path": "/category/%E8%AE%B0%E5%BD%95/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "使用指南 标签",
-    "headers": [],
-    "path": "/tag/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "怪东西 分类",
-    "headers": [],
-    "path": "/category/%E6%80%AA%E4%B8%9C%E8%A5%BF/",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -557,6 +400,13 @@ export const searchIndex = [
     "extraFields": []
   },
   {
+    "title": "辩证法 分类",
+    "headers": [],
+    "path": "/category/%E8%BE%A9%E8%AF%81%E6%B3%95/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
     "title": "笑话 标签",
     "headers": [],
     "path": "/tag/%E7%AC%91%E8%AF%9D/",
@@ -564,9 +414,23 @@ export const searchIndex = [
     "extraFields": []
   },
   {
+    "title": "记录 分类",
+    "headers": [],
+    "path": "/category/%E8%AE%B0%E5%BD%95/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
     "title": "意识形态 标签",
     "headers": [],
     "path": "/tag/%E6%84%8F%E8%AF%86%E5%BD%A2%E6%80%81/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "日记 分类",
+    "headers": [],
+    "path": "/category/%E6%97%A5%E8%AE%B0/",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -599,9 +463,9 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "怪 标签",
+    "title": "开端 标签",
     "headers": [],
-    "path": "/tag/%E6%80%AA/",
+    "path": "/tag/%E5%BC%80%E7%AB%AF/",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -637,13 +501,6 @@ export const searchIndex = [
     "title": "瞎胡扯 标签",
     "headers": [],
     "path": "/tag/%E7%9E%8E%E8%83%A1%E6%89%AF/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "开端 标签",
-    "headers": [],
-    "path": "/tag/%E5%BC%80%E7%AB%AF/",
     "pathLocale": "/",
     "extraFields": []
   }

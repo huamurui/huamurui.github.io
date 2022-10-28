@@ -77,7 +77,7 @@ var renderChildren = (children) => {
 var resolvePrefix = (prefix = "", path = "") => path.startsWith("/") ? path : `${ensureEndingSlash(prefix)}${path}`;
 
 // biubiubiu/.vuepress/.temp/theme-hope/sidebar.js
-var sidebarData = { "/demo/": ["page.md", "markdown.md", "disable.md", "slides.md", "encrypt.md"], "/posts/learn-dialectic/": ["README.md", "inevitable_failure.md", { "text": "\u5F00\u7AEF", "icon": "edit", "collapsable": true, "prefix": "Anfang/", "children": ["README.md", "anfang.md"] }, "what_is_matter.md", { "text": "\u778E\u80E1\u626F", "icon": "edit", "collapsable": true, "prefix": "others/", "children": ["README.md", "madness_and_revolution.md", "hurt.md", "ntr_and_class.md"] }, "formalism.md", "ideology.md"], "/posts/CS/": ["README.md", { "text": "\u602A\u4E1C\u897F...", "icon": "creative", "collapsable": true, "prefix": "strange/", "children": ["README.md", "encapsulates.md"] }, "CS.md", { "text": "HelloWorld", "icon": "creative", "collapsable": true, "prefix": "helloworld/", "children": ["README.md", "beginning.md"] }] };
+var sidebarData = { "/posts/learn-dialectic/": ["README.md", "inevitable_failure.md", { "text": "\u5F00\u7AEF", "icon": "edit", "collapsable": true, "prefix": "Anfang/", "children": ["README.md", "anfang.md"] }, "what_is_matter.md", { "text": "\u778E\u80E1\u626F", "icon": "edit", "collapsable": true, "prefix": "others/", "children": ["README.md", "madness_and_revolution.md", "hurt.md", "ntr_and_class.md"] }, "formalism.md", "ideology.md"], "/posts/CS/": ["README.md", { "text": "HelloWorld", "icon": "creative", "collapsable": true, "prefix": "helloworld/", "children": ["README.md", "beginning.md", "strange-things.md"] }, { "text": "HelloWorld-FrontEnd", "icon": "creative", "collapsable": true, "prefix": "front-end/", "children": ["README.md"] }] };
 
 // node_modules/vuepress-theme-hope/lib/client/modules/sidebar/composables/resolveConfig.js
 var headerToSidebarItem = (header, headerDepth) => {
@@ -170,4 +170,4 @@ export {
   setupSidebarItems,
   useSidebarItems
 };
-//# sourceMappingURL=chunk-MBF4EISV.js.map
+//# sourceMappingURL=chunk-25UN42VK.js.map

@@ -20,7 +20,7 @@
 <p><RouterLink to="/posts/learn-dialectic/others/madness_and_revolution.html">发癫与革命</RouterLink></p>
 </li>
 <li>
-<p><RouterLink to="/posts/learn-dialectic/others/ntr_and_class.html">ntr与阶级</RouterLink></p>
+<p><RouterLink to="/posts/learn-dialectic/others/ntr_and_class.html">ntr 与阶级</RouterLink></p>
 </li>
 </ul>
 </div></template>

@@ -6,9 +6,6 @@ category:
 tag:
   - 发癫
   - 革命
-  
-star: true
-sticky: true
 ---
 
 # 发癫与革命。

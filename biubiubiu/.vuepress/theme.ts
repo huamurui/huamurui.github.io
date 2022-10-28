@@ -11,14 +11,15 @@ export default hopeTheme({
     name: "花木瑞",
     url: "https://flower-dance.life",
   },
-
-  themeColor: {
-    blue: "#87CEFA",
-    red: "#f26d6d",
-    green: "#3eaf7c",
-    orange: "#fb9b5f",
-    pink: "#FFC0CB",
-  },
+  darkmode: "toggle",
+  
+  // themeColor: {
+  //   blue: "#87CEFA",
+  //   red: "#f26d6d",
+  //   green: "#3eaf7c",
+  //   orange: "#fb9b5f",
+  //   pink: "#FFC0CB",
+  // },
 
   iconAssets: "iconfont",
 
