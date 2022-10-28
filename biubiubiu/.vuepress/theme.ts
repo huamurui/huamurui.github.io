@@ -3,23 +3,15 @@ import { zhNavbar } from "./navbar/index.js";
 import { zhSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
-  hostname: 'https://flower-dance.life/',
+  hostname: 'https://yuntai.huamurui.me',
   //这个妈蛋的hostname是sitemap2的，打包一直报错，可能快十几天了我才找到这里。
   //所以这个页面里还有好多tmd插件是自动配到hopeTheme里了吗。。艹艹艹cccccccccccccc
 
   author: {
     name: "花木瑞",
-    url: "https://flower-dance.life",
+    url: "https://yuntai.huamurui.me",
   },
   darkmode: "toggle",
-  
-  // themeColor: {
-  //   blue: "#87CEFA",
-  //   red: "#f26d6d",
-  //   green: "#3eaf7c",
-  //   orange: "#fb9b5f",
-  //   pink: "#FFC0CB",
-  // },
 
   iconAssets: "iconfont",
 
@@ -51,7 +43,6 @@ export default hopeTheme({
     "/": {
       // navbar
       navbar: zhNavbar,
-
       // sidebar
       sidebar: zhSidebar,
 
@@ -71,26 +62,24 @@ export default hopeTheme({
     },
   },
 
-  encrypt: {
-    config: {
-      "/demo/encrypt.html": ["1234"],
-    },
-  },
-
   plugins: {
     blog: {
       autoExcerpt: true,
     },
     comment: {
-      /**
-       * Using Giscus
-       */
-      provider: "Giscus",
-      repo: "huamurui/huamurui.github.io",
-      repoId: "R_kgDOHFCWEQ",
-      category: "Announcements",
-      categoryId: "DIC_kwDOHFCWEc4CR0iI",
+      provider: "Waline",
+      serverURL: "https://comments.huamurui.me", // your server url
     },
+    // comment: {
+    //   /**
+    //    * Using Giscus
+    //    */
+    //   provider: "Giscus",
+    //   repo: "huamurui/huamurui.github.io",
+    //   repoId: "R_kgDOHFCWEQ",
+    //   category: "Announcements",
+    //   categoryId: "DIC_kwDOHFCWEc4CR0iI",
+    // },
 
     // Disable features you don't want here
     mdEnhance: {

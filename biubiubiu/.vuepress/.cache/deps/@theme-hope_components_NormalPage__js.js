@@ -1,12 +1,12 @@
 import {
+  TOC_default
+} from "./chunk-IEMA6GR4.js";
+import {
   EditIcon
 } from "./chunk-XAG3TFKH.js";
 import {
   useDarkMode
 } from "./chunk-N3XJTWKN.js";
-import {
-  TOC_default
-} from "./chunk-IEMA6GR4.js";
 import {
   PageInfo_default,
   useContributors,
