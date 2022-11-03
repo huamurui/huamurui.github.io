@@ -2,6 +2,8 @@ import { hopeTheme } from "vuepress-theme-hope";
 import { zhNavbar } from "./navbar/index.js";
 import { zhSidebar } from "./sidebar/index.js";
 
+
+
 export default hopeTheme({
   hostname: 'https://yuntai.huamurui.me',
   //这个妈蛋的hostname是sitemap2的，打包一直报错，可能快十几天了我才找到这里。
@@ -65,10 +67,10 @@ export default hopeTheme({
     blog: {
       autoExcerpt: true,
     },
-    comment: {
-      provider: "Waline",
-      serverURL: "https://comments.huamurui.me", // your server url
-    },
+    // comment: {
+    //   provider: "Waline",
+    //   serverURL: "comments.huamurui.me", // your server url
+    // },
     // comment: {
     //   /**
     //    * Using Giscus

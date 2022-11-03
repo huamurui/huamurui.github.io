@@ -4831,7 +4831,7 @@ vuepress-plugin-blog2@2.0.0-beta.119:
     vue-router "^4.1.6"
     vuepress-shared "2.0.0-beta.119"
 
-vuepress-plugin-comment2@2.0.0-beta.119:
+vuepress-plugin-comment2@2.0.0-beta.119, vuepress-plugin-comment2@^2.0.0-beta.119:
   version "2.0.0-beta.119"
   resolved "https://registry.npmmirror.com/vuepress-plugin-comment2/-/vuepress-plugin-comment2-2.0.0-beta.119.tgz#e0c604bac03077481a5bfc9bdaf96d0f346dfe60"
   integrity sha512-OpHesdpbDLATC2taNaEOphWqXAZd6GOWWxUxLUjX8Xhxc1rUKr+M1qywSo1A0CL7RjRH1FKxA2EH4uu+h08qnw==
