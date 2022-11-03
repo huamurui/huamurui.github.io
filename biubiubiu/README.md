@@ -11,8 +11,8 @@ heroFullScreen: true
 tagline: 辩证法，碎大石。
 projects:
   - icon: friend
-    name: 评论。这里是friend...但是我先放一个打包后就失效的评论区链接。github评论因为抽风还有注册账号有点难用...
-    desc: 呜呜呜伙伴呢，我的伙伴呢
+    name: 呜呜呜伙伴呢，我的伙伴呢
+    desc: 评论。这里是friend...但是我先放一个打包后就失效的评论区链接。github评论因为抽风还有注册账号有点难用...
     link: https://comments.huamurui.me/
 
   - icon: project
