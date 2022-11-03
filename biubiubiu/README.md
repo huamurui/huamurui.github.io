@@ -10,6 +10,11 @@ heroText: biubiubiu
 heroFullScreen: true
 tagline: 辩证法，碎大石。
 projects:
+  - icon: friend
+    name: 评论。这里是friend...但是我先放一个打包后就失效的评论区链接。github评论因为抽风还有注册账号有点难用...
+    desc: 呜呜呜伙伴呢，我的伙伴呢
+    link: https://comments.huamurui.me/
+
   - icon: project
     name: 小练习
     desc: 很烂...真的...
@@ -30,17 +35,12 @@ projects:
     desc: biubiubiu
     link: https://zhuanlan.zhihu.com/p/449649142
 
-  - icon: friend
-    name: 伙伴名称
-    desc: 呜呜呜伙伴呢，我的伙伴呢
-    link: https://你的伙伴链接
-
   - icon: /logo.svg
     name: 我
     desc: 美少女
     link: https://github.com/huamurui
 
-footer: 这个是页脚，页脚是干什么的...不知道写啥好
+footer: ko no ... rainbow da !
 ---
 
 <!-- 这是一个博客主页的案例。

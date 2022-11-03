@@ -69,7 +69,7 @@ export default hopeTheme({
     },
     // comment: {
     //   provider: "Waline",
-    //   serverURL: "comments.huamurui.me", // your server url
+    //   serverURL: "https://comments.huamurui.me/", // your server url
     // },
     comment: {
       /**
