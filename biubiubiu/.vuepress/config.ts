@@ -1,9 +1,6 @@
 import { defineUserConfig } from "vuepress";
 import { searchPlugin } from "@vuepress/plugin-search";
 import { docsearchPlugin } from "@vuepress/plugin-docsearch";
-import { commentPlugin } from "vuepress-plugin-comment2";
-
-
 
 import theme from "./theme.js";
 
@@ -22,10 +19,6 @@ export default defineUserConfig({
 
 
   plugins: [
-    commentPlugin({
-      provider: "Waline",
-      serverURL: "comments.huamurui.me", // your server url
-    }),
     searchPlugin({
       // 你的选项
       locales: {

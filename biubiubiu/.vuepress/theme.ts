@@ -47,7 +47,7 @@ export default hopeTheme({
       // sidebar
       sidebar: zhSidebar,
 
-      footer: "默认页脚",
+      footer: "ko no rainbow da",
 
       displayFooter: true,
 
@@ -71,16 +71,16 @@ export default hopeTheme({
     //   provider: "Waline",
     //   serverURL: "comments.huamurui.me", // your server url
     // },
-    // comment: {
-    //   /**
-    //    * Using Giscus
-    //    */
-    //   provider: "Giscus",
-    //   repo: "huamurui/huamurui.github.io",
-    //   repoId: "R_kgDOHFCWEQ",
-    //   category: "Announcements",
-    //   categoryId: "DIC_kwDOHFCWEc4CR0iI",
-    // },
+    comment: {
+      /**
+       * Using Giscus
+       */
+      provider: "Giscus",
+      repo: "huamurui/huamurui.github.io",
+      repoId: "R_kgDOHFCWEQ",
+      category: "Announcements",
+      categoryId: "DIC_kwDOHFCWEc4CR0iI",
+    },
 
     // Disable features you don't want here
     mdEnhance: {
@@ -96,7 +96,6 @@ export default hopeTheme({
       imageSize: true,
       include: true,
       katex: true,
-      lazyLoad: true,
       mark: true,
       mermaid: true,
       playground: {
@@ -121,7 +120,6 @@ export default hopeTheme({
       sub: true,
       sup: true,
       tabs: true,
-      vpre: true,
       vuePlayground: true,
     },
 
@@ -130,61 +128,6 @@ export default hopeTheme({
       cacheHTML: true,
       cachePic: true,
       appendBase: true,
-      // apple: {
-      //   icon: "/assets/icon/apple-icon-152.png",
-      //   statusBarColor: "black",
-      // },
-      // msTile: {
-      //   image: "/assets/icon/ms-icon-144.png",
-      //   color: "#ffffff",
-      // },
-      manifest: {
-        // icons: [
-        //   {
-        //     src: "/assets/icon/chrome-mask-512.png",
-        //     sizes: "512x512",
-        //     purpose: "maskable",
-        //     type: "image/png",
-        //   },
-        //   {
-        //     src: "/assets/icon/chrome-mask-192.png",
-        //     sizes: "192x192",
-        //     purpose: "maskable",
-        //     type: "image/png",
-        //   },
-        //   {
-        //     src: "/assets/icon/chrome-512.png",
-        //     sizes: "512x512",
-        //     type: "image/png",
-        //   },
-        //   {
-        //     src: "/assets/icon/chrome-192.png",
-        //     sizes: "192x192",
-        //     type: "image/png",
-        //   },
-        // ],
-        shortcuts: [
-          {
-            name: "Demo",
-            short_name: "Demo",
-            url: "/demo/",
-            icons: [
-              {
-                src: "/assets/icon/guide-maskable.png",
-                sizes: "192x192",
-                purpose: "maskable",
-                type: "image/png",
-              },
-              {
-                src: "/assets/icon/guide-monochrome.png",
-                sizes: "192x192",
-                purpose: "monochrome",
-                type: "image/png",
-              },
-            ],
-          },
-        ],
-      },
     },
   },
 });
