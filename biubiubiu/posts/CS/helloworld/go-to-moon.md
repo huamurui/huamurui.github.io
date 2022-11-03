@@ -4,11 +4,13 @@ icon: creative
 category:
   - 记录
   - 复制粘贴
-date: 2022-11-2
+date: 2022-11-02
 ---
 
 ~~we choose to go to the monn~~\
 ~~we choose to go to the monn!~~
+
+没写的地方是要去整一个 VPS，系统是 debian，还要有个解析到这个服务器的一个域名。
 
 大约是，v2ray 然后用 nginx 做点伪装。
 
@@ -22,12 +24,12 @@ git 下载 blog 或者别的什么东西
 
 ```
 apt-get update
-apt-get install git
-apt-get install nginx
+apt-get install git -y
+apt-get install nginx -y
 cd /
 mkdir github
 cd github
-git clone -v vuepress-pages https://github.com/huamurui/huamurui.github.io.git
+git clone -b vuepress-pages https://github.com/huamurui/huamurui.github.io.git
 ```
 
 进入 nginx 配置
@@ -53,7 +55,7 @@ nginx 具体配置
 
 ```json
 
-user nginx;
+user www-data;
 pid /run/nginx.pid;
 worker_processes auto;
 worker_rlimit_nofile 51200;
@@ -81,7 +83,7 @@ http {
         listen 80;
         listen [::]:80;
         server_name huamurui.me;
-        root /github/huamurui.github.io
+        root /github/huamurui.github.io;
         index index.html;
 
         location /ray {
@@ -97,7 +99,7 @@ http {
     server {
         listen 443 ssl http2;
         listen [::]:443 ssl http2;
-        root /github/huamurui.github.io
+        root /github/huamurui.github.io;
         index index.html;
 
         server_name huamurui.me;
@@ -170,7 +172,7 @@ v2fly 具体配置
         "domainStrategy": "UseIP"
       }
     }
-  ],
+  ],e
   "dns": {
     "servers": [
       "https+local://1.1.1.1/dns-query",
@@ -187,7 +189,8 @@ v2fly 具体配置
 certbot 安装 ssl 证书
 
 ```
-apt-get install certbot
+
+apt-get install certbot -y
 
 certbot certonly --webroot -w /github/huamurui.github.io -d huamurui.me
 ```
