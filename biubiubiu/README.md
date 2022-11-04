@@ -40,6 +40,12 @@ projects:
     desc: 美少女
     link: https://github.com/huamurui
 
+  - icon: /friends/diodecn.png
+    name: 二极管二极管二极管
+    desc: 美少女
+    link: https://diodecn.cn
+
+
 footer: ko no ... rainbow da !
 ---
 
