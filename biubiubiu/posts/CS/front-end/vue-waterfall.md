@@ -8,8 +8,194 @@ category:
   - 编程
 ---
 
-<details>
-  <summary>啥都没干就瞎bb的部分</summary>
+
+### 瀑布流，计算部分
+
+1.基础的版本,或者说实现核心主要是维护一个数组，数组存的是每一列的高度，根据现有高度选择新增元素会插到哪里，最简单的就是每次新增在高度最小的那一列填。\
+2.有关列数，如果是平常简单的设计...直接把元素宽度或者说列宽固定，拿到窗口大小后两个做个除法得到一个变量就可以了，得到这个值就是要排的列数。或者更懒一点直接把列数写死也没问题。而有关元素高度，常见的做法有等比放缩一下。
+
+::: details 1.2.基础版算列数，等比放缩..
+
+这部分代码来自[myst729/Waterfall](https://github.com/myst729/Waterfall)...
+不得不说组织的好棒...也不长，改用新的写法200行js加上css就能把功能做的很好。
+
+```js
+  //算列数
+  const getColumnCount = () => Math.max(Math.floor((window.innerWidth - 20) / COLUMN_WIDTH), MIN_COLUMN_COUNT)
+```
+
+```js
+//初始化columnHeights
+  const resetHeights = (count) => {
+    columnHeights = new Array(count).fill(0);
+    cellsContainer.style.width = (count * (COLUMN_WIDTH + GAP_WIDTH) - GAP_WIDTH) + 'px';
+  }
+```
+
+```js
+  const adjustCells = (cells, reflow) => {
+    let columnIndex = getMinKey(columnHeights);
+    let columnHeight;
+    for (let j = 0; j < cells.length; j++) {
+      // Place the cell to column with the minimal height.
+      columnIndex = getMinKey(columnHeights);
+      columnHeight = columnHeights[columnIndex];//columnHeights就是需要维护的数组
+      cells[j].style.height = (cells[j].offsetHeight - CELL_PADDING) + 'px';
+      cells[j].style.left = columnIndex * (COLUMN_WIDTH + GAP_WIDTH) + 'px';
+      cells[j].style.top = columnHeight + 'px';
+      columnHeights[columnIndex] = columnHeight + GAP_HEIGHT + cells[j].offsetHeight;
+      if (!reflow) {
+        cells[j].className = 'cell ready';
+      }
+    }
+    cellsContainer.style.height = getMaxVal(columnHeights) + 'px';
+    manageCells();
+  }
+```
+
+:::
+
+3.但...看了这么久会觉得不多写点就有点对不住，所以有了第三种，根据窗口宽度与提供的默认列宽算出一个列数，然后根据这个列数去重定义列宽达到更好的填充效果。
+
+::: details 3.为了更好填充而做的计算
+  
+  [MopTym/vue-waterfall](https://github.com/MopTym/vue-waterfall)
+  
+  这部分代码来自这个仓库，原作者还写了很多功能...只不过好大一部分并不是我想要的，过程把我看的麻麻的。
+
+```ts
+
+  //综下所述，我觉得，叫getCellsWidthAndColumCount更好
+  //这个策略是算列数和每列的宽度，主要变量有...有好多。抄了！
+  function getRowStrategy(width: number, options: WaterfallConfig) {
+    let count = width / options.lineGap
+    // 列数，利用默认值计算的，向下取整
+    let slotWidth
+    if (options.singleMaxWidth >= width) {
+      count = 1
+      slotWidth = Math.max(width, options.minLineGap)
+      //如果元素宽度比窗口还大，直接一列，让元素宽取可以取到的最大
+    } else {
+      let maxContentWidth = options.maxLineGap *~~count
+let minGreedyContentWidth = options.minLineGap* ~~(count + 1)
+      //~~应该是取整的意思，这里计算出两个变量，最大最小的整体宽度
+      let canFit = maxContentWidth >= width
+      let canFitGreedy = minGreedyContentWidth <= width
+      //...greedy，...做两个布尔值，然后是判断。
+      if (canFit && canFitGreedy) {
+        count = Math.round(count)//round四舍五入
+        slotWidth = width / count//单元素宽度...再次赋值
+      } else if (canFit) {
+        count = ~~count
+        slotWidth = width / count
+      } else if (canFitGreedy) {
+        count = ~~(count + 1)
+        slotWidth = width / count
+        //这两个else if，count取整一个向上一个向下，然后和上面一样计算单元素宽度
+      } else {
+        //最后这种...向下取整，宽度取最大
+        count = ~~count
+        slotWidth = options.maxLineGap
+      }
+      if (count === 1) {
+        //如果算完了还是一列，那么宽度取最大
+        slotWidth = Math.min(width, options.singleMaxWidth)
+        slotWidth = Math.max(slotWidth, options.minLineGap)
+      }
+    }
+    return {
+      width: getArrayFillWith(slotWidth, count),//元素宽度...也许是为了grow的时候方便用的，也是可以删掉...
+      count: count,//列数...重命名以下，columnCount
+      left: 0,//如果你不用的话...把这个删了吧。
+    }
+  }
+
+```
+
+:::
+
+### 瀑布流，web实现
+
+是的...计算部分也没多少麻烦，但想要做成成品还要好大一段路...除了把计算后的数值塞回到节点style里，还有好多问题。
+就，比如，滚动懒加载，用户改变窗口大小......这些重新组织UI的过程可以做成动画，动画又怎么绑定...
+懒加载可以监听scroll事件进行高度计算，超过一定的值就加载，顺便把不在窗口内被划过去的dom解除一下。动画方面，这里是通过调html的className表示状态，然后相应状态写css动画。
+而为了避免一些鬼畜效果，调用各块函数的同时用setTimeout弄几个防抖也是需要的。
+
+::: details lazy-load & css animation
+ still come from [myst729/Waterfall](https://github.com/myst729/Waterfall)
+
+```js
+  let manageCells = function () {
+    // Lock managing state to avoid another async call. See {Function} delayedScroll.
+    managing = true;
+
+    let cells = cellsContainer.children;
+    let viewportTop = (document.body.scrollTop || document.documentElement.scrollTop) - cellsContainer.offsetTop;
+    let viewportBottom = (window.innerHeight || document.documentElement.clientHeight) + viewportTop;
+
+    // Remove cells' contents if they are too far away from the viewport. Get them back if they are near.
+    // TODO: remove the cells from DOM should be better :<  :> :) :(
+    for (let i = 0; i < cells.length; i++) {
+      if ((cells[i].offsetTop - viewportBottom > THRESHOLD) || (viewportTop - cells[i].offsetTop - cells[i].offsetHeight > THRESHOLD)) {
+        if (cells[i].className === 'cell ready') {
+          cells[i].fragment = cells[i].innerHTML;
+          cells[i].innerHTML = '';
+          cells[i].className = 'cell shadow';
+        }
+      } else {
+        if (cells[i].className === 'cell shadow') {
+          cells[i].innerHTML = cells[i].fragment;
+          cells[i].className = 'cell ready';
+        }
+      }
+    }
+
+    // If there's space in viewport for a cell, request new cells.
+    if (viewportBottom > getMinVal(columnHeights)) {
+      // Remove the if/else statement in your project, just call the appendCells function.
+      if (isGithubDemo) {
+        appendCellsDemo(columnCount);
+      } else {
+        appendCells(columnCount);
+      }
+    }
+
+    // Unlock managing state.
+    managing = false;
+  };
+```
+
+```css
+.pending {
+  opacity: 0;
+  transform: translateY(50px);
+}
+.ready {
+  transition: 
+    opacity 1s ease-in-out, 
+    box-shadow 300ms ease-in-out, 
+    left 700ms ease-in-out, 
+    top 700ms ease-in-out, 
+    transform 700ms ease-in-out;
+}
+.shadow {
+  visibility: hidden;
+}
+```
+
+:::
+
+### 瀑布流，和vue有啥关系
+
+要说的话...没关系，你看上面用js手搓的效果都已经那么好了。也许写网页也是，用不用这些库和框架都无所谓...
+只是这些家伙提供了一套工具与实践方法，啃它们，能做到更多。是的，我看着看着就飘了，我甚至想抄一个花瓣网或者Pinterest这样的东西出来。
+
+但...我依旧不知道怎么写，这是个问题，有两条路，一个是写成小而精的库与工具，另一个是作为大项目的一部分直接丢上去，但这两者我目前功力都基本是0......。
+想要小巧就别上vue,ts这些了...原生js能做到...
+
+## 别看
+
+::: details 啥都没干就瞎bb的部分
 
 ### 1.工程问题
 
@@ -199,4 +385,4 @@ getGreedyCount...
 该学js了。
 好。终于有需求了。
 
-</details>
+:::
