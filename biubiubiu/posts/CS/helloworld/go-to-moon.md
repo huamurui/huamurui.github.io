@@ -8,7 +8,7 @@ date: 2022-11-02
 ---
 
 ~~we choose to go to the monn~~\
-~~we choose to go to the monn!~~
+[~~we choose to go to the monn!~~](./why-the-moon.md)
 
 没写的地方是要去整一个 VPS，系统是 debian，还要有个解析到这个服务器的一个域名。
 
