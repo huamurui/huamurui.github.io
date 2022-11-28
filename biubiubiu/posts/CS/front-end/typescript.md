@@ -1,6 +1,7 @@
 ---
 title: typescript x 胡说八道 x)
 icon: creative
+date: 2022-11-23
 category:
 - typescript
 ---

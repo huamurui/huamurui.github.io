@@ -19,6 +19,14 @@ category:
 这部分代码来自[myst729/Waterfall](https://github.com/myst729/Waterfall)...
 不得不说组织的好棒...也不长，改用新的写法200行js加上css就能把功能做的很好。
 
+害...我今天才知道原来单纯的js就有这么多在dom上的方法了，
+
+>let cellsContainer = document.getElementById('cells')
+document.createDocumentFragment
+document.createElement
+document.body.children;  那parent肯定也有对吧...
+className不是自己起的名字...而真的是html-css-js里有的属性，可以在js中调用的。
+
 ```js
   //算列数
   const getColumnCount = () => Math.max(Math.floor((window.innerWidth - 20) / COLUMN_WIDTH), MIN_COLUMN_COUNT)
@@ -192,6 +200,13 @@ let minGreedyContentWidth = options.minLineGap* ~~(count + 1)
 
 但...我依旧不知道怎么写，这是个问题，有两条路，一个是写成小而精的库与工具，另一个是作为大项目的一部分直接丢上去，但这两者我目前功力都基本是0......。
 想要小巧就别上vue,ts这些了...原生js能做到...
+
+嗯，还是打算先vue+ts写一个简单的npm包。前天折腾了折腾大概知道包要怎么发了，github action也调通了，就差代码了。
+...我终于开始写代码了，但我写的真烂...其实通都没通，ts也救不了的那种..........
+也许这些...没什么意义。
+也许好久之后才会有...
+
+[why, some say, the moon？](../helloworld/why-the-moon.md/#why-some-say-the-moon)
 
 ## 别看
 
