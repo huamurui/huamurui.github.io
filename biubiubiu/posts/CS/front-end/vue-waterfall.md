@@ -6,10 +6,11 @@ category:
   - 记录
   - 网页
   - 编程
+  - 挖坑
 ---
 
 
-### 瀑布流，计算部分
+## 瀑布流，计算部分
 
 1.基础的版本,或者说实现核心主要是维护一个数组，数组存的是每一列的高度，根据现有高度选择新增元素会插到哪里，最简单的就是每次新增在高度最小的那一列填。\
 2.有关列数，如果是平常简单的设计...直接把元素宽度或者说列宽固定，拿到窗口大小后两个做个除法得到一个变量就可以了，得到这个值就是要排的列数。或者更懒一点直接把列数写死也没问题。而有关元素高度，常见的做法有等比放缩一下。
@@ -21,10 +22,10 @@ category:
 
 害...我今天才知道原来单纯的js就有这么多在dom上的方法了，
 
->let cellsContainer = document.getElementById('cells')
-document.createDocumentFragment
-document.createElement
-document.body.children;  那parent肯定也有对吧...
+>let cellsContainer = document.getElementById('cells')\
+document.createDocumentFragment\
+document.createElement\
+document.body.children;  那parent肯定也有对吧...\
 className不是自己起的名字...而真的是html-css-js里有的属性，可以在js中调用的。
 
 ```js
@@ -122,11 +123,13 @@ let minGreedyContentWidth = options.minLineGap* ~~(count + 1)
 
 :::
 
-### 瀑布流，web实现
+## 瀑布流，web实现
 
-是的...计算部分也没多少麻烦，但想要做成成品还要好大一段路...除了把计算后的数值塞回到节点style里，还有好多问题。
+是的...计算部分也没多少麻烦，但想要做成成品还要好大一段路...除了把计算后的数值塞回到节点style里，还有好多问题。\
 就，比如，滚动懒加载，用户改变窗口大小......这些重新组织UI的过程可以做成动画，动画又怎么绑定...
-懒加载可以监听scroll事件进行高度计算，超过一定的值就加载，顺便把不在窗口内被划过去的dom解除一下。动画方面，这里是通过调html的className表示状态，然后相应状态写css动画。
+>ps:而我现在在vue里做的时候...绝大部分时间都花在了代码拆分后重新组织通信上，毕竟我没那么熟悉这些...一路上踩了好多好多坑啊...
+
+懒加载可以监听scroll事件进行高度计算，超过一定的值就加载，顺便把不在窗口内被划过去的dom解除一下。动画方面，这里是通过调html的className表示状态，然后相应状态写css动画。\
 而为了避免一些鬼畜效果，调用各块函数的同时用setTimeout弄几个防抖也是需要的。
 
 ::: details lazy-load & css animation
@@ -193,9 +196,12 @@ let minGreedyContentWidth = options.minLineGap* ~~(count + 1)
 
 :::
 
-### 瀑布流，和vue有啥关系
+## 瀑布流，和vue有啥关系 && 绕圈圈
 
 要说的话...没关系，你看上面用js手搓的效果都已经那么好了。也许写网页也是，用不用这些库和框架都无所谓...
+>ps:我又了解了css里叫flex的一种布局，似乎...能很轻松的实现简单版本的瀑布流，就是那种一个个小方块那种...。但想要玩花的还是上js吧，css里写计算是真...。\
+我想要学着生产的也许是一种错落的秩序，输入的内容依旧是长方形但同时利用这些内容的长与宽去打破完全的秩序，去制造些不一样的...东西。
+
 只是这些家伙提供了一套工具与实践方法，啃它们，能做到更多。是的，我看着看着就飘了，我甚至想抄一个花瓣网或者Pinterest这样的东西出来。
 
 但...我依旧不知道怎么写，这是个问题，有两条路，一个是写成小而精的库与工具，另一个是作为大项目的一部分直接丢上去，但这两者我目前功力都基本是0......。
@@ -206,9 +212,48 @@ let minGreedyContentWidth = options.minLineGap* ~~(count + 1)
 也许这些...没什么意义。
 也许好久之后才会有...
 
+嗯，又过了一天大概算是搞通了。下一步有希望了 :yum
+而且，写组件时的思考...————暴露什么样的接口，哪些又要收回到组件内部去控制...这些东西和我使用的框架暴露给我的那些..有些地方好像...
+
 [why, some say, the moon？](../helloworld/why-the-moon.md/#why-some-say-the-moon)
 
-## 别看
+### npm publish & github action
+
+### component & props & emit & slot & store
+
+这些部分...算是vue提供的，一种代码组织方式。尤其与原生js相比。
+
+### reactive... how it works, where it works
+
+...
+
+### css animation & vue's transition component
+
+必须要v-if之类的进行触发就好憨...写个钩子搞变量解决了。
+
+### javascript
+
+#### namespace & variable & pure function & lambda
+
+#### Statements & Expressions && Recursion & Iteration
+
+#### Promise && async & await && callback function
+
+### typescript
+
+vue's bug
+
+### css's flex & grid layout
+
+嗯...其实一路过来也看了好多别的操作，css的flex和grid布局之类的...但是如果要写的话，有一部分计算是规避不掉的，那就是维护那个用于储存每一列的高度的数组，这个数组同时也是支持后续懒加载的关键。
+
+[pure css,grid,waterfall](https://www.smashingmagazine.com/native-css-masonry-layout-css-grid)
+
+嗯，grid能做到很多了，看了看，如果用的话估计能省下不少憨批代码...但，真的想玩骚操作还得上js。
+
+啊...这些都好傻逼...不对，我是想说这些原来这么简单...傻逼的是我。
+
+## 别看，废案，错误百出(~~虽然上面也一样~~)
 
 ::: details 啥都没干就瞎bb的部分
 
