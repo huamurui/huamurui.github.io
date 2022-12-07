@@ -219,9 +219,14 @@ let minGreedyContentWidth = options.minLineGap* ~~(count + 1)
 
 ### npm publish & github action
 
+写这个包的时候...虽然没什么人用，但毕竟..万一有人看呢？我还是有意识的去控制暴露哪些东西，藏住哪些东西...也算是种自我审查吧。
+又添加了一个对proxy，劫持，中介，代理......的理解...也是对封装的理解...?将输入输出流控制住，或者说一一登记记录，...就像...疫情防控一样...就可以对对象的控制更加的精准强力。
+
 ### component & props & emit & slot & store
 
 这些部分...算是vue提供的，一种代码组织方式。尤其与原生js相比。
+
+ps:update:看了一下午react的文档，我想转战react了————"超哦...我写vue的那个组件的时候想的事情，在react文档里被说出来了"(((等我消息
 
 ### reactive... how it works, where it works
 
@@ -233,15 +238,75 @@ let minGreedyContentWidth = options.minLineGap* ~~(count + 1)
 
 ### javascript
 
-#### namespace & variable & pure function & lambda
+#### Statements & Expressions & namespace & variable & pure function & lambda
 
-#### Statements & Expressions && Recursion & Iteration
+1.Statements & Expressions
+如果让现在的我来看...也许Expressions会是干净些的东西，而Statements则是暴力的...
+Expressions是最基础的，数学的部分，这些代码会有一个...或者说可以自动的被化归为一个明确的值，返回值。比如1+1就是会被化为2.
+而Statements远没有这么天经地义，还有很多名词都嫩让我想到这个东西...状态机，寄存器，记忆...嗯。经典的定义与赋值就属于Statements(是的，也许一开始都有的一个疑惑，编程里的单等号不是数学表示相等的等号而是“赋值”)，这是没法自动被化为一个值的，就是说，在这里我们需要手动自己去定义，创造东西，这也是我说它暴力的原因...质量嘛...肯定是比不过天经地义的那套的。但Statements依旧很好用，很tmd方便。
+
+其实我又在react文档看到了这部分...useState弄出的东西被叫做组件的记忆，而为了代码的健壮，通常，我们要谨慎的设计、控制、最小化这一部分。
+
+2.namespace & variable
+[闭包 closure](https://zh.javascript.info/closure)
+这里主要看到的是一个叫闭包的东西...就是，一种...权限管理？全局中的每一个函数，每一个小的代码块都可以访问全局的变量，以此类推代码块中的代码块中的代码块...可以随意的向上向外部环境访问变量，而外部则不能访问内部的变量。
+
+3.pure function & lambda
+pure function这个是我在尝试拆分函数的时候意识到作用的一个东西。有些函数会操作外部变量，这样...爽，但是相互耦合代码不容易分离，看的时候就不爽了。尤其是vue2中的this关键字获取vue实例，然后随之把各种东西不管是数据还是函数统统挂在这个实例上来回访问...还有直接有把整个vue实例在组件间传来传去的操作...爽是爽，但是...看了些东西之后尤其在我尝试拆解函数时，感觉这样有点坏...对，想要拆东西的时候，为什么要用一堆返回值，而不是操作变量，这些问题一下就清楚了，也能明白为什么要呢么操作了...
+
+另外还有一个，关于写了一大推const xxx = =>这种箭头函数的问题...就是说...箭头函数是很好啦...但这样也不是很好...
+[函数声明与函数表达式](https://zh.javascript.info/function-expressions)\
+>什么时候选择函数声明与函数表达式？\
+根据经验，当我们需要声明一个函数时，首先考虑函数声明语法。它能够为组织代码提供更多的灵活性。因为我们可以在声明这些函数之前调用这些函数。\
+这对代码可读性也更好，因为在代码中查找 function f(…) {…} 比 let f = function(…) {…} 更容易。函数声明更“醒目”。\
+……但是，如果由于某种原因而导致函数声明不适合我们（我们刚刚看过上面的例子），那么应该使用函数表达式。
+
+[var的历史遗留](https://zh.javascript.info/var)
+还有另另外一个，和用var声明变量时期一块的，用来简单实现私有空间，私有作用域的一个操作。\
+IIFE\
+在之前，JavaScript 中只有 var 这一种声明变量的方式，并且这种方式声明的变量没有块级作用域，程序员们就发明了一种模仿块级作用域的方法。这种方法被称为“立即调用函数表达式”（immediately-invoked function expressions，IIFE）。这里，创建了一个函数表达式并立即调用。因此，代码立即执行并拥有了自己的私有变量。\
+之前给我看懵的的连写两个小括号的操作，就是这里...前一个是函数，后一个是即时传入的参数。
+
+#### Recursion & Iteration
 
 #### Promise && async & await && callback function
 
+[从回调函数开始](https://zh.javascript.info/callbacks)
+我这里主要是想写一个img.onload，让图片加载完再传数据到vue那边...然后就看到回调函数这一块了。
+也许应该提一嘴的是函数名后面带不带括号的区别？一个是把函数的魂传过去，一个是直接调用。而回调...一般是传魂...吧。而这种传魂的，又叫高阶函数。另一种是直接调用的相互黏在一起的，可能...就是嵌套函数了吧，这里会牵扯到闭包一类的问题...
+
+嗯，这里也是，看了好久...但好像卡的bug完全不是理解的问题而是一个脑残操作...我把Promise多包了一层。
+但...看了总是好的嘛...\
+一个想法，await只能在async function里写的原因，可能，如果await外部不是一个async function，不返回一个Promise，那在里层await其实是白写的，如果外层不是async，到外面那一层的时候异步，等待就全都丢了直接把null undefined传出去也是有可能的...吧...\
+Promise是用来让回调函数好看的，用.then来解决回调函数写起来的嵌套和右移问题。
+而async & await，主要是await,await是对.then的简写...
+而有关原理，Promise如字面一样是种保证...await和迭代器有关.......现在好像对我没什么用。
+
+再再另外有关函数执行顺序的，时间循环...v8引擎，函数栈啊，微任务宏任务的队列啊...我也是看了一堆，但目前也是没用。
+
+#### object
+
+...说起来，也是在我搞不定img.onload的那个破玩意的时候瞎看的一堆，js的面向对象....
+该有的应该都不少。只是现在前端好像都不太喜欢用这一部分的东西了......
+我真的看到面向对象的意思时，是java里的那一堆，java bean，model，vo，bo，po，pojo，dto，dao....这里面的o全都是object。。。所以叫tmd面向对象。
+工厂模式，构造函数...\
+构造函数，实例与原型，它们三个是有关系的。\
+原型链。原型链现在好像还会时不时提到...
+————原型对象其实也是普通的对象。几乎所有的对象都可能是原型对象，也可能是实例对象，而且还可以同时是原型对象与实例对象。这样的一个对象，正是构成原型链的一个节点。因此理解了原型，那么原型链并不是一个多么复杂的概念。
+确实，根本不用看，看名字就知道了。类似继承那一类的东西。
+
+crud ...
+c ->set
+r ->get
+u->set+get
+d->set+get
+
 ### typescript
 
-vue's bug
+vue's bug\
+props + ts不能写 withDefault....那个issue开了有一年多了还没修。
+
+但说真的...我这里面没用多少typescript...
 
 ### css's flex & grid layout
 
