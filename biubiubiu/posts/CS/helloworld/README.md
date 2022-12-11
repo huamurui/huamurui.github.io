@@ -9,7 +9,14 @@ category:
 
 [搞网站](beginning.md)
 
-[怪东西](strange-things.md)
+[怪东西](../front-end/philosophy/strange-things.md)
+
+[怪东西2](../front-end/philosophy/typescript.md)
+
+[去月球](why-the-moon.md)
+
+[魔法](go-to-moon.md)
+
 
 ![1](./screenshots/QQ%E6%88%AA%E5%9B%BE20220906073236.png)
 ![2](./screenshots/QQ%E6%88%AA%E5%9B%BE20220908100005.png)
