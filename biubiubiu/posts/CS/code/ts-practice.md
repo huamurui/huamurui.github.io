@@ -1,6 +1,7 @@
 ---
 title: ts-practice
 icon: code
+date: 2022-10-13
 category:
   - 记录
 ---

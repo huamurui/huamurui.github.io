@@ -1,6 +1,7 @@
 ---
 title: markup and markdown language
 icon: creative
+date: 2022-10-13
 category:
   - 记录
   - 网页
