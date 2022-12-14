@@ -67,20 +67,20 @@ export default hopeTheme({
     blog: {
       autoExcerpt: true,
     },
-    comment: {
-      provider: "Waline",
-      serverURL: "https://comments.huamurui.me/", // your server url
-    },
     // comment: {
-    //   /**
-    //    * Using Giscus
-    //    */
-    //   provider: "Giscus",
-    //   repo: "huamurui/huamurui.github.io",
-    //   repoId: "R_kgDOHFCWEQ",
-    //   category: "Announcements",
-    //   categoryId: "DIC_kwDOHFCWEc4CR0iI",
+    //   provider: "Waline",
+    //   serverURL: "https://comments.huamurui.me/", // your server url
     // },
+    comment: {
+      /**
+       * Using Giscus
+       */
+      provider: "Giscus",
+      repo: "huamurui/huamurui.github.io",
+      repoId: "R_kgDOHFCWEQ",
+      category: "Announcements",
+      categoryId: "DIC_kwDOHFCWEc4CR0iI",
+    },
 
     // Disable features you don't want here
     mdEnhance: {
