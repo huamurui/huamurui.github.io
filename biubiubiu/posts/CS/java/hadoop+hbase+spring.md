@@ -1,11 +1,15 @@
 ---
-title: "大数据"
+title: 大忽悠(大数据)
 icon: creative
 date: 2022-12-07
 category:
   - 记录
   - 编程
 ---
+
+恕我直言，用什么hadoop hbase对于现在绝大多数项目而言就是闲得蛋疼，尤其是连搭环境都要搭半天，最后还只在本地机器开虚拟机然后只开一个的。
+这些东西是为了规模而生的，并且也不是唯一解法，做出来玩具项目也只能说是摸一摸而已，而现在这种...连摸都不算，可能是hello world吧。
+好讨厌java...也许是因为学校太傻比。————明明已经是实践课程了，却仍以那狗屁技术要点为中心，那些东西用什么写出来根本就无所谓，而在不了解具体实践与场景的情况下，也不可能把原本的技术目的与解决的问题搞清楚..所以连摸都不算。
 
 记一下配置,也方便复制粘贴...Ubuntu22上装hadoop,hbase
 然而还没装好...
@@ -51,6 +55,7 @@ mv hbase-2.5.2 hbase
 
 ### 环境变量
 
+```env
 vim  ~/.bashrc
 source ~/.bashrc
 
@@ -72,6 +77,7 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 vim  /home/hadoop/hbase/conf/hbase-env.sh
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export HBASE_MANAGES_ZK=true
+```
 
 ### 配置
 
@@ -116,8 +122,11 @@ vim $HADOOP_HOME/etc/hadoop/mapred-site.xml
         <value>yarn</value>
     </property>
 </configuration>
+```
 
 vim $HADOOP_HOME/etc/hadoop/yarn-site.xml
+
+```xml
 <configuration>
     <property>
         <name>yarn.nodemanager.aux-services</name>
@@ -169,6 +178,7 @@ rm /home/hadoop/hbase/lib/client-facing-thirdparty/log4j-slf4j-impl-2.17.2.jar
 
 ### hbase建表
 
+```sql
 hbase-daemon.sh start master ## 启动Hbase
 hbase shell
 create 'email_user','user'
@@ -179,5 +189,5 @@ create 'follow','name'
 create 'followed','userid'
 create 'share','content'
 create 'shareed','shareid'
-
+```
 //hbase建表...这里的时区还是有问题。艹哦
