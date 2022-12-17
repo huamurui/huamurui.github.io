@@ -1,7 +1,7 @@
 ---
 title: 怎么写东西
 icon: creative
-data: 2022-12-12
+date: 2022-12-12
 category:
   - 记录
   - 编程

@@ -1,7 +1,7 @@
 ---
 title: CSS
 icon: creative
-data: 2022-12-16
+date: 2022-12-16
 category:
   - 记录
   - 编程

@@ -1,7 +1,7 @@
 ---
 title: vue瀑布流
 icon: creative
-data: 2022-11-17
+date: 2022-11-17
 category:
   - 记录
   - 网页
