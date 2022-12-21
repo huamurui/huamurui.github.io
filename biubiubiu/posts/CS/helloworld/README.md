@@ -1,6 +1,7 @@
 ---
 title: HelloWorld
 icon: creative
+date: 2022-10-1
 category:
   - 记录
 ---
