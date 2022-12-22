@@ -12,7 +12,7 @@ category:
 
 [怪东西](../front-end/philosophy/strange-things.md)
 
-[怪东西2](../front-end/philosophy/typescript.md)
+[怪东西2](../front-end/philosophy/typescript-nonsense.md)
 
 [去月球](why-the-moon.md)
 

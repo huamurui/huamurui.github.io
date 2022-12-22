@@ -16,12 +16,11 @@ export default hopeTheme({
   darkmode: "toggle",
 
   iconAssets: "iconfont",
-
   logo: "/logo.svg",
 
   repo: "huamurui/huamurui.github.io",
 
-  docsDir: "docs",
+  docsDir: "biubiubiu",
 
   pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime"],
 
