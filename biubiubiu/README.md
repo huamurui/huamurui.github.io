@@ -1,6 +1,7 @@
 ---
 home: true
-layout: Blog
+layout: BlogHome
+# 害...想要更新但又因为一个字段搞了半天...因为报错提示不明确我还新建了一个项目，把内容分批去拷贝到新项目里去找错的地方...没想到是markdown文件的问题
 icon: home
 title: biubiubiu
 heroImage: /logo.svg

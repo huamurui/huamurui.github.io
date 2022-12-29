@@ -63,23 +63,21 @@ export default hopeTheme({
   },
 
   plugins: {
-    blog: {
-      autoExcerpt: true,
+    blog: true,
+    comment: {
+      provider: "Waline",
+      serverURL: "https://comments.huamurui.me/", // your server url
     },
     // comment: {
-    //   provider: "Waline",
-    //   serverURL: "https://comments.huamurui.me/", // your server url
+    //   /**
+    //    * Using Giscus
+    //    */
+    //   provider: "Giscus",
+    //   repo: "huamurui/huamurui.github.io",
+    //   repoId: "R_kgDOHFCWEQ",
+    //   category: "Announcements",
+    //   categoryId: "DIC_kwDOHFCWEc4CR0iI",
     // },
-    comment: {
-      /**
-       * Using Giscus
-       */
-      provider: "Giscus",
-      repo: "huamurui/huamurui.github.io",
-      repoId: "R_kgDOHFCWEQ",
-      category: "Announcements",
-      categoryId: "DIC_kwDOHFCWEc4CR0iI",
-    },
 
     // Disable features you don't want here
     mdEnhance: {
@@ -90,9 +88,11 @@ export default hopeTheme({
       container: true,
       demo: true,
       echarts: true,
+      figure: true,
       flowchart: true,
       gfm: true,
-      imageSize: true,
+      imgLazyload: true,
+      imgSize: true,
       include: true,
       katex: true,
       mark: true,
@@ -105,13 +105,13 @@ export default hopeTheme({
       },
       stylize: [
         {
-          matcher: "Recommanded",
+          matcher: "Recommended",
           replacer: ({ tag }) => {
             if (tag === "em")
               return {
                 tag: "Badge",
                 attrs: { type: "tip" },
-                content: "Recommanded",
+                content: "Recommended",
               };
           },
         },
@@ -119,14 +119,15 @@ export default hopeTheme({
       sub: true,
       sup: true,
       tabs: true,
+      vPre: true,
       vuePlayground: true,
     },
 
-    pwa: {
-      favicon: "/favicon.ico",
-      cacheHTML: true,
-      cachePic: true,
-      appendBase: true,
-    },
+    // pwa: {
+    //   favicon: "/favicon.ico",
+    //   cacheHTML: true,
+    //   cachePic: true,
+    //   appendBase: true,
+    // },
   },
 });
