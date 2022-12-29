@@ -58,7 +58,7 @@ cd /home/hadoop
 #### 下载hadoop
 
 ```sh
-wget <https://dlcdn.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz>
+wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz
 tar xzf hadoop-3.3.4.tar.gz
 mv hadoop-3.3.4 hadoop
 ```
@@ -66,7 +66,7 @@ mv hadoop-3.3.4 hadoop
 #### 下载hbase
 
 ```sh
-wget  <https://dlcdn.apache.org/hbase/2.5.2/hbase-2.5.2-bin.tar.gz>
+wget https://dlcdn.apache.org/hbase/2.5.2/hbase-2.5.2-bin.tar.gz
 tar xzf hbase-2.5.2-bin.tar.gz
 mv hbase-2.5.2 hbase
 ```
@@ -242,7 +242,8 @@ hbase shell
 ```sql
 create 'email_user','user'
 create 'user_id','id'
-create 'gid_disk','gid' create 'user_file','file'
+create 'gid_disk','gid' 
+create 'user_file','file'
 create 'file','file'
 create 'follow','name'
 create 'followed','userid'
