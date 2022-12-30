@@ -1,13 +1,13 @@
 ---
-title: 大忽悠(大数据)
+title: 大忽悠(大数据)/hadoop相关配置
 icon: creative
 date: 2022-12-07
 category:
   - 记录
   - 编程
 ---
-[https://yuchen52.medium.com/hbase-installation-step-by-step-guide-cb73381a7a4c]
-也许这个会好些..
+
+
 
 恕我直言，用什么hadoop hbase对于现在绝大多数项目而言就是闲得蛋疼，尤其是连搭环境都要搭半天，最后还只在本地机器开虚拟机然后只开一个的。
 这些东西是为了规模而生的，并且也不是唯一解法，做出来玩具项目也只能说是摸一摸而已，而现在这种...连摸都不算，可能是hello world吧。
