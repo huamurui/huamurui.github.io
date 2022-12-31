@@ -3,7 +3,7 @@ title: 试着配梯子
 icon: creative
 category:
   - 记录
-  - 复制粘贴
+  - 运维
 date: 2022-11-02
 ---
 

@@ -12,4 +12,4 @@ tag:
 
 [JavaScript,基础](javascript.md)
 
-[typescript,类型](typescript.md)
+[typescript,类型](typescript-nonsense.md)

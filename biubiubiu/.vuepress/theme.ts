@@ -13,7 +13,7 @@ export default hopeTheme({
     name: "花木瑞",
     url: "https://yuntai.huamurui.me",
   },
-  darkmode: "toggle",
+  darkmode: "switch",
 
   iconAssets: "iconfont",
   logo: "/logo.svg",
