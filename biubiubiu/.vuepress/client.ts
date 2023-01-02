@@ -6,3 +6,4 @@ export default defineClientConfig({
     app.component("Snowfall", Snowfall);
   },
 })
+

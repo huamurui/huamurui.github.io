@@ -95,189 +95,21 @@ md想想就难搞，不会啊啊啊啊啊。看了这么多啥都没弄出来...
 
 [https://v2.vuepress.vuejs.org/zh/advanced/cookbook/markdown-and-vue-sfc.html]
 
-其实有想用一用自定义插件的...
+...好吧，打包报错。"window is not defined"，"document is not defined"，脚本这里不能用的话...日...那为什么开发模式就能用...md。只能写插件试试了。\
+使用不支持 SSR 的功能
+VuePress 会在构建过程中生成一个 SSR 应用，用以对页面进行预渲染。一般而言，如果一段代码在客户端应用 Mount 之前就使用了浏览器或 DOM API ，我们就认为其对 SSR 不友好，即不支持 SSR 。
+
+其实我在想...如果打包可以忽略报错就好了...反正是能用的，但，vuepress可能并不知道具体的错误类型，不知道哪些错严重哪些不严重。所以...只能绕着它走了。
+
+自定义插件..
 [https://vuepress.vuejs.org/zh/guide/using-vue.html]
-但现在还没必要。
+...
+[https://v2.vuepress.vuejs.org/zh/reference/components.html]
 
-<style>
-html body {
-  color :white;
-  background : black;
-}
-</style>
-
-<script>
-
-  (function (window) {
-  'use strict';
-  var Flake, Snowfall;
-
-  Snowfall = function (max) {
-    if (typeof max === "undefined") {
-      max = 300;
-    }
-
-    if (!window.HTMLCanvasElement) {
-      console.warn('Snowfall.js is aborting due to the browser not supporting <canvas>');
-      return;
-    }
-
-    this.max    = max;
-    this.flakes = [];
-
-    this.createCanvas();
-    this.generateFlakes();
-    this.registerAnimation();
-    this.bindDOMEvents();
-  };
-
-  Snowfall.prototype.createCanvas = function () {
-    this.canvas = document.createElement('canvas');
-    this.canvas.width  = window.innerWidth-30;
-    this.canvas.height = window.document.body.clientHeight
-    this.context = this.canvas.getContext('2d');
-
-    this.canvas.setAttribute('style', 'position: absolute; top: 0; left: 0; z-index: 99999; pointer-events: none');
-    document.body.appendChild(this.canvas);
-  };
-
-  Snowfall.prototype.bindDOMEvents = function () {
-    var throttle, that;
-
-    that = this;
-
-    window.addEventListener('resize', function () {
-      if (typeof throttle === "undefined") {
-        throttle = window.setTimeout(function () {
-          throttle = undefined;
-          that.canvas.width  = window.innerWidth-30;
-          that.canvas.height = window.document.body.clientHeight
-        }, 100);
-      }
-    }, false);
-  };
-
-  Snowfall.prototype.generateFlakes = function () {
-    var i;
-
-    for (i = 0; i < this.max; i += 1) {
-      this.flakes.push(new Flake(Math.floor(Math.random() * this.canvas.width), Math.floor(Math.random() * this.canvas.height)));
-    }
-  };
-  // 这个delta是时间差...
-  Snowfall.prototype.updateFlakes = function (delta) {
-    var i, len;
-
-    for (i = 0, len = this.flakes.length; i < len; i += 1) {
-      this.flakes[i].falling(delta);
-      // this.flakes[1].swing(delta);
-      // this.flakes[1].landed()
-
-      if (!this.flakes[i].isVisible(this.canvas.width, this.canvas.height)) {
-        this.flakes[i].reset(Math.floor(Math.random() * this.canvas.width), 0);
-      }
-    }
-  };
-
-  Snowfall.prototype.drawFrame = function () {
-    var i, len, flake;
-
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.context.fillStyle = '#fff';
-
-    for (i = 0, len = this.flakes.length; i < len; i += 1) {
-      flake = this.flakes[i];
-      this.context.fillRect(flake.x, flake.y, flake.size, flake.size);
-    }
-  };
-
-  Snowfall.prototype.registerAnimation = function () {
-    var last_run, frame, that;
-
-    // if (typeof window.requestAnimationFrame === "undefined") {
-    //   var requestAnimationFrame = window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-
-    //   if (typeof requestAnimationFrame === "undefined") {
-    //     console.warn("Snowfall.js is falling back to 100ms animation intervals");
-
-    //     requestAnimationFrame = function (callback) {
-    //       return window.setTimeout(callback, 100);
-    //     };
-    //   }
-
-    //   window.requestAnimationFrame = requestAnimationFrame;
-    // }
-    that     = this;
-
-    // 这个函数...有意思，传入的值竟然要自己去喂给自己...好吧就是递归，但是这个递归不会返回，会一直咬自己。
-    frame = function (now) {
-      if (typeof last_run === 'undefined') {
-        last_run = now;
-      }
-
-      that.updateFlakes(now - last_run);
-      that.drawFrame();
-
-      last_run = now;
-      that.animation = window.requestAnimationFrame(frame);
-    };
-    // 这是一个专门的动画API哎..
-    this.animation = window.requestAnimationFrame(frame);
-  };
-
-  Snowfall.prototype.removeAnimation = function () {
-    if (typeof this.animation === "undefined") {
-      return;
-    }
-
-    window.cancelAnimationFrame(this.animation);
-  };
+艹！
+只能这样跟着它走了。
 
 
-
-
-
-
-  Flake = function (x, y) {
-    this.reset(x, y);
-  };
-
-  Flake.prototype.setSpeed = function () {
-    // 60% 都被设为0.1...而更快的在之后0.1到0.5之间跳...
-    this.speed = Math.max(0.1, Math.random() * 0.5);
-  };
-
-  Flake.prototype.setSize = function () {
-    this.size = Math.max(1, Math.floor(Math.random() * 4));
-  };
-
-  Flake.prototype.falling = function (delta) {
-    this.y += delta * this.speed;
-  };
-
-  Flake.prototype.swing = function (delta) {
-    this.x += delta * this.speed;
-  }
-
-  Flake.prototype.landed = function () {
-    this.speed = 0
-  }
-
-  Flake.prototype.melt = function() {
-    this.melt = false
-  }
-  
-  Flake.prototype.isVisible = function (bx, by) {
-    return (this.x > 0 && this.y > 0 && this.x < bx && this.y < by );
-  };
-
-  Flake.prototype.reset = function (x, y) {
-    this.x = x;
-    this.y = y;
-    this.setSpeed();
-    this.setSize();
-  };
-
-  window.Snowfall = new Snowfall(300);
-} (window));
-</script>
+<ClientOnly>
+  <Snowfall />
+</ClientOnly>
