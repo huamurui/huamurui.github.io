@@ -1,12 +1,20 @@
 <template>
   <div class="snowfall">
-
+    <!-- <div class="test-dom">
+      <h2>this a test box for flakes to land</h2>
+    </div> -->
   </div>
 </template>
 
 <script setup>
 
+
 (function (window) {
+
+  let bodyStyle = document.body.style
+  bodyStyle.background = 'black'
+  bodyStyle.color = 'white'
+
   'use strict';
   var Flake, Snowfall;
 
@@ -181,14 +189,6 @@
 
 </script>
 
-<style >
-html body {
-  color: white;
-  background: black;
-}
+<style scoped>
 
-.snowfall {
-  color: white;
-  background: black;
-}
 </style>
