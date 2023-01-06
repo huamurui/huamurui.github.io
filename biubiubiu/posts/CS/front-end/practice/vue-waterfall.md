@@ -10,6 +10,12 @@ category:
 ---
 
 
+添一个仓库链接
+[https://github.com/huamurui/vue-biu-waterfall]
+
+还有demo的链接
+[https://biubiubiu.huamurui.me/]
+
 >update:12.21.\
 现在看这真是...绕了一个太大太无用的圈了。\
 css3有专门支持瀑布流动属性了，是的，不是有各种缺陷（[有缺陷的](vue-waterfall.md/#csss-flex--grid-layout)）仍要js帮忙的，而是直接就可以实现。是grid布局下的一个标签masonry（grid-template-rows:masonry），只不过大部分浏览器或者说谷歌的浏览器还没支持，现在只在火狐的测试模式里有，要专门去打开一下才能用。\

@@ -396,3 +396,12 @@ hadoop也有些画蛇添足...
 vue的模板语法...v-for中通过index来获取数组索引...感觉...tmd...就不如直接js，jsx去创建dom了啊...md...包括之前vue2 props里的数据验证...不如直接上ts...为什么非要被vue截胡，日了。不管了。能跑就行。
 
 啊
+
+### 2022-01-06
+
+[demos_of_file_operation](https://github.com/huamurui/all_kinds_of_hello_world_and_so_on_and_so_on/tree/master/demos_of_file_operation)
+
+要搁置了...
+所以就把做的一个demo链接贴一下。哈...前后也就两三百行的代码...对了，下载的那个函数你大概是得用 axios 重写一下，不然写死的链接一直朝 localhost 去发请求算怎么回事...\
+想添的可以添...有好多好多对吗？就像你上面想的，它可以长成各种形状。
+只是我都不会罢了，叹气.jpg

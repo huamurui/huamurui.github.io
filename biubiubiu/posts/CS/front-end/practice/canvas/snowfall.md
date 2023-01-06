@@ -125,6 +125,10 @@ VuePress 会在构建过程中生成一个 SSR 应用，用以对页面进行预
 艹！
 只能这样跟着它走了。
 
+最后贴一下添加了摞高高的的效果链接。
+
+[huamurui/Snowfall](https://huamurui.github.io/Snowfall/)
+
 
 <ClientOnly>
   <Snowfall />
