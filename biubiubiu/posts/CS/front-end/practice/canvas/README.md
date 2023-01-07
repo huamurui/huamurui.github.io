@@ -1,5 +1,5 @@
 ---
-icon: edit
+icon: discover
 date: 2022-12-31
 title: canvas
 category:

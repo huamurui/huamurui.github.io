@@ -1,7 +1,9 @@
 ---
-icon: edit
+icon: discover
 date: 2023-01-02
 title: 飘雪动画
+sidebar: false
+navbar: false
 tag:
   - 记录
 ---
