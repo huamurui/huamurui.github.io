@@ -120,8 +120,11 @@ VuePress 会在构建过程中生成一个 SSR 应用，用以对页面进行预
 其实我在想...如果打包可以忽略报错就好了...反正是能用的，但，vuepress可能并不知道具体的错误类型，不知道哪些错严重哪些不严重。所以...只能绕着它走了。
 
 自定义插件..
+
 [https://vuepress.vuejs.org/zh/guide/using-vue.html]
+
 ...
+
 [https://v2.vuepress.vuejs.org/zh/reference/components.html]
 
 艹！
@@ -130,7 +133,6 @@ VuePress 会在构建过程中生成一个 SSR 应用，用以对页面进行预
 最后贴一下添加了摞高高的的效果链接。
 
 [huamurui/Snowfall](https://huamurui.github.io/Snowfall/)
-
 
 <ClientOnly>
   <Snowfall />
