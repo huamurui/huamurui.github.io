@@ -22,7 +22,7 @@ export default hopeTheme({
 
   docsDir: "biubiubiu",
 
-  pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime"],
+  pageInfo: ["Author", "Date", "Category", "Tag", "Word","PageView"],
 
   blog: {
     medias: {

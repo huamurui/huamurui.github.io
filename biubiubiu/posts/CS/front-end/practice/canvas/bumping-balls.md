@@ -199,7 +199,9 @@ Implicitly, via JavaScript language features that do not appear like normal func
 
 函数参数————...运算符，或arguments
 
-##### 作为namespace的函数...模块化
+##### 作为namespace的函数...模块化。
+
+对象，类也可以这么做，很自然的，一个函数、类完成一个功能，就把它封成一个模块，一个namespace。
 
 ##### 函数的构造器...
 
@@ -235,3 +237,208 @@ RPC Remote Procedure Call
 想到...好多都是刷算法题来掌握编程的，我这个...哈。。挺有意思的。
 只是...无名的疲惫...不是因为看书看代码的疲惫...是另一些我还没去做的，不确定与焦虑中的疲惫。
 但还是不想干，躺会吧。
+
+#### 数组 & 迭代
+
+嗯，还是不想写代码。
+看看，JavaScript的数组。
+
+数组...我觉得数组是种很神奇的东西，不然js也不会为它单开这么多东西，它可以看作一种专门以数字为键的键值对或者说对象。而以数组的思考方式，可以把字符串的每一个字符都添上一个数字键，然后也看作一种数组，并以数组的方式去操作。在之前我们就知道，字符串和对象都能以它们的方式创建出一个世界...那数组肯定也是。
+
+学数据结构的时候..那时候看的是C，链表也是个很重要的东西，栈、队列、二叉树、图什么都可以跟这个有关...但是在js中似乎找不太到它的身影...嗯，js有自动优化，有稀疏数组，链表所做的精打细算利用内存，在这里，并不需要。再一个，链表的很多需要设计实现的功能，js直接用挂在数组上的方法实现了。~~高级语言就是好哇~~不过真要做的话，C用结构体实现链表相关的数据结构，在这些高级语言里，可能就是类、对象。
+
+>插播一个。\
+>C语言能否通过结构体实现面向对象编程？
+
+1. 数组创建。\
+数组的字面量创建在js中可能算最简单的用法了，...展开运算符也是一个很经典的语法糖，做那些简单操作都很方便。但..很多时候不够用。\
+但是，有一个很操蛋的是...js直到现在都没有直接创建多维数组的方式。(虽然我只在刷某些算法题时用到过多维数组...但这样写好不爽哦)..只能通过数组嵌套来实现，甚至还要用for循环来初始化填充并确认长度...:
+
+```js
+let n = 10
+let dp = Array(n).fill(0).map(() => Array(n).fill(0))
+```
+
+2. 数组方法\
+
+- 遍历
+  - forEach
+  - map
+  - filter
+  - find
+  - findIndex
+  - every
+  - some
+  - reduce
+  - reduceRight
+- 展平
+  - flat
+  - flatMap
+- 连接
+  - concat
+- Stacks and Queues
+  - push(), pop()
+  - shift(), and unshift()
+- Subarrays
+  - slice()
+  - splice()
+  - fill()
+  - copyWithin()
+- 查找与排序
+  - indexOf() 和 lastIndexOf()
+  - includes
+  - sort
+  - reverse
+- 与字符串
+  - join() 方法是 String.split() 方法的反向方法，该方法通过将字符串拆分为多个片段来创建数组。
+
+只是，学会了创建与方法就是学会了数组吗？...我会感觉，迭代这个东西，和数组，也密不可分。
+
+##### **Iteration 迭代...**
+
+[递归](../vue-waterfall.md/#Recursion&Iteration)
+我原以为只有递归会折磨人，我没想到迭代也会...
+
+上面，js 数组上的那一堆方法，有很多也都是基于迭代的。
+
+```js
+let sum = 0;
+let n = 10
+fot(let i = 0; i < n; i++){
+  sum = sum + i
+}
+```
+
+...for循环竟然被称古老...
+
+**for of ..**
+
+```js
+let sum = 0;
+for(let i of [1,2,3]) { // Loop once for each of these values
+    sum += i;
+}
+
+let m = new Map([["one", 1], ["two", 2]]);
+for(let [k,v] of m) console.log(k, v); // Logs 'one 1' and 'two 2'
+```
+
+另外，for of 与...展开运算和解构赋值都玩的很好，但是不演示了。
+
+三个东西，用来理解把握js迭代。
+
+- 可迭代的对象
+  - 具有特殊迭代器方法，并且该方法返回迭代器对象
+- 迭代器对象
+  - next() 方法 （说真的..这个好像链表，像Program Counter
+- 迭代结果对象
+  - value 和 done 的属性的对象
+
+按照上面，我们可以先犯点神经病把 for of 循环拆一拆，写成下面这样
+
+```js
+let iterable = [99]; // An iterable object
+let iterator = iterable[Symbol.iterator](); // Get the iterable object's iterator
+// 这种数组索引里面写字符串来拿东西的操作...嗯，js的数组就是骚
+
+for(let result = iterator.next(); !result.done; result = iterator.next()) { //  the iterator's next() method，the iterator's 'done' result
+    console.log(result.value)  // result.value == 99
+}
+```
+
+艹，实现一个迭代器对象...？也许上面那些数组处理那些方法都是这么实现的..但是不看。
+
+---
+
+- Generator
+  - 生成器是一种使用强大的新 ES6 语法定义的迭代器；当要迭代的值不是数据结构的元素而是计算结果时，此功能特别有用。
+  - 生成器函数在语法上类似于常规 JavaScript 函数，但使用关键字 function* 而不是 function 定义。可以使用生成器函数来创建生成器/迭代器。...嗯，实现一个迭代器对象...也可以用这样的一个函数去做
+
+```js
+// A generator function that yields the set of one digit (base-10) primes.
+function* oneDigitPrimes() { // Invoking this function does not run the code
+    yield 2;                 // but just returns a generator object. Calling
+    yield 3;                 // the next() method of that generator runs
+    yield 5;                 // the code until a yield statement provides
+    yield 7;                 // the return value for the next() method.
+}
+
+// When we invoke the generator function, we get a generator
+let primes = oneDigitPrimes();
+
+// A generator is an iterator object that iterates the yielded values
+primes.next().value          // => 2
+primes.next().value          // => 3
+primes.next().value          // => 5
+primes.next().value          // => 7
+primes.next().done           // => true
+
+// Generators have a Symbol.iterator method to make them iterable
+primes[Symbol.iterator]()    // => primes
+
+// We can use generators like other iterable types
+[...oneDigitPrimes()]        // => [2,3,5,7]
+let sum = 0;
+for(let prime of oneDigitPrimes()) sum += prime;
+sum                          // => 17
+
+```
+
+上面这个例子，除了迭代器生成器那堆东西...也让我回忆了一下js里的函数都是什么东西...怎么可以这样写的哇...
+
+有递归改迭代...但这个算什么？斐波那契的生成器版本？
+
+```js
+function* fibonacciSequence() {
+    let x = 0, y = 1;
+    for(;;) {
+        yield y;
+        [x, y] = [y, x+y];  // Note: destructuring assignment
+    }
+}
+// Return the nth Fibonacci number
+function fibonacci(n) {
+    for(let f of fibonacciSequence()) {
+        if (n-- <= 0) return f;
+    }
+}
+fibonacci(20)   // => 10946
+
+// Yield the first n elements of the specified iterable object
+function* take(n, iterable) {
+    let it = iterable[Symbol.iterator](); // Get iterator for iterable object
+    while(n-- > 0) {           // Loop n times:
+        let next = it.next();  // Get the next item from the iterator.
+        if (next.done) return; // If there are no more values, return early
+        else yield next.value; // otherwise, yield the value
+    }
+}
+
+// An array of the first 5 Fibonacci numbers
+[...take(5, fibonacciSequence())]  // => [1, 1, 2, 3, 5]
+```
+
+可以把生成器看成是一种特殊的迭代器，特殊在...只找“关键帧”，只看关键步骤与结果的东西，而在生成器之后...async await 异步代码也就，自然而然了。
+
+好了...我确实看的懵懵逼逼
+>尝试使用生成器执行这些操作(yield，暂停计算，throw反向传信...)会导致代码难以理解或解释。但是，它已经成为了过去时，唯一真正实用的用例是管理异步代码。为此，JavaScript 现在具有 async 和 await 关键字（请参阅第 13 章），并且不再有任何理由以这种方式滥用生成器。
+
+另外 WEB API 的部分，下面这个链接的二三部分讲的好好...应该是比这个权威指南要好的...因为，就是API嘛，列清楚就好了。
+[https://zh.javascript.info]
+
+如果看完这本权威指南能写好js本身，有那么一种范式...那，了解这些api应该，就能，真的利用浏览器做很多很多...
+
+### 2023-01-10
+
+嗯...对 JavaScript 本身的学习就先到这里。
+
+我回去看了看那个仓库...开始添东西了，但是，...好多地方，写的，并不是，不，压根就不合理，或者说我想添自己的功能的时候，做不好。
+![balls-base0](../img/balls-base0.png)
+添了一个颜色大小不一样的球，但是在加鼠标或按键操控球球速度或搞加速度的时候....新的事件监听和变量定义的位置，这些，在现有的架构下处理不好（为什么var在这里不提升了？因为严格模式？）。现在的分块，...至少对我想要的需求而言是不合理的。...而且改一点东西就跳来跳去的看代码...还有if for这些语句不喜欢写大括号，日。
+但是写的基础的向量处理和碰撞，模拟的阻力降速这部分效果还是好的，就在这些的基础上开发吧。
+
+只不过现在不想写了...就想躺会
+
+啊...其实我学了好多了对吧...虽然还不够就是了，也把vue react这些东西抛开了好久...做tmd小游戏...\
+似乎好多都可以不重要...我想要什么？
+哦，好吧，我就想躺会。
