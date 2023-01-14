@@ -5,13 +5,13 @@ import { zhSidebar } from "./sidebar/index.js";
 
 
 export default hopeTheme({
-  hostname: 'https://yuntai.huamurui.me',
+  hostname: 'https://huamurui.github.io',
   //这个妈蛋的hostname是sitemap2的，打包一直报错，可能快十几天了我才找到这里。
   //所以这个页面里还有好多tmd插件是自动配到hopeTheme里了吗。。艹艹艹cccccccccccccc
 
   author: {
     name: "花木瑞",
-    url: "https://yuntai.huamurui.me",
+    url: "https://huamurui.github.io",
   },
   darkmode: "switch",
 
@@ -27,7 +27,7 @@ export default hopeTheme({
   blog: {
     medias: {
       Baidu: "https://www.baidu.com/s?wd=%E8%8A%B1%E6%9C%A8%E7%91%9E",
-      Email: "https://example.com",
+      Email: "https://huamurui@outlook.com",
       GitHub: "https://github.com/huamurui",
       Zhihu: "https://www.zhihu.com/people/ke-ai-wu-li-de-nan-hai-zi",
       // huamurui: [
