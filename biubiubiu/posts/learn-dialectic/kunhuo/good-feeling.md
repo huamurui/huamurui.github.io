@@ -98,6 +98,9 @@ ps:那天是真的好高兴...虽然就我一个人瞎高兴而已。虽然之�
 现实里我不怎么会交流...网络上的交流...（为什么他们不喜欢玩 github 或者别的社交网站啊（bushi）...)
 就是...日。
 
-我之前，现在，一直都在问，我想要什么？我想要什么？大家又想要什么？找到一个合适的小组真的好难...之前那个思潮，从开发它本身到它所想提供的服务...突然变得好有意义。毕竟 github 像程序员专属，而且现在还在被墙。
+我之前，现在，一直都在问，我想要什么？我想要什么？大家又想要什么？找到一个合适的小组真的好难...之前那个思潮，从开发它本身到它所想提供的服务...突然变得好有意义。毕竟 github 像程序员专属，而且现在还在被墙，但是身为搞软件的竟然不逛 github！太让人不知道怎么说了，啊啊啊啊啊。
+
+maybe this kind of waving around and aimless wandering is also something must be done, in this wrong way, to know what is right.
+at before i just want to know what computer can do and make some funny toys, but now...i really want to make something that can help people to achieve something, to able to do and produce something. and this also for myself.
 
 好想变魅魔..
