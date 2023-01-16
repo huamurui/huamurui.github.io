@@ -1,5 +1,5 @@
 ---
-title: markup and markdown language
+title: HTML
 icon: creative
 date: 2022-10-13
 category:
@@ -45,7 +45,7 @@ html 算编程语言吗？
 
 ### HTML
 
-HTML ，是一种 ML ，而和 ML 功能相似的还有几个，XML，JSON，YAML。
+HTML ，是一种 ML ，而和 ML 形式相似的还有几个，XML，JSON，YAML。
 
 而如果跳出配置文件的范畴，编程中的结构体、对象，还有hash，set......它们都可以看做一种东西——键值对+嵌套。
 

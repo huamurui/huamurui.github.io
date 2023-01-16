@@ -13,3 +13,5 @@ category:
 [beginning](./helloworld/beginning.md)
 
 [GoToMoon](./helloworld/why-the-moon.md)
+
+[what-can-computer&internet-do](./front-end/philosophy/spa-ssr-ssg.md)

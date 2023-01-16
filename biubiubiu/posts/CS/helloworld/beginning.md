@@ -4,6 +4,7 @@ date: 2022-10-14
 title: 搞网站的记录
 category:
   - 日记
+  - 运维
 tag:
   - 记录
 ---

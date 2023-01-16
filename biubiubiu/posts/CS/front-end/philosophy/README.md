@@ -9,6 +9,8 @@ category:
 
 [怪东西](strange-things.md)
 
-[JavaScript,基础](javascript.md)
+[typescript,胡扯](typescript-nonsense.md)
 
-[typescript,类型](typescript-nonsense.md)
+[HTML,胡扯](./markup-language.md)
+
+[JavaScript,基础](javascript.md)
