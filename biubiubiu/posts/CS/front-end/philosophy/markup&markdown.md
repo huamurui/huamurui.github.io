@@ -4,8 +4,8 @@ icon: creative
 date: 2022-10-13
 category:
   - 记录
-  - 网页
-  - 编程
+  - 前端基础
+  - 胡说八道
 ---
 
 html 算编程语言吗？

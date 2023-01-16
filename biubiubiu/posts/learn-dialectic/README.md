@@ -1,8 +1,6 @@
 ---
 icon: edit
 date: 2021-11-08
-category:
-  - 辩证法
 tag:
   - 碎大石
 ---

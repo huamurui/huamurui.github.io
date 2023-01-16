@@ -14,7 +14,7 @@ export const zhSidebar = sidebar({
   "/posts/CS/": [
     {
       text: "编程，碎碎念",
-      icon: "note",
+      icon: "computer",
       link: "/",
       // prefix: "posts/learn-dialectic/",
       children: "structure",

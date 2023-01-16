@@ -4,7 +4,6 @@ icon: creative
 date: 2022-12-12
 category:
   - 记录
-  - 编程
   - 挖坑
 ---
 

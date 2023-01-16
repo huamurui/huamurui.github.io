@@ -2,8 +2,6 @@
 icon: edit
 date: 2022-08-19
 title: 意识形态
-category:
-  - 辩证法
 tag:
   - 意识形态
   - 笑话

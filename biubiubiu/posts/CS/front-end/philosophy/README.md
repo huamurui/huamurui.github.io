@@ -1,11 +1,10 @@
 ---
-icon: edit
+icon: guide
 date: 2022-12-11
 title: 编程哲学
 category:
-  - 日记
-tag:
-  - 记录
+  - 指南
+
 ---
 
 [怪东西](strange-things.md)

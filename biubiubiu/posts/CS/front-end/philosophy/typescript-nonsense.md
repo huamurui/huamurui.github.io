@@ -3,7 +3,7 @@ title: typescript x 胡说八道 x)
 icon: creative
 date: 2022-11-23
 category:
-- typescript
+- 胡说八道
 ---
 
 语言与创伤。（以下纯属胡说八道）

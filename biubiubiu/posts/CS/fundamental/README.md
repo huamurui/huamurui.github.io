@@ -1,6 +1,6 @@
 ---
 title: 计算机基础
-icon: creative
+icon: read
 date: 2022-12-31
 category:
   - 挖坑

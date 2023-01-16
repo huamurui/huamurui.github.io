@@ -1,12 +1,12 @@
 ---
 title: vue瀑布流
-icon: creative
+icon: config
 date: 2022-11-17
 category:
   - 记录
-  - 网页
-  - 编程
   - 挖坑
+  - vue
+  - 日记
 ---
 
 

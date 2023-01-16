@@ -1,6 +1,6 @@
 ---
 title: HelloWorld
-icon: creative
+icon: guide
 date: 2022-10-01
 category:
   - 记录

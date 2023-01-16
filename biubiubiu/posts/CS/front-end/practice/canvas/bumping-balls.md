@@ -2,6 +2,9 @@
 icon: discover
 date: 2023-01-06
 title: 碰碰球
+category:
+  - 日记
+  - game
 tag:
   - 记录
 ---

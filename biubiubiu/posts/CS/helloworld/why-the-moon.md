@@ -3,7 +3,6 @@ title: 为什么是月亮
 icon: creative
 category:
   - 记录
-  - 感想
 date: 2022-11-27
 ---
 

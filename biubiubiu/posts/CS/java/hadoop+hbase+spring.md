@@ -1,6 +1,6 @@
 ---
 title: 大忽悠(大数据)/hadoop相关配置
-icon: creative
+icon: Apache
 date: 2022-12-07
 category:
   - 记录

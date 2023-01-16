@@ -1,9 +1,9 @@
 ---
-icon: edit
+icon: operate
 date: 2022-12-11
 title: 练习与实践
 category:
-  - 日记
+  - 指南
 tag:
   - 记录
 ---

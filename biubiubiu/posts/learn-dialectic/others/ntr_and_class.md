@@ -1,8 +1,6 @@
 ---
 icon: edit
 date: 2022-08-19
-category:
-  - 辩证法
 tag:
   - 阶级
 ---

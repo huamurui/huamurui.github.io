@@ -1,10 +1,10 @@
 ---
 title: Spring
-icon: creative
+icon: leaf
 date: 2022-12-30
 category:
   - 记录
-  - 编程
+
 ---
 
 (现在学java几乎就是学spring全家桶...

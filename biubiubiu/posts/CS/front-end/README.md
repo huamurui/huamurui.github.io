@@ -3,8 +3,9 @@
 # dir: 
 #   - text: 前端
 # dir.text: faQ
+dir.icon: html
 title: 前端
-icon: creative
+icon: html
 date: 2022-10-01
 category:
   - 记录

@@ -2,8 +2,6 @@
 icon: edit
 date: 2022-10-14
 title: 什么是物质
-category:
-  - 辩证法
 tag:
   - 物质
 ---

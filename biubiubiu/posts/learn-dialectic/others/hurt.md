@@ -2,8 +2,6 @@
 title: hurt。
 icon: edit
 date: 2021-08-22
-category:
-  - 辩证法
 tag:
   - hurt
 ---

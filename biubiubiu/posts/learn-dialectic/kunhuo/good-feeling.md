@@ -1,7 +1,9 @@
 ---
-icon: edit
+icon: like
 date: 2022-12-10
 title: maybe-not-that-bad
+category:
+  - 日记
 tag:
   - 困惑
 ---

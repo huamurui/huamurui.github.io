@@ -1,10 +1,8 @@
 ---
 title: 开端
-icon: edit
+icon: mark
 date: 2021-11-08
 order: 1
-category:
-  - 辩证法
 tag:
   - 开端
 ---

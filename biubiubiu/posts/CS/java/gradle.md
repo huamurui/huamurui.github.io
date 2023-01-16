@@ -4,7 +4,6 @@ icon: creative
 date: 2022-12-30
 category:
   - 记录
-  - 编程
 ---
 
 项目依赖，打包的一堆事...

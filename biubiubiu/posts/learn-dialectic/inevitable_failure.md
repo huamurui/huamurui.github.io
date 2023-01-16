@@ -2,8 +2,6 @@
 icon: edit
 date: 2021-11-08
 order: 2
-category:
-  - 辩证法
 tag:
   - 失败
 ---

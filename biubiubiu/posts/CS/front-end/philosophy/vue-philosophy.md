@@ -1,6 +1,6 @@
 ---
 title: vue哲学
-icon: creative
+icon: vue
 date: 2022-12-21
 category:
 - vue

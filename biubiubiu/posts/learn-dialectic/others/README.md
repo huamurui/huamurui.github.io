@@ -1,10 +1,8 @@
 ---
 title: 瞎胡扯
 
-icon: edit
+icon: mark
 date: 2022-08-19
-category:
-  - 辩证法
 tag:
   - 瞎胡扯
 ---

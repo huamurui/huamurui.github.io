@@ -1,10 +1,9 @@
 ---
 title: css-layout
-icon: creative
+icon: config
 date: 2022-12-16
-category:
-  - 记录
-  - 编程
+tag:
+  - css
 ---
 
 ::: normal-demo grid-layout

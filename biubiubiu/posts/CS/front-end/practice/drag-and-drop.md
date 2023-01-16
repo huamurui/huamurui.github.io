@@ -1,11 +1,11 @@
 ---
 title: 拖拽~
-icon: creative
+icon: config
 date: 2022-12-05
 category:
   - 记录
-  - 编程
   - 挖坑
+  - 日记
 ---
 
 就是说...原来在html标签上写个 draggable=true 就可以给元素添加拖拽属性...什么js监听鼠标点击移动然后通过对大小布局时间的一系列计算处理这个事件什么的...不存在的，爬一边去。

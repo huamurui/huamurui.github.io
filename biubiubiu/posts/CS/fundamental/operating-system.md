@@ -1,6 +1,6 @@
 ---
 title: 操作系统
-icon: creative
+icon: OS
 date: 2022-12-31
 category:
   - 挖坑

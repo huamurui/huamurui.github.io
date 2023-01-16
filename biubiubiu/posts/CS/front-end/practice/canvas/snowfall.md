@@ -1,9 +1,12 @@
 ---
-icon: discover
+icon: snow
 date: 2023-01-02
 title: 飘雪动画
 sidebar: false
 navbar: false
+category:
+  - 日记
+  - game
 tag:
   - 记录
 ---

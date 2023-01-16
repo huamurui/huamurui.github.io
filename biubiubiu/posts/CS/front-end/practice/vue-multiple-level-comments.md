@@ -1,11 +1,10 @@
 ---
 title: vue多级评论
-icon: creative
+icon: operate
 date: 2022-11-13
 category:
   - 记录
-  - 网页
-  - 编程
+  - vue
 ---
 
 嗯，就是说，熟悉了一下vue3，ts。

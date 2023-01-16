@@ -1,10 +1,9 @@
 ---
 title: Java-IO
-icon: creative
+icon: java
 date: 2022-12-30
 category:
   - 记录
-  - 编程
 ---
 
 也许我会...依旧把把云盘这个项目作为推进方向。顺着路去学东西。

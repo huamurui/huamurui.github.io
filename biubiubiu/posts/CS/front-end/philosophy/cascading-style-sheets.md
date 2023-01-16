@@ -4,7 +4,6 @@ icon: creative
 date: 2022-12-16
 category:
   - 记录
-  - 编程
 ---
 
 嗯...就是说，学点css。

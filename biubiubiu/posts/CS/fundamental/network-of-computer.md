@@ -1,6 +1,6 @@
 ---
 title: 计算机网络
-icon: creative
+icon: network
 date: 2022-12-31
 category:
   - 挖坑
