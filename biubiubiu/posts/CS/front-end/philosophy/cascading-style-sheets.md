@@ -19,3 +19,6 @@ category:
 ![component](./img/antd-css.jpg)
 - 第二个是css预处理器，sass，less这种的，写的还是css，但是优化很多。
 - 第三个...大概是从postCss衍生出的tailwind、unocss这些叫做“原子化”的一种，感觉有点怪...它们将css的style的重做了一遍放在class里写，确实是不用写css了，新给出的class可能也的确清晰了些，但这些复杂度又重新转到了html文件里而且不像css还能拆出来。没咋用过。~~看起来有点憨。~~
+
+更新一小下，SCSS 这种的，是要让 css 分离出去并且更强大；而原子化，则是要将css的控制重新插到 html 中；除了原子化还有 css in js 的...不过这个不怎么火。总之，css是就在css里，还是插到 html 里，还是交给 js...
+其实都可以，也都有各自好处。

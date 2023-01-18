@@ -106,3 +106,38 @@ maybe this kind of waving around and aimless wandering is also something must be
 at before i just want to know what computer can do and make some funny toys, but now...i really want to make something that can help people to achieve something, to able to do and produce something. and this also for myself.
 
 好想变魅魔..
+
+### 2023-01-18
+
+唔...昨天看了好多...项圈...\
+好可爱...真的好可爱...\
+想做小手工了。
+搜索关键词。
+
+- 材料
+  - 植鞣革(这个是处理过的牛皮，羊皮好像更软但不耐造一些)
+  - 锁扣 搭扣 扣扣扣
+  - diy 铆钉(这个记得要安装工具...还有专门的打圆孔的工具) 饰品 配件 ~~小铃铛:smiling_face_with_three_hearts:~~
+- 工具
+  - 明显的消耗品
+    - 针线
+    - 胶
+  - 常规
+    - 钢尺
+    - 剪刀
+  - 斩/锥/铆钉圆孔/切削
+    - 锤子
+    - 垫子
+  - 美化，细节
+    - 边线处理(像修脚的)
+    - 砂纸
+  - 小东西，辅助
+    - PVC 模板
+    - 辅助、定位尺
+    - 印花板(主要印字的，别的...要定制)
+
+要做圈圈的话，貌似是，搜宠物，或者腰带+皮料...能找到那种一条一条卖的料子。其实对皮这种料子...有点，不满意，就是，我想要浅色的那种，但是，貌似，很少，而且，本身也容易氧化容易脏，想要亮色还是现代化学染料往上涂。但是他特别的纹理和触感还有以此为基础的一大套工具与解决方案...怎么说，我是不讨厌现代材料的，做的好也很棒，但是貌似没多少人喜欢用这些材料的去做 diy ... 经验和工具都少... 那些金属配件不都是现代生产的吗，为什么不全换了，日。
+
+> 我量了量脖子的周长，35cm。\
+这个数字有点尴尬，是大部分狗狗链s码和m码的分界线，好像，买哪个都不合适 \
+还有一个很怪的事，那些情趣用品店可能因为不能光明正大的做，所以质量看起来都…不太好。狗狗链的质量看起来好多了
