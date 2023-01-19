@@ -4,6 +4,7 @@ icon: vue
 date: 2022-12-21
 category:
 - vue
+- 日记
 ---
 
 inspired by [vue-waterfall](../practice/vue-waterfall.md) and [cloud-disk](../practice/cloud-disk.md)
@@ -15,3 +16,19 @@ inspired by [vue-waterfall](../practice/vue-waterfall.md) and [cloud-disk](../pr
 我刚刚下单了本vue设计与实现...
 然后...
 等我再看看
+
+## 2023-01-19
+
+嗯..书是12月底就到了，但是让它一躺又躺了这么久......
+
+不过，我现在感觉 JS 和 web api 了解的更多了，再回来也会更方便一些。
+
+### Virtual DOM
+
+虚拟 dom 的出现并不是为了更快，而更多的是为提供更简单的心智模型，让写代码更加的命令式，而不是事无巨细的命令式。为了达成这一点，虚拟 dom 是需要更多的计算的，加上它自己隔的一层，所以这种策略性能上相对那些很 nb 的原生开发者反而是差一些的(跟我没关系)，差多少，就取决于采取的算法和后续的各种优化了。
+
+### Render & Compiler
+
+在 web 前端这里，渲染是从 JS 到 DOM 元素，编译是从 DOM 到 JS。\
+通常而言...前者，JS 是运动着的，而 DOM 则被看做是，静态的。\
+组件，是一组 DOM 的封装。....我不喜欢封装这个词..
