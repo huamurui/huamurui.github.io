@@ -15,6 +15,8 @@ date: 2022-12-29
 
 [面向对象](../practice/vue-waterfall.md/#object)
 
+[构造函数](../practice/canvas/bumping-balls.md/#2023-01-08)
+
 vim和命令行=>
 python csv/excel数据库 网页=>
 服务端 数据库/操作系统 客户端=>

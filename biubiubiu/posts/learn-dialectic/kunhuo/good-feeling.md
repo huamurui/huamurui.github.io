@@ -176,3 +176,30 @@ at before i just want to know what computer can do and make some funny toys, but
 
 还有就是...看看代码，明天。
 就是，虽然我半年来几乎一直在看...就是，突然觉得..好像，也没那么远，没那么难，就只是，要有机会碰到。
+
+### 2023-01-20
+
+我会在想为什么我会...依旧在那些，可能并不想做了的事情上花时间。而且也还是不能，全身心的投入...不论哪边\
+为什么我依旧还是没什么行动...会时不时想起...
+
+嗯，要过年了，打个电话...这可以是好事，也可以是负担，那，现在它是什么？
+对于父母，那个电话是温情，也是确认是责问。...
+
+我记得高中挂他电话那回把他气得不轻，是因为听不到没法交流吗？更多的，是，把我挂电话的行为当做脱离和挑衅...
+我甚至不觉得他有交流陪伴的需求，他需要的就只是确认。...你可以说这背后是更严重的焦虑与脆弱......但他扔我东西拆我桌子的时候，随他便。
+
+这又怎么样，还能怎么样，他发这句话是想要什么？...管他是什么意思，我当成催促好了，看看你现在在干什么，别像现在这样，你要做点什么。
+
+>i hope i can say this... :\
+it's so fucking easy to pass the exam ,get the degree and get a job and feed myself, you said you feed me ,which had token great efforts, but it's so fucking easy for me to do this, it's almost nothing, just like breath to do these all and to live on myself. so what you had done or achieved? what's your sufferings means? nothing, they're piece of shit.\
+trying to do it .... and, it's not that difficult, although it's hard time now, it's not that hard...
+
+算了，不管了，看看项圈。
+
+再扩展一下...就是，那些毛茸茸也是可以挂在圈圈上的，传统的布带装饰和皮料放一起，也都很好看的。\
+还有一个就是，金属配件自己搞不了，但是可以用皮用布去捏啊..尤其硬一些的皮料是可以弄出各种形状的。连接件、装饰，都可以用皮的。所以，除非金属配件很好看很戳...或者像是铆钉气孔这种难以用皮料模仿的，以及，很好看的也是必要的点缀性装饰，剩下的自己捏就可以。...何况有些小配件是在太小，你又不批量做，快递都要5块多比原件还贵，真的不值得...除非量大、除非特别特别喜欢。
+
+小配件...
+我搜到了，包扣、大衣扣、钥匙扣、还有tmd鞋扣...我发现之前看到的有一家做圈圈的就是用鞋扣做的配饰..
+
+在另外...搞钱。一定，好好，tmd，做出个玩意出来，然后去找实习。
