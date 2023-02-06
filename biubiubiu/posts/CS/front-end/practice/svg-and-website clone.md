@@ -154,3 +154,79 @@ reflow 更加彻底，形状变了的。
 这些都是，一个个小的集合方式，对的...它们都是，不论是一个用户还是一个话题，在这里都是类似的东西。就像上面讨论的分类与标签的事。通过某种方式，将东西分组，然后再展示、用于检索。
 
 只不过，用户也许是 unix ，一些公共的话题什么的，是 multix 。
+
+### 2023-02-06
+
+实际去做的时候...真的，好慢，好糙心。
+
+嗯...分前后端两部分来看吧。
+
+前端按页面分，大概有 4 个需要，或者说值得去写的页面，感觉，前两个的优先级应该高一些。
+
+- index
+  - Tag
+  - Feed
+    - info
+    - content (deal the fucking overflow)
+    - operation (icon)
+  - Aside
+    - sticky position
+- article
+  - Content
+    - markdown-render
+    - toc
+  - Comment
+    - parent-child/@ relation maybe ...with array to tree
+  - Aside
+    - author info
+    - content toc
+      - sticky position
+      - scroll listening
+    - related article
+- Person
+  - info
+  - articles / timeline
+- “沸点”...就是类似 twitter、微博、知乎想法 bulabula 那种的话题圈子。
+  - info
+  - timeline
+  - aside with hot topics
+
+具体拆分上，Header 大概是是全局通用， 而且光个它就是个不小的工程了...不只是导航，还有，好多，打开后悬浮的小菜单也都在这里。
+
+- Header
+  - fixed top & scroll listening to show/hide
+  - Nav
+    - responsive collospse
+    - dropdown
+  - Search
+    - responsive collospse
+  - User
+    - Post
+    - Info
+      - avatar
+      - dropdown
+      - setting
+
+客户端其实会把 nav 和 user 叠起来放到手机底部...但是，对于网页似乎...没多少这么干的。
+
+---
+
+我其实在想...要不要好好做后端。直接瞎搞那个 sqlite 数据库会不会撑不住...
+他们之前说是要搞 cms ，内容可配置，但，...什么叫 tmd 配置？
+
+Tag 和 Category 的内容分类的体系，评论的相互回复，用户模块。
+这些玩意...配置？
+
+大概都还是要写的...如果想要做的像样些的话。但是...先把网站样式抄好了再说吧，把纯前端的做好。
+
+但是让我分析一下所需数据哦...
+
+Article
+User
+Tag
+
+Like Comment...先不管了
+
+---
+
+啊...还有就是，先写页面，把页面糊出来，可能数据弄不到要先 mock 一下...
