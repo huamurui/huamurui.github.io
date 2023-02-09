@@ -183,10 +183,11 @@ reflow 更加彻底，形状变了的。
       - sticky position
       - scroll listening
     - related article
-- Person
+- person
   - info
   - articles / timeline
-- Topics  “沸点”...就是类似 twitter、微博、知乎想法 bulabula 那种的话题圈子。
+- topics 
+  - “沸点”...就是类似 twitter、微博、朋友圈，QQ空间..知乎想法 bulabula 那种的话题圈子。提一下，上面个人页面的 UI 和这里很像哦...
   - info
   - timeline
   - aside with hot topics
@@ -194,7 +195,7 @@ reflow 更加彻底，形状变了的。
 具体拆分上，Header 大概是是全局通用， 而且光个它就是个不小的工程了...不只是导航，还有，好多，打开后悬浮的小菜单也都在这里。
 
 - Header
-  - fixed top & scroll listening to show/hide
+  - fixed top & scroll listening to show/hide with transform animation
   - Nav
     - responsive collospse
     - dropdown
@@ -230,3 +231,29 @@ Like Comment...先不管了, 回头学一学再好好设计。参考一下我博
 ---
 
 啊...还有就是，还是，先写页面，把页面糊出来，可能数据弄不到要先 mock 一下...
+
+### 2023-02-08
+
+又观察到掘金页面的一个小差异...
+
+常规的文章推荐流，与 Moments... UI 设计都不一样的。
+
+而如果去看熟悉的知乎，后发现，原本的“赞同”，在 Moments 里只剩了“喜欢”，这是相对不那么客观的一种描述，也不会有什么答案排名之类的东西，相比内容本身，这里是与人与圈子更相关的一种东西。
+
+内容优先 or 以人为本
+
+似乎...现在搞论坛搞博客的，很多都是想要全都要的。包括 github，星星多也不一定意味着是什么技术做得好，也可能...是本程序员做饭指南 or xxx交友......
+
+[人与事](../philosophy/strange-things.md/#人与事。)
+
+---
+
+一个人做这些是真的...要干的好多...不仅仅是学技术的问题。
+
+从一点点的点来点去观察 UI ，抄 UI 抄数据，还有一部分产品设计也是要亲自上阵......
+
+---
+
+### 2023-02-09
+
+又弄好了一点东西，感觉...挺好的。只是...确实，真的上手，好磨人。

@@ -16,10 +16,16 @@ export const zhSidebar = sidebar({
       text: "编程，碎碎念",
       icon: "computer",
       link: "/",
-      // prefix: "posts/learn-dialectic/",
       children: "structure",
     },
-  ]
-
+  ],
+  "/posts/CS/front-end/": [
+    {
+      text: "前端",
+      icon: "html",
+      link: "/",
+      children: "structure",
+    },
+  ],
 
 });
