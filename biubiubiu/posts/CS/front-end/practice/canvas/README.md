@@ -31,72 +31,7 @@ tag:
 
 ::: normal-demo biu-text
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>rainbow-text</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #000;
-    }
-    div {
-      font-size: 5em;
-      font-weight: bold;
-      color:blueviolet;
-    }
-    div > span {
-      display: inline-block;
-
-    }
-    .rainbow {
-      animation: rainbow 2s linear 1 alternate both;
-    }
-    @keyframes rainbow {
-
-      25% {
-        color: rgb(0, 255, 221);
-      }
-      50% {
-        color: rgb(255, 0, 0);
-      }
-      75% {
-        color: rgb(231, 216, 12);
-      }
-
-    }
-  </style>
-</head>
-<body>
-  <div>ko-no-rainbow-da</div>
-  <script>
-    const div = document.querySelector('div');
-    div.innerHTML = [...div.textContent].map(cur => `<span>${cur}</span>`).join('');
-    const spans = document.querySelectorAll('span');
-    spans.forEach((span, i) => {
-      span.addEventListener('mouseover', function() {
-        this.classList.add('rainbow');
-      });
-      span.addEventListener('animationend', function() {
-        this.classList.remove('rainbow');
-      });
-    });
-  </script>
-</body>
-</html>
-```
+[glassmorphism-card](https://huamurui.github.io/glassmorphism-card)
 
 :::
 
