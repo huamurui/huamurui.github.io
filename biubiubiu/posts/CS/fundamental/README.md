@@ -4,6 +4,7 @@ icon: read
 date: 2022-12-31
 category:
   - 挖坑
+  - 基础
 ---
 
 base basic表示基本的，简单的，初级的意思；
