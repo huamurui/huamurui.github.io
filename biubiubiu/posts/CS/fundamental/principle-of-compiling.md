@@ -1,6 +1,6 @@
 ---
 title: 编译原理
-icon: compile
+icon: line
 date: 2022-03-24
 category:
   - 基础

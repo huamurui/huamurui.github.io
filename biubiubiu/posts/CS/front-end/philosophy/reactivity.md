@@ -1,7 +1,7 @@
 ---
-icon: reactivity programming
+icon: relation
 date: 2023-03-20
-title: 编程哲学
+title: 反应式编程
 category:
   - 指南
 

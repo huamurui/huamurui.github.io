@@ -1,6 +1,6 @@
 ---
 title: 软件工程
-icon: creative
+icon: structure
 date: 2022-12-29
 categories:
   - 日记
