@@ -46,6 +46,12 @@ projects:
     desc: 美少女
     link: https://diodecn.cn
 
+  - icon: /friends/Nickel_Angel.png
+    name: Nickel_Angel
+    desc: 美少女
+    link: https://www.cnblogs.com/Nickel-Angel
+
+
 
 footer: ko no ... rainbow da !
 ---
