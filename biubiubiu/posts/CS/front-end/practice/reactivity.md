@@ -13,6 +13,9 @@ category:
 
 嗯...但在此之前，想先看看防抖节流，锁，事务一致性，以及js 的 Promise。
   
+<details>
+  <summary>stupid!</summary>
+
 ### debounce & throttle
 
 react 文档里有说过，不要信任用户的操作，用户根本不知道自己的操作到底在干嘛也不需要去知道，收到的所有的操作都要加一个 handler， debounce & throttle 就是两种最常见的 handler。
@@ -108,6 +111,8 @@ function throttle(fn, delay) {
 
 ....RxJS
 
+</details>
+
 ---
 
 ### 2023-05-07
@@ -115,7 +120,11 @@ function throttle(fn, delay) {
 我上面在写什么...？
 不知道...
 
+而且感觉我写的那些... 其实没有能称作 philosophy 的... 而且一堆一堆的... 好乱... 还有一大堆毛病...  
 
+放空了好久...但最近也看到的好多... 一套简单的 curd 就算加上接数据库日志啥的也就几十行。 koa 的源码只有几个文件，koa compose 的代码也只有十几行... 怎么会是(回事)呢.. 就，突然有了些信心。也没那么着急了... 反正，就是那些零碎碎功能的组合、描述...  
+generator... thunk...  co...  异步编程...  
+>插播一下~data~...所以是也许可以持久化一下，生成一个文件；但是文件的读取访问有些慢也有些乱，所以搞一个专门的数据库服务程序和语言...也是现在常用的形式。  
 
 >小知识，什么是闭包~~~  
 >>在 js 中，闭包最浅显直接的意思应该是变量作用域的一些限制，在内部可以访问相对这个内部的外部的变量，而反之则不可以；以此也会有——在嵌套的一层层包中，越内部，意味着越私有。  
@@ -130,9 +139,72 @@ function throttle(fn, delay) {
 >
 >>函数式中搞的模块化...  
 
+好了你已经学会闭包了，快来写一个 compose 吧，像 koa 那样的洋葱模型那种。
+  
+```js
+/*
+const express = (total) => {
+  return total + 12
+}
+
+const discount = (total) => {
+  return total * 0.8
+}
+
+const TShirtNum = (num) => {
+  return 50 * num
+}
+
+const compose = (funcArr) => (startNum) => funcArr.reduce((pre, cur) => cur(pre), startNum) 
+console.log(compose([TShirtNum, discount, express])(100))
+*/
+
+/* 
+  Onion ~~
+  next 是调用下一个中间件，这样的东西，就像...一个二叉树，但是写法上，被展平了。
+*/
+
+const express = (total, next) => {
+  console.log("starting, express") // 3
+  next(total + 12)
+  console.log("ending, express") // 4
+}
+
+const discount = (total, next) => {
+  console.log("starting, discount") // 2
+  next(total * 0.8) 
+  console.log("ending, discount") // 5
+}
+
+const TShirtNum = (num, next) => {
+  console.log("starting, TShirtNum") // 1
+  next(50 * num) 
+  console.log("ending, TShirtNum") // 6
+}
+
+function compose(fns) {
+  let result // 用来存储中间件的返回值...换句话来说用来对接的... 也许这个变量叫成 ctx ...不， ctx 可以贯穿整个。..不过贯穿整个的话是不是不是那么函数式...。 再一个就是，现在这个参数它是单向的... 虽然本来就应该是单向... 唔...
+  return (ctx)=> {
+    dispatch(0, ctx)
+    return result
+    function dispatch(i, ctx) {
+      let fn
+      if (i < fns.length) fn = fns[i]
+      if (i === fns.length) {
+        result = ctx
+        return
+      }
+      return fn(ctx, dispatch.bind(null, ++i))
+    }
+  }
+}
+
+const sellTshirt = compose([TShirtNum, discount, express])
+
+console.log(sellTshirt(100))
+```
 
 callback => Promise & then => generator & yield => async & await
+return => yield => await
 
-
-
-
+but before that, the parma or the state...
