@@ -157,6 +157,9 @@ const TShirtNum = (num) => {
 
 const compose = (funcArr) => (startNum) => funcArr.reduce((pre, cur) => cur(pre), startNum) 
 console.log(compose([TShirtNum, discount, express])(100))
+
+const curry = (fn,args = []) => args.length === fn.length ? fn(...args) : (...args1) => curry(fn,[...args,...args1]);
+
 */
 
 /* 
