@@ -6,8 +6,8 @@ tag:
   - css
 ---
 
-update: 2023-01-29\
-我看看直接的html文件能不能被发布上去...\
+update: 2023-01-29  
+我看看直接的html文件能不能被发布上去...  
 [css-responsive-layouts](./img/css-responsive-layout.html)
 ..好吧不可以。。
 突然想自己弄一个 web-awesome 的仓库，然后用 github page 来丢。

@@ -116,7 +116,7 @@ md想想就难搞，不会啊啊啊啊啊。看了这么多啥都没弄出来...
 
 [https://v2.vuepress.vuejs.org/zh/advanced/cookbook/markdown-and-vue-sfc.html]
 
-...好吧，打包报错。"window is not defined"，"document is not defined"，脚本这里不能用的话...日...那为什么开发模式就能用...md。只能写插件试试了。\
+...好吧，打包报错。"window is not defined"，"document is not defined"，脚本这里不能用的话...日...那为什么开发模式就能用...md。只能写插件试试了。  
 使用不支持 SSR 的功能
 VuePress 会在构建过程中生成一个 SSR 应用，用以对页面进行预渲染。一般而言，如果一段代码在客户端应用 Mount 之前就使用了浏览器或 DOM API ，我们就认为其对 SSR 不友好，即不支持 SSR 。
 
