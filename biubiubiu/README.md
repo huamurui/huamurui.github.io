@@ -17,14 +17,14 @@ projects:
     link: https://comments.huamurui.me/
 
   - icon: project
-    name: 小练习
-    desc: 很烂...真的...
-    link: http://43.143.152.108:8080/
+    name: 小游戏
+    desc: meow meow meow
+    link: https://huamurui.github.io/bumping-balls/
 
   - icon: link
-    name: 链接名称
-    desc: 链接详细描述
-    link: https://链接地址
+    name: 好玩的
+    desc: bulabula
+    link: https://huamurui.github.io/html-s/
 
   - icon: book
     name: 辩证法，碎大石
