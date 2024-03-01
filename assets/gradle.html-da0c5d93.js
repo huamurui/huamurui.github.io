@@ -1,0 +1,1 @@
+import{a6 as e,F as t,G as c,D as o}from"./framework-913605ae.js";const s={},_=o("p",null,"项目依赖，打包的一堆事... 回头再写",-1),a=[_];function n(r,l){return t(),c("div",null,a)}const f=e(s,[["render",n],["__file","gradle.html.vue"]]);export{f as default};

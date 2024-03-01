@@ -1,0 +1,1 @@
+import{a6 as t,F as o,G as a,D as e,R as n}from"./framework-913605ae.js";const r={},s=e("h1",{id:"介绍页",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#介绍页","aria-hidden":"true"},"#"),n(" 介绍页")],-1),c=e("p",null,"ko no rainbow da !",-1),_=[s,c];function d(i,l){return o(),a("div",null,_)}const f=t(r,[["render",d],["__file","intro.html.vue"]]);export{f as default};
