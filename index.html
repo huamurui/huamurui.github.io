@@ -20,6 +20,17 @@
     <img src="./images/fue.png" />
     <p>哦天哪这里什么都没有</p>
     <a href="./html-s">html-s</a>
+    <a href="./photo-viewer">photos</a>
   </div>
+  <script>
+    // 清除 service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (let registration of registrations) {
+          registration.unregister()
+        }
+      })
+    }
+  </script>
 </body>
 </html>
