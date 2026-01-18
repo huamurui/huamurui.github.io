@@ -36,7 +36,7 @@
 
 body {
   background-color: var(--bg-primary);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   transition: background-color 0.3s ease, color 0.3s ease;
   margin: 0;
 }
@@ -55,8 +55,14 @@ body {
   text-shadow: none;
 }
 
-/* 选中然后失焦的呢 */
+article .post-content h1 , article .post-content h2 , article .post-content h3 , article .post-content h4 , article .post-content h5 , article .post-content h6 {
+  position: relative; 
+  scroll-margin-top: 100px; 
+  left: -16px;
+  color: var(--text-primary);
+}
 
+/* 选中然后失焦的呢 */
 h1::after, h2::after, h3::after, h4::after, h5::after, h6::after {
   content: '#'; 
   color: var(--primary-color); 
