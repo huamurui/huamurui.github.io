@@ -37,16 +37,16 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  name: "Site Name",
-  description: "Site Description",
-  url: "https://yoursite.com",
+  name: "Green House Between Clouds",
+  description: "A blog about web tech and nonsense.",
+  url: "https://huamurui.github.io",
   site: "https://huamurui.github.io",
-  base: "/pudding",
-  keywords: ["astro", "blog", "theme", "pudding"],
+  base: "",
+  keywords: ["astro", "blog", "pudding","云苔","huamurui"],
   author: {
-    name: "Your Name",
-    email: "your@email.com",
-    github: "https://github.com/your",
+    name: "huamurui",
+    email: "huamurui@outlook.com",
+    github: "https://github.com/huamurui",
   },
   navItems: [
     { href: "./", labelKey: "home", label:"home" },
@@ -54,8 +54,8 @@ export const siteConfig: SiteConfig = {
     { href: "./about", labelKey: "about", label:"about"  },
   ],
   socialLinks: [
-    { nameKey: "social.github", href: "https://github.com/your" },
-    { nameKey: "social.email", href: "mailto:your@email.com" },
+    { nameKey: "social.github", href: "https://github.com/huamurui" },
+    { nameKey: "social.email", href: "huamurui@outlook.com" },
     { nameKey: "social.rss", href: "./rss.xml" },
     { nameKey: "social.sitemap", href: "./sitemap-index.xml" },
   ],
