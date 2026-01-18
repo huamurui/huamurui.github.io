@@ -1,0 +1,136 @@
+# Astro Theme Pudding
+
+一个现代的、可定制的 Astro 博客主题。
+
+## 特性
+
+- 🎨 **现代化设计** - 简洁美观的界面设计
+- 🌓 **深色模式** - 支持亮色/暗色主题切换
+- 📱 **响应式设计** - 完美适配移动端和桌面端
+- 📝 **Markdown 支持** - 完整的 Markdown 支持及扩展
+- 🏷️ **标签系统** - 灵活的标签管理和筛选
+- 📊 **SEO 优化** - 完整的结构化数据和 SEO 支持
+- 🍞 **面包屑导航** - 基于文件目录的面包屑导航
+
+## 快速开始
+
+### 安装
+
+```bash
+npm install
+# 或
+pnpm install
+```
+
+### 开发
+
+```bash
+npm run dev
+# 或
+pnpm dev
+```
+
+### 构建
+
+```bash
+npm run build
+# 或
+pnpm build
+```
+
+### 预览
+
+```bash
+npm run preview
+# 或
+pnpm preview
+```
+
+## 配置
+
+在 `src/config/site.config.ts` 文件中：
+
+```typescript
+export const siteConfig: SiteConfig = {
+  name: "Your Site Name",
+  description: "Your site description",
+  url: "https://yoursite.com",
+  author: {
+    name: "Your Name",
+    email: "your@email.com",
+  },
+  // 主题颜色配置
+  theme: {
+    light: {
+      primary: "#5e7eff",
+    },
+    dark: {
+      primary: "#ff9eb6",
+    },
+  }
+  locale: "zh-CN", // 或 "en-US"
+  // 可在 `src/config/i18n.config.ts` 中添加更多语言支持
+  // ... 更多配置
+};
+
+```
+
+## 功能说明
+
+### 文章管理
+
+文章放在 `src/posts/` 目录下，支持嵌套文件夹结构。每篇文章需要包含以下 frontmatter：
+
+```markdown
+---
+title: "文章标题"
+date: 2025-01-01
+description: "文章描述"
+tags: ["标签1", "标签2"]
+pinned: true  # 可选：将文章置顶
+---
+```
+
+### 目录页面
+
+目录页面基于目录结构自动生成。例如，`src/posts/tech/` 中的文章可以通过 `/posts/tech/` 访问，无需创建 index.md 文件。
+
+### 面包屑导航
+
+面包屑导航基于文件目录结构自动生成，显示从首页到当前页面的路径。
+
+### 标签系统
+
+标签会自动从文章 frontmatter 中提取，并生成标签页面和统计信息。
+
+### 文章置顶
+
+在文章 frontmatter 中添加 `pinned: true` 可以将文章置顶到列表顶部。置顶文章会显示 📌 图标和特殊样式。
+
+### markdown 扩展
+
+#### link-card
+
+支持在 markdown 中插入链接卡片。例如：
+
+```markdown
+[链接卡片](https://example.com)
+```
+
+会生成一个指向 `https://example.com` 的链接卡片。
+
+#### spoiler
+
+```markdown
+||| black-spoiler |||
+|| blur-spoiler ||
+```
+
+## 许可证
+
+MIT
+
+## 致谢
+
+基于 [Astro](https://astro.build/) 构建。  
+参考了许多其他博客主题的设计和实现，特别是 [fuwari](https://github.com/saicaca/fuwari)。
