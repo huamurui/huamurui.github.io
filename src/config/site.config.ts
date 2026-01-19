@@ -37,12 +37,12 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  name: "Green House Between Clouds",
+  name: "Greenhouse between Clouds",
   description: "A blog about web tech and nonsense.",
   url: "https://huamurui.github.io",
   site: "https://huamurui.github.io",
   base: "",
-  keywords: ["blog","云苔","huamurui",'barssica','programming','tech','technology','Green House Between Clouds'],
+  keywords: ["blog","云苔","huamurui",'barssica','programming','tech','technology','Greenhouse between Clouds'],
   author: {
     name: "云苔",
     email: "huamurui@outlook.com",
