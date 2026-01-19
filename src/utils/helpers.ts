@@ -62,7 +62,17 @@ export function calculateReadingTime(content: string, wordsPerMinute: number = 2
   const wordCount = content.split(/\s+/).length;
   return Math.ceil(wordCount / wordsPerMinute);
 }
+/**
+ * 统计字数
+ */
+export function countWords(content: string): number {
+  // 处理中英文状况，所以，空格是不合适的，直接字符数也不合适
+  const strippedContent = content.replace(/<[^>]+>/g, '').trim();
 
+  const chineseCharCount = (strippedContent.match(/[\u4e00-\u9fa5]/g) || []).length;
+  const englishWordCount = (strippedContent.match(/[a-zA-Z]+/g) || []).length;
+  return chineseCharCount + englishWordCount;
+}
 /**
  * 格式化日期
  */
