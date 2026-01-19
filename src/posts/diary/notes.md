@@ -542,5 +542,9 @@ type-challenges
 总之，我还是想再多看看。
 
 对了，还有一件事，感觉 gemini 在对话能力上比之前 deepseek 之类的又强了许多。  
-我用它整了些 [尼采大战 typescript，黑格尔布道 rust](../nonsense/ai#fun-toys) 之类的东西，虽然还是比较浅显，但让这些大概率对计算机不感冒的欧陆哲学家搞编程还是好有趣。  
+我用它整了些 [尼采大战 typescript，黑格尔布道 rust](../nonsense/waiting-for-the-big-one#fun-toys) 之类的东西，虽然还是比较浅显，但让这些大概率对计算机不感冒的欧陆哲学家搞编程还是好有趣。  
+
+## 2026-01-19
+
+
 
