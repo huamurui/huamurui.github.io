@@ -42,9 +42,9 @@ export const siteConfig: SiteConfig = {
   url: "https://huamurui.github.io",
   site: "https://huamurui.github.io",
   base: "",
-  keywords: ["astro", "blog", "pudding","云苔","huamurui"],
+  keywords: ["blog","云苔","huamurui",'barssica','programming','tech','technology','Green House Between Clouds'],
   author: {
-    name: "huamurui",
+    name: "云苔",
     email: "huamurui@outlook.com",
     github: "https://github.com/huamurui",
   },
