@@ -453,6 +453,13 @@ vue 的跨端开发相比 react 之前就没多少东西， 而如果之后 vapo
 
 解决它的核心思路是：不要收到一个更新就立刻重算。现代最佳实践是利用“先标记脏状态（Push），后按需拉取新值（Pull）”的策略，结合版本控制，确保当最终节点 D 计算时，其依赖的 B 和 C 都已经处于稳定且一致的最新状态。
 
+#### preactjs/signals
+
+(双向链表 `addDependency`, `removeDependency`) + (`_flags`（CLEAN/CHECK/DIRTY）)
+
+啊，链表。  
+react 的 vdom 现在好像也是链表。  
+增量计算 (Incremental Computing) 和 数据流编程 (Dataflow Programming)  
 
 ### 其他
 
