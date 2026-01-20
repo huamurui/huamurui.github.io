@@ -7,9 +7,10 @@ tags: ['Vue','web','编程']
 
 Vue 最近好像搞了许多大新闻，然鹅，我现在想看的可能是一个很老到有些无聊的话题，关于它的响应式系统。
 
-## 最最开始
+## 过家家
+### 最最开始
 
-### Signal, Effect, Dependency Graph
+#### Signal, Effect, Dependency Graph
 
 信号/响应式系统的核心概念也许好久好久之前就有。 一个标准的信号/响应式系统，通常会有这样 **三个核心要素**：
 
@@ -70,7 +71,7 @@ count.value = 1;
 // 输出: 当前计数是: 1
 ```
 
-### Base Computed / Memo, Watch
+#### Base Computed / Memo, Watch
 
 只考虑有效果，别的什么都不考虑的 Watch Computed 似乎都很简单。
 
@@ -123,14 +124,12 @@ const triple = computed(() => double.value + count.value);
 console.log(triple.value); // 输出: 3
 ```
 
-## 另一些，练习
+### 另一些，练习
 
 嗯...有效果，但，也只是有效果。  
-上面的 Computed 加了个 dirty，但，lazyLoad， DAG 依赖更新...
-类似的优化还有许多许多可以做的。  
-这里再写些简单的。  
+上面的 Computed 加了个 dirty，但...  问题很多，在[下面](#glitch故障毛刺)会说一下
 
-### Batching / Scheduler
+#### Batching / Scheduler
 
 任务队列，避免重复渲染。
 
@@ -191,7 +190,7 @@ class Ref {
 ```
 
 
-### Cleanup
+#### Cleanup
 **挑战：** 解决分支切换（Branch Switching）导致的内存泄漏。
 *   代码：
     ```js
@@ -241,9 +240,10 @@ class Ref {
 }
 ```
 
-## 考察
 
-### Base Test
+### 响应式系统与 dom
+
+#### Base Test
 
 上面的只是 demo，性能与组织上都只是个样子。    
 
@@ -308,7 +308,7 @@ function h(tag, propsOrChildren, children) {
 
 ```
 
-### vue ~~新闻~~ 旧闻
+#### vue ~~新闻~~ 旧闻
 
 vue 之前用响应式系统把更新触发准确到了组件，或者说组件的渲染函数。在组件的渲染函数收到更新时，再通过 vdom diff 算差异最后 patch 到 dom。  
 上面也是我在尝试学 vue 的做法，~~不过只是做了个 h 函数然后直接 innerHtml = '' 没管 diff 的事~~。  
@@ -368,107 +368,94 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 }
 ```
 
-能看到的是， vdom 没了，直接 template。 而  _renderEffect 响应式收集直接绑到了很精确的地方。  
+能看到的是， vdom 大概是没了，直接 _template 和一些别的 dom 修改方法。 而  _renderEffect 响应式收集也直接绑到了很精确的地方。  
+将更多的工作直接在编译时完成。  
 但...代价呢？  
-vue 的跨端开发相比 react 之前就没多少东西， 而如果之后 vapor 变成默认乃至唯一选择，会不会给 uniapp 这样的东西来个致命一击什么的x  
+vue 的跨端开发相比 react 之前就没多少东西， 而如果之后 vapor 变成默认甚至唯一选择，是不是给 uniapp 这样的东西狠狠来了一拳x
 
-### solidjs
 
-solid 有意思的一个地方是， solid 里可以不用 computed 这个 api，直接写一个高阶函数就可以实现计算属性这个功能。
+## 考察
 
-### 核心原理：全局变量 `context`
 
-你可以把响应式系统想象成一个“现场施工队”。
-1.  **全局变量（工头帽）：** 只有一顶帽子。谁戴着这顶帽子，谁就是当前正在干活的“负责人”（Effect）。
-2.  **Signal（材料）：** 谁动了材料，谁就要看看现在戴帽子的是谁，把他记在小本本上。
+#### Glitch（故障/毛刺）
 
-```js
-// 1. 全局变量：记录当前正在运行的副作用函数
-// 这就是那个“帽子”
-let currentEffect = null;
+虽然上面的代码完全没到考虑这个问题的时候，但我想通过这个问题看一下现在更完善的响应式系统在做什么。  
+这里主要在关注的是 Signal 和 Computed 这两个东西。其他的暂且不管。  
 
-// 2. 信号 (Signal)
-function createSignal(initialValue) {
-  let value = initialValue;
-  const subscribers = new Set(); // 订阅者名单
+**Glitch（故障/毛刺）** 或 “**钻石问题**” 指的是在依赖图中，当一个上游数据源发生变化，通过多条路径传导到同一个下游节点时，由于更新顺序的不一致，导致下游节点在短时间内接收到**不一致的中间状态**或**执行了多余的计算**。
 
-  const read = () => {
-    // 【关键一步】：读取时，看看谁戴着帽子
-    if (currentEffect) {
-      console.log(`🔍 发现有人(${currentEffect.name})在读我，把他记下来！`);
-      subscribers.add(currentEffect);
-    }
-    return value;
-  };
+##### 场景描述
+想象一个菱形（钻石）形状的依赖图：
 
-  const write = (newValue) => {
-    value = newValue;
-    console.log(`📣 值变了，通知 ${subscribers.size} 个订阅者更新！`);
-    // 挨个打电话通知
-    subscribers.forEach(fn => fn());
-  };
-
-  return [read, write];
-}
-
-// 3. 副作用 (Effect)
-function createEffect(fn) {
-  // 把函数包装一下，负责戴帽子和摘帽子
-  const execute = () => {
-    currentEffect = execute; // 戴上帽子！告诉全世界现在是我在运行
-    fn();                    // 执行用户传入的函数
-    currentEffect = null;    // 摘掉帽子！
-  };
-  
-  // 给它起个名字方便调试
-  execute.name = "MyEffect";
-  
-  execute(); // 立即执行一次
-}
-
-// --- 见证奇迹的时刻 ---
-
-const [count, setCount] = createSignal(1);
-
-// 这是一个没有任何特殊 API 的普通函数
-// 也就是你说的 double
-const double = () => {
-  console.log('-> double 函数正在运行...');
-  // 这里调用 count() 时，count 内部会检查 currentEffect
-  return count() * 2; 
-};
-
-createEffect(() => {
-  console.log('🏁 Effect 开始运行');
-  // Effect 调用 double -> double 调用 count
-  console.log('结果是:', double()); 
-  console.log('🏁 Effect 结束运行');
-});
+```text
+      [A]  (原始数据 Name="John")
+     /   \
+   [B]   [C]  (中间计算)
+     \   /
+      [D]  (最终派生)
 ```
 
+1.  **A** 是源头（例如：`name`）。
+2.  **B** 依赖 A（例如：`isUpperCase = name.toUpperCase()`）。
+3.  **C** 依赖 A（例如：`length = name.length`）。
+4.  **D** 依赖 B 和 C（例如：`info = isUpperCase + " " + length`）。
+
+初始状态：A="John", B="JOHN", C=4, D="JOHN 4"。
+
+##### 问题发生的过程
+假设我们将 **A** 修改为 "Doe"：
+
+1.  **A** 通知 **B** 和 **C** 更新。
+2.  **B** 先更新：B 变为 "DOE"。
+3.  **B** 通知 **D** 更新。
+4.  **D** 立即重新计算：此时 B 是新值 "DOE"，但 C 还没来得及更新（仍是旧值 4）。
+5.  **D 计算出错误结果（Glitch）："DOE 4"**。❌ (这是不一致的状态，因为 "DOE" 的长度不是 4)。
+6.  接着，**C** 更新：C 变为 3。
+7.  **C** 通知 **D** 更新。
+8.  **D** 再次计算：B 是 "DOE"，C 是 3。
+9.  **D 计算出正确结果："DOE 3"**。✅
+
+##### 负面影响
+1.  **性能浪费**：D 执行了两次计算，第一次是完全没必要的。
+2.  **副作用风险**：如果 D 的计算包含副作用（例如发送网络请求、打印日志、DOM 操作），那么用户可能会看到一闪而过的错误数据，或者服务器收到错误的请求。
+
+---
+
+#### 解决方案
+
+现代响应式库主要通过以下几种策略来解决这个问题：
+
+##### 方案一：拓扑排序 (Topological Sort)
+这是最理论化的解法。系统在执行更新前，先分析依赖图，确定节点的执行顺序。
+*   **原理**：确保 D 永远在 B 和 C 之后执行。
+*   **做法**：当 A 变更时，系统会计算出一个更新队列 `[A, B, C, D]` 或 `[A, C, B, D]`。D 必须等待所有依赖项都处理完毕才执行。
+*   **缺点**：在运行时动态计算图的拓扑排序成本很高，难以处理动态变化的依赖关系。
+
+##### 方案二：Push-Pull 模型（混合推拉 + 版本号/时间戳）—— **主流方案**
+这是目前最高效且被广泛采用的方案（如 **Vue 3.x, MobX, Preact Signals, SolidJS**）。
+
+*   **机制**：
+    1.  **Push (通知阶段)**：当 A 变更时，A 不会把值推给 B 和 C，而是发送一个“**我脏了 (Dirty)**”或“**可能脏了**”的信号。这个信号沿着图向下传播。D 收到信号后，标记自己为“陈旧（Stale）”，但**不立即重新计算**。
+    2.  **Pull (求值阶段)**：当需要读取 D 的值时（或者在微任务结束后的渲染阶段），D 尝试获取值。
+    3.  **版本检查**：D 询问 B 和 C。B 发现自己也是“陈旧”的，于是去问 A。A 重新计算并更新版本号。B 更新并记录版本号。C 同理。
+    4.  **最终计算**：D 只有在确认 B 和 C 都是最新版本后，才利用它们的新值进行自我计算。
+
+*   **优点**：完美解决了 Glitch，且实现了**惰性求值**（Lazy Evaluation）——如果 D 没人用，甚至根本不会重算 B 和 C。
+
+##### 方案三：同步调度与批处理 (Batching & Scheduling)
+这是 React (setState) 和一些早期库常用的方式。  
+也许[上面](#batching--scheduler)做的的那个队列可以看作一个简单实现。   
+但这也许并不能算解决了问题...  单纯的批处理如果不配合依赖图分析，依然可能在内部计算逻辑中出现 Glitch，只是用户界面看不到而已。
+
+#### 总结
+
+钻石问题是由于多路径依赖导致的中间状态不一致和重复计算。
+
+解决它的核心思路是：不要收到一个更新就立刻重算。现代最佳实践是利用“先标记脏状态（Push），后按需拉取新值（Pull）”的策略，结合版本控制，确保当最终节点 D 计算时，其依赖的 B 和 C 都已经处于稳定且一致的最新状态。
 
 
+### 其他
 
-### preactjs/signals
-
-[preactjs/signals](https://github.com/preactjs/signals/tree/main/packages/core)
-
-Preact 的信号库是目前公认写的非常漂亮且高性能的实现。它可以独立于 Preact 使用。
-
-*   **核心黑科技：** **双向链表 + 版本号**。
-    *   它不再用全局大 Map 存依赖了。
-    *   **Signal** 知道自己被哪些 Effect 引用（链表）。
-    *   **Effect** 知道自己依赖了哪些 Signal（链表）。
-    *   这种结构使得**“取消订阅”**（Cleanup）变得极快（O(1) 复杂度，只需要断开链表指针）。
-*   **这一代主要解决的问题：** “脏检查”的性能。如果一个 Signal 变了，派生出来的 Computed 到底要不要变？Preact 引入了极其高效的检查机制。
-
-
-## 其他
-
-<https://www.bilibili.com/video/BV1fyu9zsEAf>
-
-<https://soonwang.me/blog/vue-reactivity-3.5-preact-signals>
-
-<https://cn.vuejs.org/guide/extras/reactivity-in-depth>
-
-<https://github.com/preactjs/signals>
+###### <https://soonwang.me/blog/vue-reactivity-3.5-preact-signals>
+###### <https://cn.vuejs.org/guide/extras/reactivity-in-depth>
+###### <https://github.com/preactjs/signals>
