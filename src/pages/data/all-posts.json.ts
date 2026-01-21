@@ -8,6 +8,7 @@ interface PostData {
   description?: string;
   tags: string[];
   url: string;
+  content: string;
 }
 
 interface TagCount {
@@ -48,6 +49,7 @@ export const GET: APIRoute = async () => {
       description: post.data.description,
       tags: tags,
       url: `/posts/${post.id}/`,
+      content: post.body || '',
     };
   });
 

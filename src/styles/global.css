@@ -81,6 +81,11 @@ h6:hover::after {
   transform: translateX(10px);
 }
 
+.search-results mark {
+  background-color: color-mix(in srgb, var(--theme-color) 30%, transparent);
+  color: inherit;
+  padding: 0;
+}
 
 /* *::-webkit-scrollbar {
   width: 8px;

@@ -22,6 +22,9 @@ const searchablePosts = allPosts.map((post) => ({
   title: post.data.title,
   excerpt: post.data.description || "无摘要",
   url: buildUrl(["posts", post.id, ""]),
+  content: post.body || "",
+  description: post.data.description,
+  tags: post.data.tags,
 }));
 ---
 
