@@ -37,35 +37,35 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  name: "Greenhouse between Clouds",
-  description: "A blog about web tech and nonsense.",
-  url: "https://huamurui.github.io",
-  site: "https://huamurui.github.io",
-  base: "",
-  keywords: ["blog","云苔","huamurui",'barssica','programming','tech','technology','Greenhouse between Clouds'],
+  name: 'Greenhouse between Clouds',
+  description: 'A blog about web tech and nonsense.',
+  url: 'https://huamurui.github.io',
+  site: 'https://huamurui.github.io',
+  base: '',
+  keywords: ['blog','云苔','huamurui','barssica','programming','tech','technology','Greenhouse between Clouds'],
   author: {
-    name: "云苔",
-    email: "huamurui@outlook.com",
-    github: "https://github.com/huamurui",
+    name: '云苔',
+    email: 'huamurui@outlook.com',
+    github: 'https://github.com/huamurui'
   },
   navItems: [
-    { href: "./", labelKey: "home", label:"home" },
-    { href: "./timeline", labelKey: "timeline", label:"timeline"  },
-    { href: "./about", labelKey: "about", label:"about"  },
+    { href: './', labelKey: 'home', label:'home' },
+    { href: './timeline', labelKey: 'timeline', label:'timeline'  },
+    { href: './about', labelKey: 'about', label:'about'  }
   ],
   socialLinks: [
-    { nameKey: "social.github", href: "https://github.com/huamurui" },
-    { nameKey: "social.email", href: "huamurui@outlook.com" },
-    { nameKey: "social.rss", href: "./rss.xml" },
-    { nameKey: "social.sitemap", href: "./sitemap-index.xml" },
+    { nameKey: 'social.github', href: 'https://github.com/huamurui' },
+    { nameKey: 'social.email', href: 'huamurui@outlook.com' },
+    { nameKey: 'social.rss', href: './rss.xml' },
+    { nameKey: 'social.sitemap', href: './sitemap-index.xml' }
   ],
   theme: {
     light: {
-      primary: "#5e7eff",
+      primary: '#5e7eff'
     },
     dark: {
-      primary: "#ff9eb6",
-    },
+      primary: '#ff9eb6'
+    }
   },
-  locale: "en-US"
-};
+  locale: 'en-US'
+}

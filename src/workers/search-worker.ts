@@ -1,4 +1,4 @@
-import Fuse, { type FuseResult, type IFuseOptions } from 'fuse.js';
+import Fuse, { type FuseResult, type IFuseOptions } from 'fuse.js'
 
 interface Post {
   id: string;
@@ -39,31 +39,34 @@ interface ErrorMessage {
 }
 
 type WorkerMessage = InitMessage | SearchMessage;
-type WorkerResponse = InitializedMessage | SearchResultsMessage | ErrorMessage;
+type _WorkerResponse = InitializedMessage | SearchResultsMessage | ErrorMessage;
 
-let fuse: Fuse<Post>;
+let fuse: Fuse<Post>
 
-self.onmessage = (e: MessageEvent<WorkerMessage>) => {
-  const { type, payload } = e.data;
+self.onmessage = (e: MessageEvent<WorkerMessage>): void => {
+  const { type, payload } = e.data
 
   switch (type) {
-    case 'INIT':
-      const { posts, options } = payload;
-      fuse = new Fuse(posts, options);
-      self.postMessage<InitializedMessage>({ type: 'INITIALIZED' });
-      break;
+    case 'INIT': {
+      const { posts, options } = payload
+      fuse = new Fuse(posts, options)
+      self.postMessage<InitializedMessage>({ type: 'INITIALIZED' })
+      break
+    }
 
-    case 'SEARCH':
-      const { query } = payload;
+    case 'SEARCH': {
+      const { query } = payload
       if (!fuse) {
-        self.postMessage<ErrorMessage>({ type: 'ERROR', payload: 'Fuse not initialized' });
-        return;
+        self.postMessage<ErrorMessage>({ type: 'ERROR', payload: 'Fuse not initialized' })
+        return
       }
-      const results = fuse.search(query);
-      self.postMessage<SearchResultsMessage>({ type: 'SEARCH_RESULTS', payload: results });
-      break;
+      const results = fuse.search(query)
+      self.postMessage<SearchResultsMessage>({ type: 'SEARCH_RESULTS', payload: results })
+      break
+    }
 
-    default:
-      self.postMessage<ErrorMessage>({ type: 'ERROR', payload: `Unknown message type: ${type}` });
+    default: {
+      self.postMessage<ErrorMessage>({ type: 'ERROR', payload: `Unknown message type: ${type}` })
+    }
   }
-};
+}

@@ -22,31 +22,7 @@ export default defineConfig({
         borderRadius: '8px',
         borderColor: 'var(--border-color)',
         codeFontFamily: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace",
-        preFontFamily: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace",
       },
-      framePlugin: {
-        enabled: true,
-        frameTheme: 'dark-without-shadow',
-      },
-      lineMarkers: {
-        enabled: true,
-      },
-      diffPlugin: {
-        enabled: true,
-      },
-      annotations: {
-        enabled: true,
-      },
-      tabsPlugin: {
-        enabled: true,
-      },
-      // 启用所有核心插件
-      plugins: [
-        'lineMarkers',
-        'diff',
-        'annotations',
-        'tabs',
-      ],
       // 配置主题选择器映射
       themeCssSelector: (theme) => {
         // 将我们的主题切换值映射到 Expressive Code 主题
@@ -60,8 +36,6 @@ export default defineConfig({
       },
       // 使用暗色模式媒体查询
       useDarkModeMediaQuery: true,
-      // 设置暗色主题
-      darkModeMediaQueryTheme: 'tokyo-night',
     }),
   ],
   markdown: {
