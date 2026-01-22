@@ -2,7 +2,7 @@
 import '@/styles/global.css'
 import '@/styles/link-card.css'
 import '@/styles/code.css'
-import { getCollection } from 'astro:content'
+import 'overlayscrollbars/styles/overlayscrollbars.css'
 import { siteConfig } from '@/config/site.config'
 import { isPostPage, isHomePage } from '@/utils/helpers'
 import type { PostFrontmatter, PostEntry, StructuredData } from '@/types'
@@ -11,7 +11,6 @@ import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 import FAB from '@/components/FAB.svelte'
 import Sidebar from '@/components/Sidebar.astro'
-import { t } from '@/utils/i18n'
 
 // 判断是否为文章页面
 const isPostsPage = isPostPage(Astro.url.pathname)
@@ -150,5 +149,29 @@ const isHome = isHomePage(Astro.url.pathname);
     </div>
     <Footer />
     <FAB client:idle />
+    <script>
+      import { OverlayScrollbars } from 'overlayscrollbars'
+      function changeBars() {
+        const tocList = document.querySelector<HTMLAnchorElement>('.toc-list')
+        if (tocList) {
+          OverlayScrollbars(tocList, {
+            scrollbars: {
+              visibility: 'auto',
+              autoHide: 'scroll',
+              autoHideDelay: 800
+            }
+          })
+        }
+        OverlayScrollbars(document.body, {
+          scrollbars: {
+            visibility: 'auto',
+            autoHide: 'scroll',
+            autoHideDelay: 800
+          }
+        })
+      }
+      document.addEventListener('DOMContentLoaded',changeBars)
+      document.addEventListener('astro:page-load', changeBars)
+    </script>
   </body>
 </html>

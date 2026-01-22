@@ -3,13 +3,11 @@ import ToC from '@/components/ToC.astro'
 import Breadcrumb from '@/components/Breadcrumb.svelte'
 import { getCollection, render, type CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import { siteConfig } from '@/config/site.config'
-import { extractExcerptFromHtml, calculateReadingTime, formatDate, sanitizeViewTransitionName, generateBreadcrumbItems, getTagUrl, countWords } from '@/utils/helpers'
+import { extractExcerptFromHtml, formatDate, sanitizeViewTransitionName, generateBreadcrumbItems, countWords } from '@/utils/helpers'
 import { generatePostStructuredData } from '@/utils/structured-data'
-import { ANIMATION_DURATION, EASING, READING_SPEED } from '@/utils/constants'
-import type { PostFrontmatter, PostEntry, StructuredData } from '@/types'
+import { ANIMATION_DURATION, EASING } from '@/utils/constants'
+import type { PostFrontmatter } from '@/types'
 import '/node_modules/katex/dist/katex.min.css'
-import { t } from '@/utils/i18n'
 
 type StaticPath = {
   params: {
@@ -109,33 +107,33 @@ const breadcrumbItems = generateBreadcrumbItems(post.id);
 
   {headings && headings.length > 0 && <ToC slot="aside" headings={headings} />}
   <script is:inline>
-(function() {
-  function initBlur() {
-    document.querySelectorAll('.blur-wrapper').forEach(btn => {
-      // 防止重复绑定
-      if (btn.dataset.spoilerInitialized === 'true') return
-      btn.dataset.spoilerInitialized = 'true'
+    (function() {
+      function initBlur() {
+        document.querySelectorAll('.blur-wrapper').forEach(btn => {
+          // 防止重复绑定
+          if (btn.dataset.spoilerInitialized === 'true') return
+          btn.dataset.spoilerInitialized = 'true'
 
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation() // 阻止冒泡
-        const wrapper = btn.closest('.blur-wrapper')
-        if (!wrapper) return
-        const isHidden = wrapper.dataset.hidden === 'true'
-        wrapper.dataset.hidden = (!isHidden).toString()
-      })
-    })
-  }
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation() // 阻止冒泡
+            const wrapper = btn.closest('.blur-wrapper')
+            if (!wrapper) return
+            const isHidden = wrapper.dataset.hidden === 'true'
+            wrapper.dataset.hidden = (!isHidden).toString()
+          })
+        })
+      }
 
-  // 初始加载时绑定
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initBlur)
-  } else {
-    initBlur()
-  }
+      // 初始加载时绑定
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initBlur)
+      } else {
+        initBlur()
+      }
 
-  // 在客户端路由切换后重新绑定（等待内容插入）
-  document.addEventListener('astro:page-load', () => setTimeout(initBlur, 50))
-})()
+      // 在客户端路由切换后重新绑定（等待内容插入）
+      document.addEventListener('astro:page-load', () => setTimeout(initBlur, 50))
+    })()
   </script>
 </BaseLayout>
 

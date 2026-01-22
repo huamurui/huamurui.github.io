@@ -104,13 +104,14 @@
         url: post.url
       }));
       
-      searchWorker.postMessage({
-        type: 'INIT',
-        payload: {
-          posts: serializablePosts,
-          options: serializableOptions
-        }
-      });
+      // todo . 现在未使用 worker
+      // searchWorker.postMessage({
+      //   type: 'INIT',
+      //   payload: {
+      //     posts: serializablePosts,
+      //     options: serializableOptions
+      //   }
+      // });
     }
     
     return () => {

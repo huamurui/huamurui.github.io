@@ -4,7 +4,6 @@
 
 import { siteConfig } from '@/config/site.config'
 import { getCollection } from 'astro:content'
-import type { PostEntry } from '@/types'
 
 /**
  * 统一的 URL 拼接方法
