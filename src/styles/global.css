@@ -19,6 +19,15 @@ html[data-theme="light"] .theme-options .nav-link.light {
   color: var(--primary-color)
 }
 
+.os-scrollbar-vertical .os-scrollbar-handle {
+  background-color: var(--color-theme-mix-20);
+}
+
+.os-scrollbar-vertical .os-scrollbar-handle:hover {
+  background-color: var(--color-theme-mix-80-text);
+}
+
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
