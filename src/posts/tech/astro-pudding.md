@@ -98,3 +98,8 @@ toc 是，内容的标题找出来放到旁边，做一个小导航。
 相关的还有 robot 文件，sitemap  
 然后 html 各种标签的合理使用，到页面结构和内容本身的组织，链接等等，也都会影响...  嗯，影响的也不止是 SEO 了。  
 
+### fuwari
+
+其实这个 blog 主题许多都是从 [fuwari](https://github.com/saicaca/fuwari) 那边看到的  
+而翻 issue 时也看到 fuwari 里的许多我喜欢的功能也是社区 pr 加进去x 
+只不过作者好久没动静了x ，我也想试试自己做一个，再写点别的。  

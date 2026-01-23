@@ -90,7 +90,7 @@ const isHome = isHomePage(Astro.url.pathname);
 
       /* 侧边栏 */
       .blog-post-sidebar {
-        width: 280px;
+        width: 320px;
         flex-shrink: 0;
         position: sticky;
         top: 5rem;
@@ -152,16 +152,16 @@ const isHome = isHomePage(Astro.url.pathname);
     <script>
       import { OverlayScrollbars } from 'overlayscrollbars'
       function changeBars() {
-        const tocList = document.querySelector<HTMLAnchorElement>('.toc-list')
-        if (tocList) {
-          OverlayScrollbars(tocList, {
-            scrollbars: {
-              visibility: 'auto',
-              autoHide: 'scroll',
-              autoHideDelay: 800
-            }
-          })
-        }
+        // const tocList = document.querySelector<HTMLAnchorElement>('.toc-list')
+        // if (tocList) {
+        //   OverlayScrollbars(tocList, {
+        //     scrollbars: {
+        //       visibility: 'auto',
+        //       autoHide: 'scroll',
+        //       autoHideDelay: 800
+        //     }
+        //   })
+        // }
         OverlayScrollbars(document.body, {
           scrollbars: {
             visibility: 'auto',

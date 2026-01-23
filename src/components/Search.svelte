@@ -385,7 +385,7 @@
 
   @media (max-width: 768px) {
     .search-dropdown {
-      width: 280px;
+      width: 320px;
       right: -9rem;
     }
   }

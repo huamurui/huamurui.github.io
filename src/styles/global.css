@@ -263,4 +263,5 @@ ul.breadcrumb-dropdown-menu li {
   overflow: auto;
   border: none;
   border-radius: 8px;
+  font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace ;
 }
