@@ -67,5 +67,5 @@ export const siteConfig: SiteConfig = {
       primary: '#ff9eb6'
     }
   },
-  locale: 'en-US'
+  locale: 'zh-CN'
 }
