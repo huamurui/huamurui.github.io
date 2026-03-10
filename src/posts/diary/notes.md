@@ -1588,7 +1588,7 @@ QQ 似乎和微信一桌的(逆向难度高，也封了一堆发了一堆律师�
 ### react
 
 再有就是，关于 react 的库
-相比 Vue 的响应式系统 React 的那些个原生的 hook 也许...  复杂些之后除了记忆力超群的函数式编程高手可能一般人很难能绷住，所以有了许多社区的进一步组织的库。  
+相比 Vue 的响应式系统 React 的那些原生的 hook 也许...  复杂些之后除了记忆力超群的函数式编程高手可能一般人很难能绷住，所以有了许多社区的进一步组织的库。  
 
 >你不再纠结用哪个库，而是看一眼业务需求就知道：“噢，这里数据太乱，我需要 React Query 做同步；这里的 UI 开关太琐碎，我用 Zustand 存一下；这里的表单局部逻辑，我自己写个 useReducer 就行了。”  
 >useSyncExternalStore  
@@ -1604,3 +1604,99 @@ QQ 似乎和微信一桌的(逆向难度高，也封了一堆发了一堆律师�
 想了想也许数据确实，可能是比软件更重要的东西。  
 也许用户最重要，但...  难评。
 
+## 2026-03-10
+
+### react hooks
+
+#### base state
+
+##### useState, useReducer
+
+useState 与 useReducer，以及 zustand 的不可变数据。  
+对于基础类型或浅层对象使用上也许没什么，但对于一些复杂结构的，深层嵌套的数组或对象，对它们的修改与操作会比较让人难受。  
+虽然，“不可变”数据在处理时间旅行调试（Time Travel Debugging）、撤销/重做功能、以及防止意外的状态副作用方面有着不可替代的优势。  
+但，许多时候，也许会想需要支持可变数据的编程，useImmer 是一个轻量的解决方案。而 mobx 是一个有着独立的响应式系统的状态管理库了，更重一点。  
+
+##### useSyncExternalStore
+
+用于从外部存储（例如状态管理库(zustand, mobx)、浏览器 API(online,storage,location) 等）获取状态并在组件中同步显示。
+
+##### useTransition, useDeferredValue.  “非紧急更新”
+
+都涉及延迟更新
+- useTransition 当你有明显的“动作”导致界面卡顿时：使用 useTransition。比如点击按钮切换复杂的 Tab 页、在输入框输入时触发复杂运算。
+- useDeferredValue 当你只需要延迟显示某个变量产生的效果时：使用 useDeferredValue。它更像是一个“防抖”的替代品，但它不是基于时间的（防抖），而是基于浏览器的空闲调度，比手写 setTimeout 防抖更平滑、更智能。
+#### effect
+
+函数式编程中，难以抽象成纯函数的部分，会被叫做副作用。在 web 中，操作DOM、网络请求、计时器......。
+
+##### useEffect
+
+关于它与 react 生命周期的替代
+
+- componentDidMount: 传入空数组 []，副作用只在组件挂载后执行一次。
+- componentDidUpdate: 传入依赖数组 [deps]，当依赖项发生变化时执行。
+- componentWillUnmount 副作用的清理函数
+- 不传依赖数组，副作用将在组件每次渲染后执行。
+
+##### useLayoutEffect
+
+两者的使用方式或者说 api 形状完全相同，不同的是它们行为——执行时机与执行方式。
+useEffect: 在浏览器完成布局和绘制之后异步执行。它不会阻塞浏览器的绘制过程，适用于绝大多数副作用（如数据获取、事件监听）。
+useLayoutEffect: 在浏览器完成布局之后、绘制之前同步执行。它会阻塞浏览器的绘制。
+
+如果在 useEffect 中直接修改 DOM（例如测量元素尺寸并调整位置），由于它是在渲染完成之后才触发的，用户可能会先看到初始状态，然后瞬间看到被 useEffect 修改后的状态，从而产生闪烁（Layout Flickering）。
+使用 useLayoutEffect，因为它是同步阻塞的，React 会在浏览器真正渲染到屏幕之前完成 DOM 更新，确保用户看到的永远是修改后的最终状态。
+
+#### stateCrossFC
+
+useRef
+  - 持久化数据：它在组件的整个生命周期内保持不变。修改 .current 不会引发组件重新渲染（这是useState 的最大区别）。
+  - 获取 DOM 或组件实例：最经典的用途是直接访问 DOM 节点（如输入框聚焦、测量 DOM 尺寸）。
+  - 存储计时器 ID 或其他“非渲染”状态：比如存储 setTimeout 的 ID，或者上一次渲染时的 props 等，不需要在界面上展示，但需要在不同渲染间共享的数据。
+
+
+useContext
+  - provide, inject
+  - 性能，useContext 的值一旦改变，所有消费该 Context 的组件都会重新渲染。因此，对于非常频繁变更的数据（如实时数据流），配合 useMemo 或将 Context 拆分得更细会更好。
+
+
+useImperativeHandle
+  - 类似 vue.defineExpose
+  - 自定义通过 ref 暴露给父组件的实例值。它允许你在子组件内部创建一个“句柄”（handle），这个句柄只有你暴露出来的方法，避免把子组件的整个 DOM 结构暴露给父组件。
+
+#### memo
+
+memo 包裹的组件，只当 props 有变化，才会触发重新渲染，防止父组件渲染导致子组件无意义渲染。  
+useMemo 类似 computed，在 react 中，重渲染很多，它会被用于避免在每次渲染时执行复杂的计算和对象重建。  
+useCallback，也类似，缓存函数，减少函数的重新创建，保证在依赖不变的情况下，得到的函数引用始终是同一个，配合 React.memo 阻止子组件不必要的渲染。  
+
+
+### Concurrent Rendering
+
+react 的，渲染:
+
+- 触发阶段（Trigger）：状态改变（useState 触发更新）。
+- 渲染阶段（Render）：React “心算”出 DOM 变化（纯函数、可中断）。
+- 提交阶段（Commit）：React “动手”修改 DOM（不可中断、执行副作用）。
+- 绘制阶段（Paint）：浏览器根据真实的 DOM 呈现给用户。
+
+而关于 Render， react 的整体重渲染全量 diff，即使是操作 v-dom 也还是很消耗资源可能导致卡顿。  
+为了让 app 更流畅，需要更合理的安排计算资源。这里也许有一些操做系统的知识。  
+
+- 可中断（Interruptible）：React 可以渲染到一半时暂停。
+- 按优先级调度（Prioritization）：当有更重要的任务（如用户输入）到来时，React 可以打断当前的低优先级渲染（如复杂的数据过滤），先响应输入，等空闲后再回来继续之前的渲染。
+- 不阻塞主线程：虽然 JS 本质还是单线程的，但通过任务分片，页面始终保持对用户交互的响应。
+
+为了实现这些
+
+- Fiber 架构（任务分片的基础）：将整棵组件树的渲染任务拆解成一个个小的“工作单元”（Fiber 节点）。React 可以在完成一个 Fiber 节点后，检查主线程是否有紧急任务。
+- Scheduler（调度器）： 这是 React 的“大脑”，它负责维护一个任务队列，根据**优先级（Lane）**决定下一个该执行谁。
+- 时间分片（Time Slicing）：利用浏览器的空闲时间（通常每一帧分配一小段时间片），在不影响帧率（60fps）的情况下，让 React 能够“断断续续”地完成繁重的渲染工作。
+
+---
+
+- 关于优先级， Prioritization 不止是优先交互延后 js，还有通过 useTransition 和 useDeferredValue，React 允许开发者手动标记更新的优先级。  
+- 为了实现可控的中断执行，React 的渲染过程被设计为异步调度的。useState 的 setter 本身是同步执行的，但它触发的渲染是由 React 根据优先级在合适的时间片异步处理的。为了正确处理多步更新与错误的闭包锁定，多出了函数式更新（Functional Update）：setCount(c => c + 1)。  
+- 为了确保渲染阶段是纯函数（从而支持并发渲染中的中断与重算），所有副作用（“脏活”）必须通过 useEffect 等 Hook 延迟到提交阶段执行。  
+- 为了性能，react 通过位置索引（顺序）访问内存中的 hooks, hooks 不能写在if、循环或嵌套函数中。  
