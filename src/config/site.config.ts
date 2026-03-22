@@ -55,9 +55,9 @@ export const siteConfig: SiteConfig = {
   ],
   socialLinks: [
     { nameKey: 'social.github', href: 'https://github.com/huamurui' },
-    { nameKey: 'social.email', href: 'huamurui@outlook.com' },
-    { nameKey: 'social.rss', href: './rss.xml' },
-    { nameKey: 'social.sitemap', href: './sitemap-index.xml' }
+    { nameKey: 'social.email', href: 'mailto:huamurui@outlook.com' },
+    { nameKey: 'social.rss', href: '/rss.xml' },
+    { nameKey: 'social.sitemap', href: '/sitemap-index.xml' }
   ],
   theme: {
     light: {
