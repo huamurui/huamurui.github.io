@@ -1,6 +1,6 @@
 /* Markdown 内容容器 */
 article {
-  line-height: 1.7;
+  line-height: 1.75;
   font-size: 1.05rem;
   color: var(--text-primary);
   max-width: 100%;
@@ -14,12 +14,13 @@ article h1 {
   padding-bottom: 0.5rem;
   font-weight: 700;
   color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
 article h2 {
   font-size: 1.8rem;
   margin: 2.2rem 0 1.2rem;
-  padding-bottom: 0.4rem;
+  padding-bottom: 0.6rem;
   font-weight: 650;
   color: var(--text-primary);
 }
@@ -62,26 +63,27 @@ article p {
 /* 链接样式 */
 article a {
   color: var(--primary-color);
-  font-weight: 500;
-  position: relative;
+  font-weight: 600;
+  /* 加粗一点显得更可爱 */
   text-decoration: none;
+  
+  /* 顶部留出充足的空间，给果冻回弹提供“冲刺区” */
+  padding: 6px 4px 0 4px;
+  margin: 0 -2px; /* 稍微补偿一下左右 padding */
+  
+  background-image: linear-gradient(var(--color-primary-mix-20), var(--color-primary-mix-20));
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 100% 6px; /* 初始状态是底部的粗线 */
+  
+  /* 舍弃圆角，走硬朗可爱的平直马克笔路线，完美配合果冻回弹 */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 400ms cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s;
 }
 
-article a:after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: calc(100% - 5px);
-  left: -0.1em;
-  right: -0.1em;
-  bottom: 0;
-  border-radius: 4px;
-  transition: top 200ms cubic-bezier(0, 0.8, 0.13, 1);
-  background-color: var(--color-primary-mix-20);
-}
-
-article a:hover:after {
-  top: 0%;
+article a:hover {
+  background-size: 100% 75%; /* 稳定在 75%，但冲刺时会突破到 100% 顶满顶部 padding，展现完美果冻感！ */
 }
 
 /* 列表样式 */
@@ -92,122 +94,132 @@ article ol {
 }
 
 article li {
-  margin: 0.5rem 0;
-  line-height: 1.2;
+  margin: 0.6rem 0;
+  line-height: 1.6;
 }
 
 article li::marker {
   color: var(--primary-color);
 }
 
-/* article ul li {
-  list-style-type: disc;
-} */
-
-/* article ol li {
-  list-style-type: decimal;
-} */
-
 article li>ul,
 article li>ol {
   margin: 0.5rem 0;
 }
 
-/* 为 
-article details  和 
-article summary 添加样式 */
+/* 为 article details 和 article summary 添加样式 */
 
 article details {
   background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border: 2px dashed var(--border-color);
+  /* 可爱的虚线边框 */
+  border-radius: 12px;
+  /* 更大的圆角 */
   margin-bottom: 1rem;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-article details [open] {
+article details:hover {
+  border-color: color-mix(in srgb, var(--primary-color) 50%, transparent);
+  /* 悬浮时边框变色 */
+  transform: translateY(-2px);
+  /* 悬浮轻轻上浮 */
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--primary-color) 5%, transparent);
+}
+
+article details[open] {
   background-color: var(--bg-tertiary);
+  border-style: solid;
+  /* 展开时变成实线 */
 }
 
+/* 给内部的内容增加左右和底部的留白（如果不包含 .details-content 包装器） */
+article details[open] > *:not(summary) {
+  padding-left: 3rem; /* 刚好和上面的 summary 文字对齐 */
+  padding-right: 1.5rem;
+}
+
+article details[open] > *:not(summary):last-child {
+  padding-bottom: 1.5rem;
+}
 
 article summary {
   display: block;
-  padding: 0.21rem 0.2rem 0.2rem 3rem;
-  /* 左侧留出箭头空间 */
+  padding: 0.8rem 1rem 0.8rem 3rem;
+  /* 增加一点内边距让它胖乎乎的 */
   cursor: pointer;
   font-weight: 600;
   color: var(--text-primary);
   position: relative;
   list-style: none;
-  /* 隐藏 Firefox 的默认列表样式 */
   transition: color 0.2s ease;
-  height: 30px;
+  min-height: 24px;
+  line-height: 1.4;
 }
 
 /* 隐藏所有浏览器的默认详情标记 */
-
-article summary::-webkit- article details -marker {
+article summary::-webkit-details-marker {
   display: none;
-  /* Chrome, Safari, Edge */
 }
 
-details[open] {
-  padding: 0 1rem;
+article details[open] summary {
+  border-bottom: 2px dashed var(--border-color);
+  /* 展开时下方加个分割线 */
+  margin-bottom: 0.5rem;
 }
-
 
 article summary::marker {
   display: none;
-  /* Firefox */
   content: "";
 }
 
 /* 使用伪元素创建自定义箭头 */
-
 article summary::before {
   content: "";
   position: absolute;
   left: 1rem;
   top: 50%;
   transform: translateY(-50%) rotate(0deg);
-  /* 初始状态 */
-  width: 0.75rem;
-  height: 0.75rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235e7eff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
+  width: 1.4rem;
+  height: 1.4rem;
+  /* 更可爱的圆润箭头 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235e7eff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
-  transition: transform 0.3s ease;
+  background-size: 60%;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* 箭头果冻动画 */
+  background-color: color-mix(in srgb, var(--primary-color) 12%, transparent);
+  /* 箭头背景是个小圆圈 */
+  border-radius: 50%;
 }
 
 /* 黑暗主题下的箭头颜色 */
 [data-theme="dark"] article summary::before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff9eb6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff9eb6' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
 }
 
-
-details[open] summary::before {
+article details[open] summary::before {
   transform: translateY(-50%) rotate(90deg);
-  /* 展开时旋转箭头 */
 }
 
 /* details 内部的内容样式 */
 article details .details-content {
-  padding: 0 1.5rem 1.5rem 3rem;
-  /* 与 summary 的左侧对齐 */
+  padding: 0.5rem 1.5rem 1.5rem 3rem;
   color: var(--text-primary);
   line-height: 1.6;
 }
 
-/* 可选的：为 details 内容添加平滑展开动画 */
-article details .details-content {
-  animation: fadeIn 0.3s ease forwards;
+/* 为 details 内容添加平滑展开动画 */
+article details[open] .details-content {
+  animation: fadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 
   to {
@@ -219,11 +231,14 @@ article details .details-content {
 /* 引用块样式 */
 article blockquote {
   position: relative;
-  margin: 0;
-  padding: 1rem 1.5rem 1rem 2rem;
-  background-color: var(--bg-secondary);
-  border-radius: 1rem;
-  /* 变得更圆润 */
+  margin: 1.5rem 0;
+  /* 增加上下外边距 */
+  padding: 1.2rem 1.5rem 1.2rem 2.5rem;
+  /* 更胖乎乎的内边距 */
+  background-color: color-mix(in srgb, var(--theme-color) 8%, transparent);
+  /* 用主题色的超淡混合色，更通透可爱！ */
+  border-radius: 1.2rem;
+  /* 更大更圆润 */
   font-style: italic;
   border: none;
 }
@@ -232,12 +247,13 @@ article blockquote {
 article blockquote::before {
   content: "";
   position: absolute;
-  left: 0.8rem;
+  left: 1rem;
   top: 1.2rem;
   bottom: 1.2rem;
-  width: 4px;
+  width: 6px;
+  /* 加粗一点点，变成可爱的小药丸 */
   background-color: var(--theme-color);
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 article blockquote p {
@@ -245,46 +261,60 @@ article blockquote p {
   color: var(--text-secondary);
 }
 
+/* 代码样式 */
 article p code {
-  background:
-    color-mix(in srgb, var(--primary-color) 15%, transparent);
+  background: color-mix(in srgb, var(--primary-color) 12%, transparent);
   color: var(--primary-color);
-  padding: 6px;
-  border-radius: 6px;
+  padding: 4px 8px;
+  /* 胖一点的 code */
+  border-radius: 8px;
+  font-size: 0.9em;
+  font-weight: 500;
 }
-
-
 
 /* 水平线样式 */
 article hr {
   border: none;
   height: 6px;
-  /* 增加高度以容纳圆点 */
   /* 可爱的波点分割线！ */
   background-image: radial-gradient(circle, var(--primary-color) 3px, transparent 3.5px);
-  background-size: 18px 100%;
+  background-size: 20px 100%;
+  /* 稍微拉开波点的间距 */
   background-position: center;
   background-repeat: repeat-x;
-  opacity: 0.4;
-  margin: 3rem auto;
-  width: 50%;
-  /* 缩短长度并居中，更显精致可爱 */
+  opacity: 0.3;
+  /* 柔和一点 */
+  margin: 3.5rem auto;
+  width: 40%;
+  /* 短一点更精致 */
 }
 
 /* 图片样式 */
 article img {
   max-width: 100%;
   height: auto;
-  border-radius: 0.5rem;
-  margin: 1.5rem 0;
-  box-shadow: var(--shadow);
+  border-radius: 1rem;
+  /* 更圆润的图片 */
+  margin: 2rem 0;
+  box-shadow: 0 10px 30px -10px color-mix(in srgb, var(--primary-color) 30%, transparent);
+  /* 可爱柔和的彩色阴影 */
   display: block;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* 果冻动画 */
+}
+
+article img:hover {
+  transform: scale(1.02) translateY(-4px);
+  /* 图片悬浮有轻微放大和上浮，非常Q弹 */
 }
 
 /* 强调文本样式 */
 article strong {
-  color: var(--primary-color);
-  font-weight: 650;
+  color: var(--text-primary); /* 换回主文本色，不和链接冲突 */
+  font-weight: 750;
+  background: linear-gradient(to top, color-mix(in srgb, var(--theme-color) 25%, transparent) 40%, transparent 40%);
+  /* 改用 theme-color 并且稍微抬高一点高亮区，形成不一样的荧光笔划重点感 */
+  padding: 0 2px;
 }
 
 article em {
@@ -295,37 +325,50 @@ article em {
 
 article sup {
   vertical-align: super;
-  background: var(--bg-secondary);
-  padding: 2px 4px;
-  border-radius: 2px;
-  line-height: 0;
+  background: color-mix(in srgb, var(--bg-secondary) 80%, var(--primary-color));
+  padding: 3px 6px;
+  border-radius: 6px;
+  /* 圆角上标 */
+  font-size: 0.75em;
+  font-weight: 600;
 }
 
 /* 键盘按键样式 */
 article kbd {
   background-color: var(--bg-tertiary);
-  border: 1px solid var(--border-color);
-  border-radius: 0.3rem;
-  box-shadow: 0 2px 0 var(--border-color);
+  border: 2px solid var(--border-color);
+  /* 粗一点的边框更有玩具感 */
+  border-radius: 8px;
+  /* 圆角按键 */
+  box-shadow: 0 3px 0 var(--border-color);
+  /* 玩具按键的厚度 */
   color: var(--text-primary);
   display: inline-block;
   font-family: monospace;
   font-size: 0.85em;
+  font-weight: 600;
   line-height: 1;
-  padding: 0.2rem 0.4rem;
+  padding: 0.3rem 0.6rem;
   white-space: nowrap;
+  transform: translateY(-2px);
+  transition: all 0.1s;
+}
+
+article kbd:active {
+  transform: translateY(1px);
+  /* 按下去的效果 */
+  box-shadow: 0 0px 0 var(--border-color);
 }
 
 /* 脚注样式 */
 article .footnotes {
-  margin-top: 2.5rem;
+  margin-top: 3.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--border-color);
+  border-top: 2px dashed color-mix(in srgb, var(--border-color) 50%, transparent);
+  /* 虚线 */
   font-size: 0.9em;
   color: var(--text-secondary);
 }
-
-
 
 .blur-wrapper {
   position: relative;
@@ -334,8 +377,8 @@ article .footnotes {
 }
 
 .blur-content {
-  transition: all 0.3s ease;
-  border-radius: 4px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 8px;
 }
 
 .blur-wrapper[data-mode="blur"][data-hidden="true"] .blur-content {
@@ -346,4 +389,5 @@ article .footnotes {
   background: var(--text-primary);
   color: var(--text-primary);
   user-select: none;
+  border-radius: 8px;
 }
