@@ -39,7 +39,8 @@ const { Content, headings } = await render(post)
 const post_str = await container.renderToString(Content)
 const description = extractExcerptFromHtml(post_str)
 
-const structuredData = generatePostStructuredData(post, description, Astro.url.origin)
+const breadcrumbItems = generateBreadcrumbItems(post.id);
+const structuredData = generatePostStructuredData(post, description, Astro.url.origin, breadcrumbItems)
 
 // page-specific title morph animation
 const anim = {
@@ -47,8 +48,6 @@ const anim = {
   new: { name: 'title-new', duration: ANIMATION_DURATION.slow, easing: EASING.smooth, fillMode: 'both' }
 }
 const customTransition = { forwards: anim, backwards: anim }
-
-const breadcrumbItems = generateBreadcrumbItems(post.id);
 ---
 
 <BaseLayout postFrontmatter={{ ...post.data, description } as PostFrontmatter} post={post} structuredData={structuredData}>
