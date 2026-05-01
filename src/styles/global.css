@@ -56,12 +56,13 @@ h3::after,
 h4::after,
 h5::after,
 h6::after {
-  content: '#';
+  content: '✦';
   color: var(--primary-color);
   position: absolute;
   opacity: 0;
-  transform: translateX(20px);
-  transition: all 0.1s ease;
+  /* 初始状态在远处，很小，且倒转 180 度 */
+  transform: translateX(30px) rotate(180deg) scale(0.5);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   font-weight: inherit;
 }
 
@@ -72,7 +73,8 @@ h4:hover::after,
 h5:hover::after,
 h6:hover::after {
   opacity: 1;
-  transform: translateX(10px);
+  /* 悬停时旋转正过来，变大，并靠近标题 */
+  transform: translateX(10px) rotate(0deg) scale(1.1);
 }
 
 .search-results mark {
@@ -120,7 +122,7 @@ h6:hover::after {
   width: 0;
   height: 2px;
   background-color: var(--theme-color);
-  transition: width 0.3s ease;
+  transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .tags {
@@ -137,12 +139,13 @@ h6:hover::after {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
   background-color: var(--bg-tertiary);
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .tag:hover {
   background-color: var(--theme-color);
   border-color: var(--theme-color);
+  transform: translateY(-2px) scale(1.05);
 }
 
 .tag a {
@@ -165,13 +168,14 @@ h6:hover::after {
   font-size: 14px;
   color: var(--text-primary);
   white-space: nowrap;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .post-tag:hover,
 .post-tag.active {
   background-color: color-mix(in srgb, var(--theme-color) 15%, transparent);
   color: var(--theme-color);
+  transform: translateY(-2px) scale(1.05);
 }
 
 .post-tags {
@@ -184,12 +188,14 @@ h6:hover::after {
 }
 
 .inline-tag {
+  display: inline-block;
   font-size: 13px;
-  padding: 2px 8px;
+  padding: 2px 4px;
+  margin: 0 4px;
   color: var(--text-secondary);
-  border-radius: 4px;
+  border-radius: 6px;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .post-info:hover .inline-tag {
@@ -220,11 +226,11 @@ h6:hover::after {
     left: 50%;
     width: calc(100% + 16px);
     height: 100%;
-    border-radius: 8px;
+    border-radius: 12px;
     transform: translate(-50%, -50%) scale(0.8);
     transition:
-      transform 0.1s ease,
-      background-color 0.1s ease;
+      transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+      background-color 0.2s ease;
     z-index: -1;
   }
 
@@ -263,5 +269,5 @@ ul.breadcrumb-dropdown-menu li {
   overflow: auto;
   border: none;
   border-radius: 8px;
-  font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace ;
+  font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }

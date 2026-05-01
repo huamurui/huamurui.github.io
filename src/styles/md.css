@@ -1,5 +1,5 @@
 /* Markdown 内容容器 */
-article {
+.blog-post-container {
   line-height: 1.75;
   font-size: 1.05rem;
   color: var(--text-primary);
@@ -8,7 +8,7 @@ article {
 }
 
 /* 标题样式 */
-article h1 {
+.blog-post-container h1 {
   font-size: 2.2rem;
   margin: 2.5rem 0 1.5rem;
   padding-bottom: 0.5rem;
@@ -17,7 +17,7 @@ article h1 {
   letter-spacing: -0.02em;
 }
 
-article h2 {
+.blog-post-container h2 {
   font-size: 1.8rem;
   margin: 2.2rem 0 1.2rem;
   padding-bottom: 0.6rem;
@@ -25,28 +25,28 @@ article h2 {
   color: var(--text-primary);
 }
 
-article h3 {
+.blog-post-container h3 {
   font-size: 1.5rem;
   margin: 1.8rem 0 1rem;
   font-weight: 600;
   color: var(--text-primary);
 }
 
-article h4 {
+.blog-post-container h4 {
   font-size: 1.3rem;
   margin: 1.5rem 0 0.8rem;
   font-weight: 550;
   color: var(--text-primary);
 }
 
-article h5 {
+.blog-post-container h5 {
   font-size: 1.15rem;
   margin: 1.2rem 0 0.6rem;
   font-weight: 500;
   color: var(--text-secondary);
 }
 
-article h6 {
+.blog-post-container h6 {
   font-size: 1.05rem;
   margin: 1rem 0 0.5rem;
   font-weight: 500;
@@ -55,13 +55,40 @@ article h6 {
 }
 
 /* 段落样式 */
-article p {
+.blog-post-container p {
   margin: 1.2rem 0;
   line-height: 1.8;
 }
 
-/* 链接样式 */
-article a {
+/* 外部单行链接样式 (如 Timeline 标题，使用原来支持弹起和变色的 ::after 伪元素) */
+article:not(.blog-post-container) a {
+  color: var(--primary-color);
+  font-weight: 600;
+  position: relative;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+article:not(.blog-post-container) a:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: calc(100% - 4px);
+  left: -4px;
+  right: -4px;
+  bottom: -2px;
+  border-radius: 6px;
+  transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  background-color: var(--color-primary-mix-20);
+}
+
+article:not(.blog-post-container) a:hover:after {
+  top: -2px;
+  background-color: color-mix(in srgb, var(--primary-color) 15%, transparent);
+}
+
+/* Markdown 内部多行链接样式 */
+.blog-post-container a {
   color: var(--primary-color);
   font-weight: 600;
   /* 加粗一点显得更可爱 */
@@ -82,34 +109,34 @@ article a {
   transition: background-size 400ms cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s;
 }
 
-article a:hover {
+.blog-post-container a:hover {
   background-size: 100% 75%; /* 稳定在 75%，但冲刺时会突破到 100% 顶满顶部 padding，展现完美果冻感！ */
 }
 
 /* 列表样式 */
-article ul,
-article ol {
+.blog-post-container ul,
+.blog-post-container ol {
   margin: 1.2rem 0;
   padding-left: 1.8rem;
 }
 
-article li {
+.blog-post-container li {
   margin: 0.6rem 0;
   line-height: 1.6;
 }
 
-article li::marker {
+.blog-post-container li::marker {
   color: var(--primary-color);
 }
 
-article li>ul,
-article li>ol {
+.blog-post-container li>ul,
+.blog-post-container li>ol {
   margin: 0.5rem 0;
 }
 
-/* 为 article details 和 article summary 添加样式 */
+/* 为 .blog-post-container details 和 .blog-post-container summary 添加样式 */
 
-article details {
+.blog-post-container details {
   background-color: var(--bg-secondary);
   border: 2px dashed var(--border-color);
   /* 可爱的虚线边框 */
@@ -120,7 +147,7 @@ article details {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-article details:hover {
+.blog-post-container details:hover {
   border-color: color-mix(in srgb, var(--primary-color) 50%, transparent);
   /* 悬浮时边框变色 */
   transform: translateY(-2px);
@@ -128,23 +155,23 @@ article details:hover {
   box-shadow: 0 4px 12px color-mix(in srgb, var(--primary-color) 5%, transparent);
 }
 
-article details[open] {
+.blog-post-container details[open] {
   background-color: var(--bg-tertiary);
   border-style: solid;
   /* 展开时变成实线 */
 }
 
 /* 给内部的内容增加左右和底部的留白（如果不包含 .details-content 包装器） */
-article details[open] > *:not(summary) {
+.blog-post-container details[open] > *:not(summary) {
   padding-left: 3rem; /* 刚好和上面的 summary 文字对齐 */
   padding-right: 1.5rem;
 }
 
-article details[open] > *:not(summary):last-child {
+.blog-post-container details[open] > *:not(summary):last-child {
   padding-bottom: 1.5rem;
 }
 
-article summary {
+.blog-post-container summary {
   display: block;
   padding: 0.8rem 1rem 0.8rem 3rem;
   /* 增加一点内边距让它胖乎乎的 */
@@ -159,23 +186,23 @@ article summary {
 }
 
 /* 隐藏所有浏览器的默认详情标记 */
-article summary::-webkit-details-marker {
+.blog-post-container summary::-webkit-details-marker {
   display: none;
 }
 
-article details[open] summary {
+.blog-post-container details[open] summary {
   border-bottom: 2px dashed var(--border-color);
   /* 展开时下方加个分割线 */
   margin-bottom: 0.5rem;
 }
 
-article summary::marker {
+.blog-post-container summary::marker {
   display: none;
   content: "";
 }
 
 /* 使用伪元素创建自定义箭头 */
-article summary::before {
+.blog-post-container summary::before {
   content: "";
   position: absolute;
   left: 1rem;
@@ -196,23 +223,23 @@ article summary::before {
 }
 
 /* 黑暗主题下的箭头颜色 */
-[data-theme="dark"] article summary::before {
+[data-theme="dark"] .blog-post-container summary::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff9eb6' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
 }
 
-article details[open] summary::before {
+.blog-post-container details[open] summary::before {
   transform: translateY(-50%) rotate(90deg);
 }
 
 /* details 内部的内容样式 */
-article details .details-content {
+.blog-post-container details .details-content {
   padding: 0.5rem 1.5rem 1.5rem 3rem;
   color: var(--text-primary);
   line-height: 1.6;
 }
 
 /* 为 details 内容添加平滑展开动画 */
-article details[open] .details-content {
+.blog-post-container details[open] .details-content {
   animation: fadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
@@ -229,7 +256,7 @@ article details[open] .details-content {
 }
 
 /* 引用块样式 */
-article blockquote {
+.blog-post-container blockquote {
   position: relative;
   margin: 1.5rem 0;
   /* 增加上下外边距 */
@@ -244,7 +271,7 @@ article blockquote {
 }
 
 /* 独立绘制的一条左侧短线，悬浮在圆角背景中 */
-article blockquote::before {
+.blog-post-container blockquote::before {
   content: "";
   position: absolute;
   left: 1rem;
@@ -256,13 +283,13 @@ article blockquote::before {
   border-radius: 3px;
 }
 
-article blockquote p {
+.blog-post-container blockquote p {
   margin: 0.5rem 0;
   color: var(--text-secondary);
 }
 
 /* 代码样式 */
-article p code {
+.blog-post-container p code {
   background: color-mix(in srgb, var(--primary-color) 12%, transparent);
   color: var(--primary-color);
   padding: 4px 8px;
@@ -273,7 +300,7 @@ article p code {
 }
 
 /* 水平线样式 */
-article hr {
+.blog-post-container hr {
   border: none;
   height: 6px;
   /* 可爱的波点分割线！ */
@@ -290,7 +317,7 @@ article hr {
 }
 
 /* 图片样式 */
-article img {
+.blog-post-container img {
   max-width: 100%;
   height: auto;
   border-radius: 1rem;
@@ -303,13 +330,13 @@ article img {
   /* 果冻动画 */
 }
 
-article img:hover {
+.blog-post-container img:hover {
   transform: scale(1.02) translateY(-4px);
   /* 图片悬浮有轻微放大和上浮，非常Q弹 */
 }
 
 /* 强调文本样式 */
-article strong {
+.blog-post-container strong {
   color: var(--text-primary); /* 换回主文本色，不和链接冲突 */
   font-weight: 750;
   background: linear-gradient(to top, color-mix(in srgb, var(--theme-color) 25%, transparent) 40%, transparent 40%);
@@ -317,13 +344,13 @@ article strong {
   padding: 0 2px;
 }
 
-article em {
+.blog-post-container em {
   color: var(--theme-color);
   opacity: 0.9;
   font-style: italic;
 }
 
-article sup {
+.blog-post-container sup {
   vertical-align: super;
   background: color-mix(in srgb, var(--bg-secondary) 80%, var(--primary-color));
   padding: 3px 6px;
@@ -334,7 +361,7 @@ article sup {
 }
 
 /* 键盘按键样式 */
-article kbd {
+.blog-post-container kbd {
   background-color: var(--bg-tertiary);
   border: 2px solid var(--border-color);
   /* 粗一点的边框更有玩具感 */
@@ -354,14 +381,14 @@ article kbd {
   transition: all 0.1s;
 }
 
-article kbd:active {
+.blog-post-container kbd:active {
   transform: translateY(1px);
   /* 按下去的效果 */
   box-shadow: 0 0px 0 var(--border-color);
 }
 
 /* 脚注样式 */
-article .footnotes {
+.blog-post-container .footnotes {
   margin-top: 3.5rem;
   padding-top: 1.5rem;
   border-top: 2px dashed color-mix(in srgb, var(--border-color) 50%, transparent);
