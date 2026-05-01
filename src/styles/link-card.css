@@ -5,12 +5,24 @@
     margin: 1rem 0;
     padding: 10px;
     background: var(--card-bg);
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
-.link-card__link {
+/* 进一步增加权重 (.link-card a.link-card__link 权重 0,2,1 > .blog-post-container a 权重 0,1,1) 
+   以确保无视 CSS 加载顺序，绝对覆盖泄漏进来的样式 */
+.link-card a.link-card__link {
     display: flex;
     text-decoration: none;
     color: inherit;
+    font-weight: inherit;
+
+    /* 彻底清除外部 a 标签带来的果冻高亮效果，防止 box-decoration-break: clone 在 flex 容器上引发 WebKit 严重的横向溢出 bug */
+    -webkit-box-decoration-break: slice;
+    box-decoration-break: slice;
+    background-image: none;
+    padding: 0;
+    margin: 0;
 }
 
 .link-card__img-wrapper {
@@ -32,6 +44,8 @@
     flex-direction: column;
     justify-content: space-between;
     min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .link-card__title {
@@ -59,10 +73,13 @@
     margin-top: 0.5rem;
     color: var(--muted);
     font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @media (max-width: 640px) {
-    .link-card__link {
+    .link-card a.link-card__link {
         flex-direction: column;
     }
 
