@@ -71,7 +71,7 @@ article a:after {
   content: "";
   position: absolute;
   z-index: -1;
-  top:  calc(100% - 5px);
+  top: calc(100% - 5px);
   left: -0.1em;
   right: -0.1em;
   bottom: 0;
@@ -126,13 +126,6 @@ article details {
   transition: all 0.3s ease;
 }
 
-
-article details :hover {
-  border-color: var(--theme-color);
-  box-shadow: var(--shadow);
-}
-
-
 article details [open] {
   background-color: var(--bg-tertiary);
 }
@@ -149,6 +142,7 @@ article summary {
   list-style: none;
   /* 隐藏 Firefox 的默认列表样式 */
   transition: color 0.2s ease;
+  height: 30px;
 }
 
 /* 隐藏所有浏览器的默认详情标记 */
@@ -156,6 +150,10 @@ article summary {
 article summary::-webkit- article details -marker {
   display: none;
   /* Chrome, Safari, Edge */
+}
+
+details[open] {
+  padding: 0 1rem;
 }
 
 
@@ -188,14 +186,9 @@ article summary::before {
 }
 
 
-article details[open] article summary::before {
+details[open] summary::before {
   transform: translateY(-50%) rotate(90deg);
   /* 展开时旋转箭头 */
-}
-
-
-article summary:hover {
-  color: var(--theme-color);
 }
 
 /* details 内部的内容样式 */
@@ -225,12 +218,26 @@ article details .details-content {
 
 /* 引用块样式 */
 article blockquote {
-  border-left: 4px solid var(--theme-color);
+  position: relative;
   margin: 0;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.5rem 1rem 2rem;
   background-color: var(--bg-secondary);
-  border-radius: 0 0.5rem 0.5rem 0;
+  border-radius: 1rem;
+  /* 变得更圆润 */
   font-style: italic;
+  border: none;
+}
+
+/* 独立绘制的一条左侧短线，悬浮在圆角背景中 */
+article blockquote::before {
+  content: "";
+  position: absolute;
+  left: 0.8rem;
+  top: 1.2rem;
+  bottom: 1.2rem;
+  width: 4px;
+  background-color: var(--theme-color);
+  border-radius: 2px;
 }
 
 article blockquote p {
@@ -251,9 +258,17 @@ article p code {
 /* 水平线样式 */
 article hr {
   border: none;
-  height: 2px;
-  background: linear-gradient(to right, transparent, var(--border-color), transparent);
-  margin: 2.5rem 0;
+  height: 6px;
+  /* 增加高度以容纳圆点 */
+  /* 可爱的波点分割线！ */
+  background-image: radial-gradient(circle, var(--primary-color) 3px, transparent 3.5px);
+  background-size: 18px 100%;
+  background-position: center;
+  background-repeat: repeat-x;
+  opacity: 0.4;
+  margin: 3rem auto;
+  width: 50%;
+  /* 缩短长度并居中，更显精致可爱 */
 }
 
 /* 图片样式 */
