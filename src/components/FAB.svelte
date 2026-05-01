@@ -25,7 +25,10 @@
     const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
     const clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
     
-    const percent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+    // 限制百分比在 0 到 100 之间，防止 Safari 橡皮筋回弹效果导致数值超过 100% 甚至出现负数
+    const rawPercent = (scrollHeight - clientHeight) > 0 ? (scrollTop / (scrollHeight - clientHeight)) * 100 : 0;
+    const percent = Math.min(Math.max(rawPercent, 0), 100);
+    
     scrollPercent = Math.round(percent);
 
     if (progressCircleRef) {
