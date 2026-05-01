@@ -4,7 +4,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkSpoiler from './src/plugin/remark-spoiler.js';
 import remarkLinkPreview from './src/plugin/remark-link-preview.js';
-import sitemap from '@astrojs/sitemap';
+
 import svelte from '@astrojs/svelte';
 import expressiveCode from 'astro-expressive-code';
 import path from 'path';
@@ -15,33 +15,7 @@ export default defineConfig({
   base: siteConfig.base,
   integrations: [
     svelte(),
-    sitemap({
-      serialize(item) {
-        const url = new URL(item.url);
-        
-        if (url.pathname === '/' || url.pathname === siteConfig.base + '/') {
-          // @ts-ignore
-          item.changefreq = 'daily';
-          item.priority = 1.0;
-        } 
-        else if (url.pathname.includes('/timeline') || url.pathname.includes('/about')) {
-          // @ts-ignore
-          item.changefreq = 'weekly';
-          item.priority = 0.8;
-        }
-        else if (url.pathname.includes('/posts/')) {
-          // @ts-ignore
-          item.changefreq = 'monthly';
-          item.priority = 0.7;
-        } else {
-          // @ts-ignore
-          item.changefreq = 'monthly';
-          item.priority = 0.6;
-        }
-        
-        return item;
-      }
-    }),
+
     expressiveCode({
       themes: ['tokyo-night', 'one-light'],
       styleOverrides: {
