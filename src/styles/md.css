@@ -93,16 +93,18 @@ article:not(.blog-post-container) a:hover:after {
   font-weight: 600;
   /* 加粗一点显得更可爱 */
   text-decoration: none;
-  
+
   /* 顶部留出充足的空间，给果冻回弹提供“冲刺区” */
   padding: 6px 4px 0 4px;
-  margin: 0 -2px; /* 稍微补偿一下左右 padding */
-  
+  margin: 0 -2px;
+  /* 稍微补偿一下左右 padding */
+
   background-image: linear-gradient(var(--color-primary-mix-20), var(--color-primary-mix-20));
   background-repeat: no-repeat;
   background-position: bottom center;
-  background-size: 100% 6px; /* 初始状态是底部的粗线 */
-  
+  background-size: 100% 6px;
+  /* 初始状态是底部的粗线 */
+
   /* 舍弃圆角，走硬朗可爱的平直马克笔路线，完美配合果冻回弹 */
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
@@ -110,28 +112,114 @@ article:not(.blog-post-container) a:hover:after {
 }
 
 .blog-post-container a:hover {
-  background-size: 100% 75%; /* 稳定在 75%，但冲刺时会突破到 100% 顶满顶部 padding，展现完美果冻感！ */
+  background-size: 100% 75%;
+  /* 稳定在 75%，但冲刺时会突破到 100% 顶满顶部 padding，展现完美果冻感！ */
 }
 
-/* 列表样式 */
-.blog-post-container ul,
-.blog-post-container ol {
+/* =========================================
+   列表高级样式 (Lists)
+   ========================================= */
+
+/* 取消无序列表默认圆点，由伪元素接管 */
+.blog-post-container ul {
+  list-style: none;
+  padding-left: 1.5rem;
   margin: 1.2rem 0;
-  padding-left: 1.8rem;
 }
 
-.blog-post-container li {
+.blog-post-container ul li {
+  position: relative;
   margin: 0.6rem 0;
-  line-height: 1.6;
+  line-height: 1.7;
+  padding-left: 0.5rem;
 }
 
-.blog-post-container li::marker {
+/* 一级无序列表：实心小圆点 */
+.blog-post-container ul>li::before {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  top: 0.75rem;
+  /* 对齐文字视觉中心 */
+  width: 6px;
+  height: 6px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s;
+}
+
+.blog-post-container ul>li:hover::before {
+  transform: scale(1.6);
+  background-color: color-mix(in srgb, var(--primary-color) 80%, white);
+}
+
+/* 多级无序列表（嵌套列表） */
+.blog-post-container ul ul {
+  position: relative;
+  margin: 0.4rem 0 0.4rem 0.2rem;
+  padding-left: 1.2rem;
+}
+
+
+/* 二级无序列表：空心圆圈 */
+.blog-post-container ul ul>li::before {
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  width: 4px;
+  height: 4px;
+  left: -1rem;
+}
+
+/* 三级无序列表：小方块 */
+.blog-post-container ul ul ul>li::before {
+  background-color: var(--text-secondary);
+  border: none;
+  border-radius: 2px;
+  width: 5px;
+  height: 5px;
+  left: -1rem;
+}
+
+/* =========================================
+   有序列表 (Ordered Lists)
+   ========================================= */
+.blog-post-container ol {
+  list-style: none;
+  counter-reset: custom-counter;
+  padding-left: 1.5rem;
+  margin: 1.2rem 0;
+}
+
+.blog-post-container ol>li {
+  position: relative;
+  counter-increment: custom-counter;
+  margin: 0.6rem 0;
+  line-height: 1.7;
+  padding-left: 0.5rem;
+}
+
+/* 有序列表数字：粗体、主色调、带点 */
+.blog-post-container ol>li::before {
+  content: counter(custom-counter) ".";
+  position: absolute;
+  left: -1.5rem;
+  top: 0;
+  width: 1.5rem;
+  text-align: right;
+  font-weight: 800;
   color: var(--primary-color);
+  font-size: 0.95em;
+  font-family: "Nunito", var(--font-family-base);
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.blog-post-container li>ul,
-.blog-post-container li>ol {
-  margin: 0.5rem 0;
+.blog-post-container ol>li:hover::before {
+  transform: translateX(-2px);
+  color: color-mix(in srgb, var(--primary-color) 80%, white);
+}
+
+.blog-post-container ol ol {
+  margin: 0.4rem 0 0.4rem 0;
 }
 
 /* 为 .blog-post-container details 和 .blog-post-container summary 添加样式 */
@@ -162,12 +250,13 @@ article:not(.blog-post-container) a:hover:after {
 }
 
 /* 给内部的内容增加左右和底部的留白（如果不包含 .details-content 包装器） */
-.blog-post-container details[open] > *:not(summary) {
-  padding-left: 3rem; /* 刚好和上面的 summary 文字对齐 */
+.blog-post-container details[open]>*:not(summary) {
+  padding-left: 3rem;
+  /* 刚好和上面的 summary 文字对齐 */
   padding-right: 1.5rem;
 }
 
-.blog-post-container details[open] > *:not(summary):last-child {
+.blog-post-container details[open]>*:not(summary):last-child {
   padding-bottom: 1.5rem;
 }
 
@@ -337,7 +426,8 @@ article:not(.blog-post-container) a:hover:after {
 
 /* 强调文本样式 */
 .blog-post-container strong {
-  color: var(--text-primary); /* 换回主文本色，不和链接冲突 */
+  color: var(--text-primary);
+  /* 换回主文本色，不和链接冲突 */
   font-weight: 750;
   background: linear-gradient(to top, color-mix(in srgb, var(--theme-color) 25%, transparent) 40%, transparent 40%);
   /* 改用 theme-color 并且稍微抬高一点高亮区，形成不一样的荧光笔划重点感 */
