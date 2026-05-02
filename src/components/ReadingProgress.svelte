@@ -34,7 +34,7 @@
     top: 60px; /* Right below the header */
     left: 0;
     width: 100%;
-    height: 3px;
+    height: 1.5px;
     z-index: 101; /* Above header (100) */
     pointer-events: none;
     background: transparent;
@@ -43,9 +43,10 @@
   .progress-bar {
     height: 100%;
     background: var(--primary-color);
-    box-shadow: 0 0 10px color-mix(in srgb, var(--primary-color) 40%, transparent);
-    transition: width 0.1s cubic-bezier(0.34, 1.56, 0.64, 1);
-    border-radius: 0 999px 999px 0;
+    opacity: 0.6;
+    /* box-shadow: 0 0 10px color-mix(in srgb, var(--primary-color) 40%, transparent); */
+    transition: width 0.2s ease-out;
+    border-radius: 0 2px 2px 0;
   }
 
   @media (max-width: 768px) {
