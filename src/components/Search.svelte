@@ -1,3 +1,4 @@
+<script lang="ts">
   import { onMount } from "svelte";
   import { t } from "@/utils/i18n";
 
