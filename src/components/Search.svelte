@@ -416,7 +416,6 @@
   .search-result-item a:focus-visible {
     background-color: color-mix(in srgb, var(--primary-color) 8%, transparent);
     border-color: color-mix(in srgb, var(--primary-color) 20%, transparent);
-    transform: translateX(4px);
     outline: none;
   }
 

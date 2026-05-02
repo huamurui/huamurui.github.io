@@ -6,6 +6,25 @@
   background-color: var(--shiki-dark-bg) !important;
 }
 
+/* 暗色模式下降低图片亮度，避免刺眼 */
+[data-theme="dark"] img:not(.medium-zoom-image--opened) {
+  filter: brightness(.8) contrast(1.1);
+}
+
+.medium-zoom-overlay {
+  z-index: 2000;
+}
+
+.medium-zoom-image--opened {
+  z-index: 2001;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
 html[data-theme="dark"] .theme-toggle-indicator {
   transform: translateX(calc(100% + 3px));
 }

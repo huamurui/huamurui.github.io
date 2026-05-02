@@ -4,6 +4,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkSpoiler from './src/plugin/remark-spoiler.js';
 import remarkLinkPreview from './src/plugin/remark-link-preview.js';
+import remarkImageOptimize from './src/plugin/remark-image-optimize.js';
 
 import svelte from '@astrojs/svelte';
 import expressiveCode from 'astro-expressive-code';
@@ -13,6 +14,16 @@ import { siteConfig } from "./src/config/site.config.ts";
 export default defineConfig({
   site: siteConfig.site,
   base: siteConfig.base,
+  image: {
+    domains: [
+      'docs.astro.build',
+      'images.unsplash.com',
+      'avatars.githubusercontent.com',
+      'raw.githubusercontent.com',
+      'res.cloudinary.com',
+      'huamurui.github.io'
+    ],
+  },
   integrations: [
     svelte(),
 
@@ -39,7 +50,7 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    remarkPlugins: [remarkMath, remarkSpoiler, remarkLinkPreview],
+    remarkPlugins: [remarkMath, remarkSpoiler, remarkLinkPreview, remarkImageOptimize],
     rehypePlugins: [rehypeKatex],
   },
   vite: {

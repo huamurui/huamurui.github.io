@@ -5,6 +5,7 @@ import ReadingProgress from '@/components/ReadingProgress.svelte'
 import Comments from '@/components/Comments.svelte'
 import { getCollection, render, type CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { Image } from 'astro:assets'
 import { extractExcerptFromHtml, formatDate, sanitizeViewTransitionName, generateBreadcrumbItems, countWords } from '@/utils/helpers'
 import { generatePostStructuredData } from '@/utils/structured-data'
 import { ANIMATION_DURATION, EASING } from '@/utils/constants'
@@ -87,10 +88,14 @@ const customTransition = { forwards: anim, backwards: anim }
       {
         post.data.image && (
           <figure class="post-image">
-            <img
+            <Image
               src={post.data.image.url}
               alt={post.data.image.alt || post.data.title}
-              loading="lazy"
+              width={1200}
+              height={600}
+              class="banner-image"
+              loading="eager" 
+              decoding="async"
             />
             {post.data.image.alt && (
               <figcaption>{post.data.image.alt}</figcaption>
@@ -113,7 +118,7 @@ const customTransition = { forwards: anim, backwards: anim }
     <Comments client:visible />
   </div>
 
-  <script is:inline>
+  <script>
     (function() {
       function initBlur() {
         document.querySelectorAll('.blur-wrapper').forEach(btn => {
@@ -141,6 +146,21 @@ const customTransition = { forwards: anim, backwards: anim }
       // 在客户端路由切换后重新绑定（等待内容插入）
       document.addEventListener('astro:page-load', () => setTimeout(initBlur, 50))
     })()
+
+    // Medium Zoom Initialization
+    import mediumZoom from 'medium-zoom'
+    
+    function initZoom() {
+      const isDark = document.documentElement.classList.contains('dark')
+      const zoom = mediumZoom('.post-content img, .post-image img', {
+        margin: 24,
+        background: isDark ? '#121212' : '#ffffff',
+      })
+    }
+
+    document.addEventListener('astro:page-load', initZoom)
+    // Initial load
+    initZoom()
   </script>
 </BaseLayout>
 
@@ -206,6 +226,30 @@ const customTransition = { forwards: anim, backwards: anim }
     width: 100%;
     height: auto;
     display: block;
+    /* transition: transform 0.3s ease; */ /* Removed to avoid conflict with medium-zoom */
+    background-color: var(--color-bg-tertiary);
+  }
+
+  .post-image:hover img {
+    /* transform: scale(1.02); */ /* Removed to avoid conflict with medium-zoom */
+  }
+
+  /* Post content images optimization */
+  .post-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5rem auto;
+    display: block;
+    cursor: zoom-in;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background-color: var(--color-bg-tertiary);
+    /* transition: transform 0.3s ease, box-shadow 0.3s ease; */ /* Removed to avoid conflict with medium-zoom */
+    transition: box-shadow 0.3s ease;
+  }
+
+  .post-content :global(img:hover) {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
 
   .post-image figcaption {

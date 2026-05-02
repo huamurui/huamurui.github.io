@@ -328,7 +328,6 @@
   .breadcrumb-dropdown-menu a:hover {
     color: var(--primary-color);
     background-color: color-mix(in srgb, var(--primary-color) 12%, transparent);
-    transform: translateX(4px);
   }
 
   .no-items {
