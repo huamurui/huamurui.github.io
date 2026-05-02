@@ -1,6 +1,7 @@
 ---
 import ToC from '@/components/ToC.astro'
 import Breadcrumb from '@/components/Breadcrumb.svelte'
+import ReadingProgress from '@/components/ReadingProgress.svelte'
 import { getCollection, render, type CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { extractExcerptFromHtml, formatDate, sanitizeViewTransitionName, generateBreadcrumbItems, countWords } from '@/utils/helpers'
@@ -51,6 +52,7 @@ const customTransition = { forwards: anim, backwards: anim }
 ---
 
 <BaseLayout postFrontmatter={{ ...post.data, description } as PostFrontmatter} post={post} structuredData={structuredData}>
+  <ReadingProgress client:load />
   <article class="blog-post-container">
     <div class="blog-post-content">
       <Breadcrumb client:idle items={breadcrumbItems} />
@@ -100,7 +102,8 @@ const customTransition = { forwards: anim, backwards: anim }
         <Content />
       </div>
 
-      <footer class="post-footer"></footer>
+      <footer class="post-footer">
+      </footer>
     </div>
   </article>
 
