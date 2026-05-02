@@ -135,9 +135,13 @@ import { ClientRouter } from 'astro:transitions';
     onload="this.setAttribute('media','all')" 
   />
   
-  <!-- 预连接外部资源 -->
-  <link rel="preconnect" href="https://giscus.app" crossorigin />
-  <link rel="dns-prefetch" href="https://giscus.app" />
+  <!-- 预连接外部资源 (仅在需要时) -->
+  {needGiscus && (
+    <>
+      <link rel="preconnect" href="https://giscus.app" crossorigin />
+      <link rel="dns-prefetch" href="https://giscus.app" />
+    </>
+  )}
 
   <style is:inline>
     /* Localized Nunito */

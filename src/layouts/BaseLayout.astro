@@ -157,32 +157,30 @@ const isHome = isHomePage(Astro.url.pathname);
     <Footer />
     <FAB client:only="svelte" />
     <script>
-    async function changeBars() {
-      const { OverlayScrollbars } = await import('overlayscrollbars')
-      const bodyElement = document.querySelector('body')
-      if (!bodyElement) return
+      import { OverlayScrollbars } from 'overlayscrollbars'
       
-      OverlayScrollbars({
-        target: bodyElement,
-        cancel: {
-          nativeScrollbarsOverlaid: false
+      const changeBars = () => {
+        const bodyElement = document.querySelector('body')
+        if (!bodyElement) return
+        
+        OverlayScrollbars(bodyElement, {
+          scrollbars: {
+            theme: 'os-theme-dark',
+            autoHide: 'leave',
+            clickScroll: true
+          }
+        })
+      }
+
+      const scheduleInit = () => {
+        if ('requestIdleCallback' in window) {
+          (window as any).requestIdleCallback(() => changeBars())
+        } else {
+          setTimeout(changeBars, 500)
         }
-      }, {
-        scrollbars: {
-          autoHide: 'move',
-          autoHideDelay: 500,
-          autoHideSuspend: false
-        }
-      })
-    }
-    
-    // 延迟初始化，给首屏渲染让路
-    if (document.readyState === 'complete') {
-      changeBars()
-    } else {
-      window.addEventListener('load', () => setTimeout(changeBars, 200))
-    }
-    document.addEventListener('astro:after-swap', changeBars)
+      }
+
+      document.addEventListener('astro:page-load', scheduleInit)
     </script>
   </body>
 </html>
