@@ -147,6 +147,7 @@
             <button
               class="breadcrumb-dropdown-btn"
               type="button"
+              aria-label={`查看 ${item.label} 下的子目录`}
               aria-expanded={activeDropdownLabel === item.label}
               aria-haspopup="true"
               on:click={(e) => toggleDropdown(item.label, e)}
