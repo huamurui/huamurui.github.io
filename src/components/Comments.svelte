@@ -25,8 +25,9 @@
       return isDark ? 'dark' : 'light';
     }
     
-    // Production: Use the premium jelly theme
-    return `${window.location.origin}/giscus-theme.css`;
+    // Production: Use the dedicated jelly theme files
+    const themeFile = isDark ? 'giscus-dark.css' : 'giscus-light.css';
+    return `${window.location.origin}/${themeFile}`;
   }
 
   function updateGiscusTheme() {
