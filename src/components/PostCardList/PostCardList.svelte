@@ -117,11 +117,6 @@
     padding-bottom: 2px;
   }
 
-  .post-item:hover .post-title {
-    color: var(--text-primary); /* Keep text color plain, let the highlight do the work */
-    background-size: 100% 10px;
-  }
-
   .pinned-badge {
     font-size: 0.75rem;
     font-weight: 700;
