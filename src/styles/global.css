@@ -279,33 +279,3 @@ ul.breadcrumb-dropdown-menu li {
   border-radius: 8px;
   font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
-
-/* --- Premium Scroll Feather Mask --- */
-/* 渐进增强：仅在支持 scroll-state 的现代浏览器中显示 */
-@supports (container-type: scroll-state) {
-  .scroll-feather-mask {
-    container-type: scroll-state;
-    position: relative;
-  }
-
-  /* 当下方还有内容可滚动时，显示微弱的羽化遮罩 */
-  @container scroll-state(scrollable: bottom) {
-    .scroll-feather-mask::after {
-      content: '';
-      background: linear-gradient(
-        to bottom, 
-        transparent 0%, 
-        color-mix(in srgb, var(--bg-primary) 80%, transparent) 100%
-      );
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 5;
-      display: block;
-      height: 4rem;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-  }
-}
