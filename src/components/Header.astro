@@ -68,7 +68,7 @@ const searchablePosts = allPosts.map((post) => ({
     </div>
 
     <div class="header-actions">
-      <Search client:idle searchablePosts={searchablePosts} />
+      <Search client:load searchablePosts={searchablePosts} />
       <ThemeToggle client:load />
 
       <button

@@ -1,5 +1,3 @@
-<script lang="ts">
-  import Fuse, { type FuseResult, type IFuseOptions } from "fuse.js";
   import { onMount } from "svelte";
   import { t } from "@/utils/i18n";
 
@@ -18,13 +16,13 @@
 
   let searchQuery = "";
   let isSearchOpen = false;
-  let searchResults: FuseResult<Post>[] = [];
-  let fuse: Fuse<Post>;
+  let searchResults: any[] = [];
+  let fuse: any;
   let searchWorker: Worker | null = null;
   let isWorkerReady = false;
   let isIndexLoading = false;
   let isIndexLoaded = false;
-  const fuseOptions: IFuseOptions<Post> = {
+  const fuseOptions: any = {
     includeScore: true,
     includeMatches: true,
     threshold: 0.4,
@@ -42,22 +40,24 @@
     if (isIndexLoaded || isIndexLoading) return;
     isIndexLoading = true;
     try {
-      const res = await fetch('/search-index.json');
-      const data = await res.json();
-      searchablePosts = data;
-      fuse = new Fuse(searchablePosts as Post[], fuseOptions);
-      isIndexLoaded = true;
+      // 动态导入 Fuse.js 和 索引数据
+      const [FuseModule, res] = await Promise.all([
+        import('fuse.js'),
+        fetch('/search-index.json')
+      ]);
       
-      // 如果 worker 还没初始化，可以考虑在这里初始化
+      const Fuse = FuseModule.default;
+      const data = await res.json();
+      
+      searchablePosts = data;
+      fuse = new Fuse(searchablePosts as any[], fuseOptions);
+      isIndexLoaded = true;
     } catch (e) {
-      console.error('Failed to load search index:', e);
+      console.error('Failed to load search index or fuse:', e);
     } finally {
       isIndexLoading = false;
     }
   };
-
-  // 初始化一个空的或只有标题的 Fuse 实例
-  fuse = new Fuse(searchablePosts as Post[], fuseOptions);
 
   onMount(() => {
     document.addEventListener("click", handleClickOutside);
