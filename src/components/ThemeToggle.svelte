@@ -15,9 +15,12 @@
   };
 
   const executeThemeChange = (newTheme: Theme): void => {
-    document.documentElement.classList.remove("light", "dark");
-    document.documentElement.classList.add(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
+    const html = document.documentElement;
+    if (html.getAttribute("data-theme") === newTheme && html.classList.contains(newTheme)) return;
+
+    html.classList.remove("light", "dark");
+    html.classList.add(newTheme);
+    html.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
   };
 
@@ -70,7 +73,11 @@
   onMount(() => {
     const initialTheme = getInitialTheme();
     theme = initialTheme;
-    applyTheme(initialTheme);
+    // The theme is already applied by the inline script in Head.astro.
+    // Only call applyTheme if the DOM state is inconsistent.
+    if (document.documentElement.getAttribute("data-theme") !== initialTheme) {
+      applyTheme(initialTheme);
+    }
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleSystemThemeChange = (e: MediaQueryListEvent): void => {
@@ -151,7 +158,8 @@
     height: 3px;
     border-radius: 3px;
     background: var(--primary-color);
-    transition: all 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    view-transition-name: theme-indicator;
   }
 
 
@@ -163,7 +171,7 @@
 
   /* View Transitions for Theme Toggle */
   :global(.theme-transitioning),
-  :global(.theme-transitioning *) {
+  :global(.theme-transitioning *:not(.theme-toggle-indicator)) {
     transition: none !important;
   }
   :global(.theme-transitioning::view-transition-group(root)),

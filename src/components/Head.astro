@@ -181,11 +181,14 @@ import { ClientRouter } from 'astro:transitions';
     document.documentElement.setAttribute('data-theme', theme);
 
     // 兼容 SPA 模式
-    document.addEventListener('astro:after-swap', () => {
+    const applyTheme = (doc = document) => {
       const theme = getTheme();
-      document.documentElement.classList.toggle('dark', theme === 'dark');
-      document.documentElement.setAttribute('data-theme', theme);
-    });
+      doc.documentElement.classList.toggle('dark', theme === 'dark');
+      doc.documentElement.setAttribute('data-theme', theme);
+    };
+
+    document.addEventListener('astro:after-swap', () => applyTheme());
+    document.addEventListener('astro:before-swap', (ev) => applyTheme(ev.newDocument));
   })();
   </script>
 
