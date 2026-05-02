@@ -4,20 +4,33 @@
   // Placeholder for Giscus config - User can fill this later
   const giscusConfig = {
     repo: "huamurui/huamurui.github.io",
-    repoId: "R_kgDOHFCWEQ",
-    category: "Announcements",
-    categoryId: "DIC_kwDOHFCWEc4CR0iI",
+    "repo-id": "R_kgDOHFCWEQ",
+    category: "General",
+    "category-id": "DIC_kwDOHFCWEc4CR0iJ",
     mapping: "pathname",
     strict: "0",
-    reactionsEnabled: "1",
-    emitMetadata: "0",
-    inputPosition: "bottom",
+    "reactions-enabled": "1",
+    "emit-metadata": "0",
+    "input-position": "bottom",
     lang: "zh-CN",
     loading: "lazy"
   };
 
+  function getThemeUrl() {
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    
+    // Local dev: Use built-in themes to avoid CORS errors
+    if (isLocal) {
+      return isDark ? 'dark' : 'light';
+    }
+    
+    // Production: Use the premium jelly theme
+    return `${window.location.origin}/giscus-theme.css`;
+  }
+
   function updateGiscusTheme() {
-    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const theme = getThemeUrl();
     const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
     if (!iframe) return;
     iframe.contentWindow?.postMessage(
@@ -28,7 +41,7 @@
 
   onMount(() => {
     const script = document.createElement('script');
-    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const theme = getThemeUrl();
     
     Object.entries({
       ...giscusConfig,

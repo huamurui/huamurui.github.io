@@ -2,6 +2,7 @@
 import ToC from '@/components/ToC.astro'
 import Breadcrumb from '@/components/Breadcrumb.svelte'
 import ReadingProgress from '@/components/ReadingProgress.svelte'
+import Comments from '@/components/Comments.svelte'
 import { getCollection, render, type CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { extractExcerptFromHtml, formatDate, sanitizeViewTransitionName, generateBreadcrumbItems, countWords } from '@/utils/helpers'
@@ -103,6 +104,7 @@ const customTransition = { forwards: anim, backwards: anim }
       </div>
 
       <footer class="post-footer">
+        <Comments client:visible />
       </footer>
     </div>
   </article>
