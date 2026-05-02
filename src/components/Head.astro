@@ -80,11 +80,25 @@ import { ClientRouter } from 'astro:transitions';
   }
 
   <!-- <link rel="preload" href="/fonts/main-font.woff2" as="font" type="font/woff2" crossorigin /> -->
-  <!-- 引入可爱的 Nunito 英文和数字字体，以及 M PLUS Rounded 1c 作为中文圆体 -->
+  <!-- 性能优化：提前进行 DNS 解析和预连接 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+  <!-- 异步加载字体：使用 print 媒体查询技巧避免阻塞首屏渲染 (LCP) -->
+  <link 
+    rel="stylesheet" 
+    href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Nunito:wght@400;600;700;800&display=swap" 
+    media="print" 
+    onload="this.media='all'" 
+  />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Nunito:wght@400;600;700;800&display=swap" />
+  </noscript>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css" media="print" onload="this.media='all'" />
+
   <script is:inline>
   (function() {
     try {
