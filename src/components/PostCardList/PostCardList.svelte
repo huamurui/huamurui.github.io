@@ -106,15 +106,6 @@
     flex: 1;
     margin: 0;
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    
-    /* Jelly underline setup for simple cute interaction */
-    background-image: linear-gradient(var(--color-primary-mix-20), var(--color-primary-mix-20));
-    background-repeat: no-repeat;
-    background-position: bottom left;
-    background-size: 0% 10px;
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
-    padding-bottom: 2px;
   }
 
   .pinned-badge {
