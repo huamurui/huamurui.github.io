@@ -1,5 +1,7 @@
 ---
+import '@/styles/tokens.css'
 import '@/styles/global.css'
+import '@/styles/md.css'
 import '@/styles/link-card.css'
 import '@/styles/code.css'
 import 'overlayscrollbars/styles/overlayscrollbars.css'
@@ -63,6 +65,7 @@ const isHome = isHomePage(Astro.url.pathname);
     ogImage={ogImage}
     canonicalUrl={canonicalUrl}
     structuredData={structuredData}
+    needGiscus={isPostsPage}
   />
 
   <body data-overlayscrollbars-initialize>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Fuse from "fuse.js";
   import { onMount } from "svelte";
   import { t } from "@/utils/i18n";
 
@@ -41,20 +42,15 @@
     if (isIndexLoaded || isIndexLoading) return;
     isIndexLoading = true;
     try {
-      // 动态导入 Fuse.js 和 索引数据
-      const [FuseModule, res] = await Promise.all([
-        import('fuse.js'),
-        fetch('/search-index.json')
-      ]);
-      
-      const Fuse = FuseModule.default;
+      // 仅动态导入索引数据
+      const res = await fetch('/search-index.json');
       const data = await res.json();
       
       searchablePosts = data;
       fuse = new Fuse(searchablePosts as any[], fuseOptions);
       isIndexLoaded = true;
     } catch (e) {
-      console.error('Failed to load search index or fuse:', e);
+      console.error('Failed to load search index:', e);
     } finally {
       isIndexLoading = false;
     }

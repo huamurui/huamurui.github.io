@@ -7,15 +7,15 @@
   --color-bg-primary: #ffffff;
   --color-bg-secondary: color-mix(in srgb, var(--color-theme) 2%, #f8f9fa);
   --color-bg-tertiary: color-mix(in srgb, var(--color-theme) 4%, #f1f1f1);
-  
+
   /* 文本色 (融入环境光，避免死黑/死灰) */
   --color-text-primary: color-mix(in srgb, var(--color-theme) 10%, #212529);
   --color-text-secondary: color-mix(in srgb, var(--color-theme) 8%, #5b5b5b);
   --color-text-muted: color-mix(in srgb, var(--color-theme) 6%, #6c757d);
-  
+
   /* 果冻半透明边框 */
   --color-border: color-mix(in srgb, var(--color-theme) 15%, rgba(0, 0, 0, 0.08));
-  
+
   /* 阴影 */
   --color-shadow: rgba(0, 0, 0, 0.08);
 
@@ -63,7 +63,7 @@
   /* 过渡动画 */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
-  --transition-slow: 0.45s cubic-bezier(.2,.8,.2,1);
+  --transition-slow: 0.45s cubic-bezier(.2, .8, .2, 1);
 
   /* Z-index 层级 */
   --z-index-dropdown: 1000;
@@ -103,15 +103,15 @@
   --color-bg-primary: color-mix(in srgb, var(--color-theme) 3%, #121212);
   --color-bg-secondary: color-mix(in srgb, var(--color-theme) 5%, #1e1e1e);
   --color-bg-tertiary: color-mix(in srgb, var(--color-theme) 7%, #2d2d2d);
-  
+
   /* 文本色 (融入主题色温) */
   --color-text-primary: color-mix(in srgb, var(--color-theme) 8%, #e9ecef);
   --color-text-secondary: color-mix(in srgb, var(--color-theme) 12%, #cdcdcd);
   --color-text-muted: color-mix(in srgb, var(--color-theme) 15%, #adb5bd);
-  
+
   /* 果冻半透明边框 (暗色专属反光) */
   --color-border: color-mix(in srgb, var(--color-theme) 15%, rgba(255, 255, 255, 0.08));
-  
+
   /* 阴影 */
   --color-shadow: rgba(0, 0, 0, 0.25);
 }

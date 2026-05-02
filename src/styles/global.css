@@ -1,6 +1,4 @@
-
-@import url('./tokens.css');
-@import url('./md.css');
+/* 这里的 import 已移至 BaseLayout.astro 以优化渲染性能 */
 
 [data-theme="dark"] .astro-code,
 [data-theme="dark"] .astro-code span {
@@ -34,11 +32,13 @@ body {
   color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
   margin: 0;
+  font-family: var(--font-family-base);
+  -webkit-tap-highlight-color: transparent; /* 移除全量计算，改用简单透明 */
 }
 
-* {
-  -webkit-tap-highlight-color: color-mix(in srgb, var(--theme-color) 20%, transparent);
-  font-family: var(--font-family-base);
+/* 仅在需要的地方应用 tap highlight */
+a, button {
+  -webkit-tap-highlight-color: var(--color-theme-mix-20);
 }
 
 ::selection {
@@ -120,10 +120,18 @@ h6:hover::after {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 0;
+  width: 100%;
   height: 2px;
   background-color: var(--theme-color);
-  transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .tags {
