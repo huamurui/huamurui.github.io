@@ -81,14 +81,45 @@ import { ClientRouter } from 'astro:transitions';
 
   <!-- <link rel="preload" href="/fonts/main-font.woff2" as="font" type="font/woff2" crossorigin /> -->
   <!-- 性能优化：提前进行 DNS 解析和预连接 -->
-  <!-- 引入字体 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-  
   <style is:inline>
-    /* Inlined JetBrains Mono for performance */
-    @font-face{font-family:'JetBrains Mono';src:url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+    /* Localized Nunito */
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/fonts/nunito-400.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/fonts/nunito-700.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    /* Localized M PLUS Rounded 1c */
+    @font-face {
+      font-family: 'M PLUS Rounded 1c';
+      src: url('/fonts/mplus-400.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'M PLUS Rounded 1c';
+      src: url('/fonts/mplus-700.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    /* Localized JetBrains Mono */
+    @font-face {
+      font-family: 'JetBrains Mono';
+      src: url('/fonts/jetbrains-mono.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
   </style>
 
   <script is:inline>
