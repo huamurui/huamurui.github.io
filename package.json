@@ -23,6 +23,7 @@
     "overlayscrollbars": "^2.13.0",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
+    "sharp": "^0.34.5",
     "svelte": "^5.46.1",
     "unist-util-visit": "^5.0.0"
   },
