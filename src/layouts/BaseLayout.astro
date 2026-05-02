@@ -2,6 +2,7 @@
 import '@/styles/global.css'
 import '@/styles/link-card.css'
 import '@/styles/code.css'
+import 'overlayscrollbars/styles/overlayscrollbars.css'
 import { siteConfig } from '@/config/site.config'
 import { isPostPage, isHomePage } from '@/utils/helpers'
 import type { PostFrontmatter, PostEntry, StructuredData } from '@/types'
@@ -134,7 +135,7 @@ const isHome = isHomePage(Astro.url.pathname);
     {isHome && <div class="yarare-hero cg" >
     </div>}
     <div style="" class="content-container">
-      <main class="main-content">
+      <main class="main-content scroll-feather-mask">
         <slot />
       </main>
       <aside>
@@ -151,18 +152,17 @@ const isHome = isHomePage(Astro.url.pathname);
     </div>
     <slot name="bottom" />
     <Footer />
-    <FAB client:idle />
+    <FAB client:only="svelte" />
     <script>
-    import { OverlayScrollbars } from 'overlayscrollbars'
-    import 'overlayscrollbars/styles/overlayscrollbars.css'
-    function changeBars() {
-      // const tocList = document.querySelector<HTMLAnchorElement>('.toc-list')
+    async function changeBars() {
+      const { OverlayScrollbars } = await import('overlayscrollbars')
       const bodyElement = document.querySelector('body')
       if (!bodyElement) return
+      
       OverlayScrollbars({
         target: bodyElement,
         cancel: {
-          nativeScrollbarsOverlaid: false    // don't initialize the overlay scrollbar if there is a native one
+          nativeScrollbarsOverlaid: false
         }
       }, {
         scrollbars: {
@@ -171,21 +171,14 @@ const isHome = isHomePage(Astro.url.pathname);
           autoHideSuspend: false
         }
       })
-      // if(!tocList) return
-      // OverlayScrollbars({
-      //   target: tocList,
-      //   cancel: {
-      //     nativeScrollbarsOverlaid: true
-      //   }
-      // }, {
-      //   scrollbars: {
-      //     autoHide: 'move',
-      //     autoHideDelay: 500,
-      //     autoHideSuspend: false
-      //   }
-      // })
     }
-    changeBars()
+    
+    // 延迟初始化，给首屏渲染让路
+    if (document.readyState === 'complete') {
+      changeBars()
+    } else {
+      window.addEventListener('load', () => setTimeout(changeBars, 200))
+    }
     document.addEventListener('astro:after-swap', changeBars)
     </script>
   </body>

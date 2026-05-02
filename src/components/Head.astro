@@ -81,6 +81,15 @@ import { ClientRouter } from 'astro:transitions';
 
   <!-- <link rel="preload" href="/fonts/main-font.woff2" as="font" type="font/woff2" crossorigin /> -->
   <!-- 性能优化：提前进行 DNS 解析和预连接 -->
+  <!-- 引入字体 (使用寒蝉全圆体 CDN，英文字体本地化) -->
+  <link rel="preconnect" href="https://chinese-fonts-cdn.deno.dev" crossorigin />
+  <link rel="dns-prefetch" href="https://chinese-fonts-cdn.deno.dev" />
+  <link rel="stylesheet" href="https://chinese-fonts-cdn.deno.dev/packages/hcqyt/dist/ChillRoundFRegular/result.css" />
+  
+  <!-- 预连接外部资源 (如评论区) -->
+  <link rel="preconnect" href="https://giscus.app" crossorigin />
+  <link rel="dns-prefetch" href="https://giscus.app" />
+
   <style is:inline>
     /* Localized Nunito */
     @font-face {
@@ -97,21 +106,6 @@ import { ClientRouter } from 'astro:transitions';
       font-style: normal;
       font-display: swap;
     }
-    /* Localized M PLUS Rounded 1c */
-    @font-face {
-      font-family: 'M PLUS Rounded 1c';
-      src: url('/fonts/mplus-400.ttf') format('truetype');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'M PLUS Rounded 1c';
-      src: url('/fonts/mplus-700.ttf') format('truetype');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
     /* Localized JetBrains Mono */
     @font-face {
       font-family: 'JetBrains Mono';
@@ -124,37 +118,34 @@ import { ClientRouter } from 'astro:transitions';
 
   <script is:inline>
   (function() {
-    try {
-      const savedTheme = localStorage.getItem('theme')
-      const systemPrefersDark = window.matchMedia(
-        '(prefers-color-scheme: dark)'
-      ).matches
-      const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light')
+    function getTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') return 'dark';
+      if (savedTheme === 'light') return 'light';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
 
-      document.documentElement.classList.add(theme)
-      document.documentElement.setAttribute('data-theme', theme)
-  } catch (e) {
-      console.error('主题设置错误:', e)
-  }
-  })()
-  </script>
+    function applyTheme(theme) {
+      const root = document.documentElement;
+      root.classList.toggle('dark', theme === 'dark');
+      root.dataset.theme = theme;
+    }
 
-  <script is:inline>
-    document.addEventListener('astro:before-swap', (event) => {
-      try {
-        const savedTheme = localStorage.getItem('theme')
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-        const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light')
-        const el = event.newDocument && event.newDocument.documentElement
-        if (el) {
-          el.classList.remove('light', 'dark')
-          el.classList.add(theme)
-          el.setAttribute('data-theme', theme)
-        }
-      } catch (e) {
-        console.error('Theme Settring err:', e)
+    // 初始应用防止闪烁
+    applyTheme(getTheme());
+
+    // 监听系统主题偏好变化
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+      if (!localStorage.getItem('theme')) {
+        applyTheme(getTheme());
       }
-    })
+    });
+
+    // 处理 View Transition 切换后的重新应用
+    document.addEventListener('astro:after-swap', function() {
+      applyTheme(getTheme());
+    });
+  })();
   </script>
 
   <ClientRouter />
