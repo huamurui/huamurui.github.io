@@ -149,6 +149,7 @@ const isHome = isHomePage(Astro.url.pathname);
         </div>
       </aside>
     </div>
+    <slot name="bottom" />
     <Footer />
     <FAB client:idle />
     <script>

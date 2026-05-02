@@ -104,12 +104,15 @@ const customTransition = { forwards: anim, backwards: anim }
       </div>
 
       <footer class="post-footer">
-        <Comments client:visible />
       </footer>
     </div>
   </article>
 
   {headings && headings.length > 0 && <ToC slot="aside" headings={headings} />}
+  <div slot="bottom" class="comments-wrapper">
+    <Comments client:visible />
+  </div>
+
   <script is:inline>
     (function() {
       function initBlur() {
@@ -271,5 +274,11 @@ const customTransition = { forwards: anim, backwards: anim }
     .meta-separator {
       display: none;
     }
+  }
+
+  .comments-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem 4rem;
   }
 </style>
