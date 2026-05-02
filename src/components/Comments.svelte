@@ -81,5 +81,7 @@
     margin-top: 4rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border-color);
+    max-width: 800px;
+    margin: 0 auto;
   }
 </style>
