@@ -22,6 +22,8 @@
   let fuse: Fuse<Post>;
   let searchWorker: Worker | null = null;
   let isWorkerReady = false;
+  let isIndexLoading = false;
+  let isIndexLoaded = false;
   const fuseOptions: IFuseOptions<Post> = {
     includeScore: true,
     includeMatches: true,
@@ -36,6 +38,25 @@
     ],
   };
 
+  const loadFullIndex = async () => {
+    if (isIndexLoaded || isIndexLoading) return;
+    isIndexLoading = true;
+    try {
+      const res = await fetch('/search-index.json');
+      const data = await res.json();
+      searchablePosts = data;
+      fuse = new Fuse(searchablePosts as Post[], fuseOptions);
+      isIndexLoaded = true;
+      
+      // 如果 worker 还没初始化，可以考虑在这里初始化
+    } catch (e) {
+      console.error('Failed to load search index:', e);
+    } finally {
+      isIndexLoading = false;
+    }
+  };
+
+  // 初始化一个空的或只有标题的 Fuse 实例
   fuse = new Fuse(searchablePosts as Post[], fuseOptions);
 
   onMount(() => {
@@ -187,6 +208,7 @@
   const toggleSearch = () => {
     isSearchOpen = !isSearchOpen;
     if (isSearchOpen) {
+      loadFullIndex(); // 点击时开始加载索引
       setTimeout(() => {
         const searchInput =
           document.querySelector<HTMLInputElement>(".search-input");
@@ -237,8 +259,9 @@
       <input
         class="search-input"
         type="text"
-        placeholder="搜索文章..."
+        placeholder={isIndexLoading ? "正在加载索引..." : "搜索文章..."}
         value={searchQuery}
+        disabled={isIndexLoading}
         on:input={handleSearchInput}
         on:keydown={handleSearchKeydown}
         aria-label="输入关键词搜索文章"
