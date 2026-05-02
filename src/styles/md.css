@@ -1,5 +1,5 @@
 /* Markdown 内容容器 */
-.blog-post-container {
+.markdown-body {
   line-height: 1.75;
   font-size: 1.05rem;
   color: var(--text-primary);
@@ -8,7 +8,7 @@
 }
 
 /* 标题样式 */
-.blog-post-container h1 {
+.markdown-body h1 {
   font-size: 2.2rem;
   margin: 2.5rem 0 1.5rem;
   padding-bottom: 0.5rem;
@@ -17,7 +17,7 @@
   letter-spacing: -0.02em;
 }
 
-.blog-post-container h2 {
+.markdown-body h2 {
   font-size: 1.8rem;
   margin: 2.2rem 0 1.2rem;
   padding-bottom: 0.6rem;
@@ -25,28 +25,28 @@
   color: var(--text-primary);
 }
 
-.blog-post-container h3 {
+.markdown-body h3 {
   font-size: 1.5rem;
   margin: 1.8rem 0 1rem;
   font-weight: 600;
   color: var(--text-primary);
 }
 
-.blog-post-container h4 {
+.markdown-body h4 {
   font-size: 1.3rem;
   margin: 1.5rem 0 0.8rem;
   font-weight: 550;
   color: var(--text-primary);
 }
 
-.blog-post-container h5 {
+.markdown-body h5 {
   font-size: 1.15rem;
   margin: 1.2rem 0 0.6rem;
   font-weight: 500;
   color: var(--text-secondary);
 }
 
-.blog-post-container h6 {
+.markdown-body h6 {
   font-size: 1.05rem;
   margin: 1rem 0 0.5rem;
   font-weight: 500;
@@ -55,7 +55,7 @@
 }
 
 /* 段落样式 */
-.blog-post-container p {
+.markdown-body p {
   margin: 1.2rem 0;
   line-height: 1.8;
 }
@@ -88,7 +88,7 @@ article:not(.blog-post-container) a:hover:after {
 }
 
 /* Markdown 内部多行链接样式 */
-.blog-post-container a {
+.markdown-body a {
   color: var(--primary-color);
   font-weight: 600;
   /* 加粗一点显得更可爱 */
@@ -111,7 +111,7 @@ article:not(.blog-post-container) a:hover:after {
   transition: background-size 400ms cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s;
 }
 
-.blog-post-container a:hover {
+.markdown-body a:hover {
   background-size: 100% 75%;
   /* 稳定在 75%，但冲刺时会突破到 100% 顶满顶部 padding，展现完美果冻感！ */
 }
@@ -121,13 +121,13 @@ article:not(.blog-post-container) a:hover:after {
    ========================================= */
 
 /* 取消无序列表默认圆点，由伪元素接管 */
-.blog-post-container ul {
+.markdown-body ul {
   list-style: none;
   padding-left: 1.5rem;
   margin: 1.2rem 0;
 }
 
-.blog-post-container ul li {
+.markdown-body ul li {
   position: relative;
   margin: 0.6rem 0;
   line-height: 1.7;
@@ -135,7 +135,7 @@ article:not(.blog-post-container) a:hover:after {
 }
 
 /* 一级无序列表：实心小圆点 */
-.blog-post-container ul>li::before {
+.markdown-body ul>li::before {
   content: "";
   position: absolute;
   left: -1rem;
@@ -148,13 +148,13 @@ article:not(.blog-post-container) a:hover:after {
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s;
 }
 
-.blog-post-container ul>li:hover::before {
+.markdown-body ul>li:hover::before {
   transform: scale(1.6);
   background-color: color-mix(in srgb, var(--primary-color) 80%, white);
 }
 
 /* 多级无序列表（嵌套列表） */
-.blog-post-container ul ul {
+.markdown-body ul ul {
   position: relative;
   margin: 0.4rem 0 0.4rem 0.2rem;
   padding-left: 1.2rem;
@@ -162,7 +162,7 @@ article:not(.blog-post-container) a:hover:after {
 
 
 /* 二级无序列表：空心圆圈 */
-.blog-post-container ul ul>li::before {
+.markdown-body ul ul>li::before {
   background-color: transparent;
   border: 2px solid var(--primary-color);
   width: 4px;
@@ -171,7 +171,7 @@ article:not(.blog-post-container) a:hover:after {
 }
 
 /* 三级无序列表：小方块 */
-.blog-post-container ul ul ul>li::before {
+.markdown-body ul ul ul>li::before {
   background-color: var(--text-secondary);
   border: none;
   border-radius: 2px;
@@ -183,14 +183,14 @@ article:not(.blog-post-container) a:hover:after {
 /* =========================================
    有序列表 (Ordered Lists)
    ========================================= */
-.blog-post-container ol {
+.markdown-body ol {
   list-style: none;
   counter-reset: custom-counter;
   padding-left: 1.5rem;
   margin: 1.2rem 0;
 }
 
-.blog-post-container ol>li {
+.markdown-body ol>li {
   position: relative;
   counter-increment: custom-counter;
   margin: 0.6rem 0;
@@ -199,7 +199,7 @@ article:not(.blog-post-container) a:hover:after {
 }
 
 /* 有序列表数字：粗体、主色调、带点 */
-.blog-post-container ol>li::before {
+.markdown-body ol>li::before {
   content: counter(custom-counter) ".";
   position: absolute;
   left: -1.5rem;
@@ -213,18 +213,18 @@ article:not(.blog-post-container) a:hover:after {
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.blog-post-container ol>li:hover::before {
+.markdown-body ol>li:hover::before {
   transform: translateX(-2px);
   color: color-mix(in srgb, var(--primary-color) 80%, white);
 }
 
-.blog-post-container ol ol {
+.markdown-body ol ol {
   margin: 0.4rem 0 0.4rem 0;
 }
 
-/* 为 .blog-post-container details 和 .blog-post-container summary 添加样式 */
+/* 为 .markdown-body details 和 .markdown-body summary 添加样式 */
 
-.blog-post-container details {
+.markdown-body details {
   background-color: var(--bg-secondary);
   border: 2px dashed var(--border-color);
   /* 可爱的虚线边框 */
@@ -235,7 +235,7 @@ article:not(.blog-post-container) a:hover:after {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.blog-post-container details:hover {
+.markdown-body details:hover {
   border-color: color-mix(in srgb, var(--primary-color) 50%, transparent);
   /* 悬浮时边框变色 */
   transform: translateY(-2px);
@@ -243,24 +243,24 @@ article:not(.blog-post-container) a:hover:after {
   box-shadow: 0 4px 12px color-mix(in srgb, var(--primary-color) 5%, transparent);
 }
 
-.blog-post-container details[open] {
+.markdown-body details[open] {
   background-color: var(--bg-tertiary);
   border-style: solid;
   /* 展开时变成实线 */
 }
 
 /* 给内部的内容增加左右和底部的留白（如果不包含 .details-content 包装器） */
-.blog-post-container details[open]>*:not(summary) {
+.markdown-body details[open]>*:not(summary) {
   padding-left: 3rem;
   /* 刚好和上面的 summary 文字对齐 */
   padding-right: 1.5rem;
 }
 
-.blog-post-container details[open]>*:not(summary):last-child {
+.markdown-body details[open]>*:not(summary):last-child {
   padding-bottom: 1.5rem;
 }
 
-.blog-post-container summary {
+.markdown-body summary {
   display: block;
   padding: 0.8rem 1rem 0.8rem 3rem;
   /* 增加一点内边距让它胖乎乎的 */
@@ -275,23 +275,23 @@ article:not(.blog-post-container) a:hover:after {
 }
 
 /* 隐藏所有浏览器的默认详情标记 */
-.blog-post-container summary::-webkit-details-marker {
+.markdown-body summary::-webkit-details-marker {
   display: none;
 }
 
-.blog-post-container details[open] summary {
+.markdown-body details[open] summary {
   border-bottom: 2px dashed var(--border-color);
   /* 展开时下方加个分割线 */
   margin-bottom: 0.5rem;
 }
 
-.blog-post-container summary::marker {
+.markdown-body summary::marker {
   display: none;
   content: "";
 }
 
 /* 使用伪元素创建自定义箭头 */
-.blog-post-container summary::before {
+.markdown-body summary::before {
   content: "";
   position: absolute;
   left: 1rem;
@@ -312,23 +312,23 @@ article:not(.blog-post-container) a:hover:after {
 }
 
 /* 黑暗主题下的箭头颜色 */
-[data-theme="dark"] .blog-post-container summary::before {
+[data-theme="dark"] .markdown-body summary::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff9eb6' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
 }
 
-.blog-post-container details[open] summary::before {
+.markdown-body details[open] summary::before {
   transform: translateY(-50%) rotate(90deg);
 }
 
 /* details 内部的内容样式 */
-.blog-post-container details .details-content {
+.markdown-body details .details-content {
   padding: 0.5rem 1.5rem 1.5rem 3rem;
   color: var(--text-primary);
   line-height: 1.6;
 }
 
 /* 为 details 内容添加平滑展开动画 */
-.blog-post-container details[open] .details-content {
+.markdown-body details[open] .details-content {
   animation: fadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
@@ -345,7 +345,7 @@ article:not(.blog-post-container) a:hover:after {
 }
 
 /* 引用块样式 */
-.blog-post-container blockquote {
+.markdown-body blockquote {
   position: relative;
   margin: 1.5rem 0;
   /* 增加上下外边距 */
@@ -360,7 +360,7 @@ article:not(.blog-post-container) a:hover:after {
 }
 
 /* 独立绘制的一条左侧短线，悬浮在圆角背景中 */
-.blog-post-container blockquote::before {
+.markdown-body blockquote::before {
   content: "";
   position: absolute;
   left: 1rem;
@@ -372,13 +372,13 @@ article:not(.blog-post-container) a:hover:after {
   border-radius: 3px;
 }
 
-.blog-post-container blockquote p {
+.markdown-body blockquote p {
   margin: 0.5rem 0;
   color: var(--text-secondary);
 }
 
 /* 代码样式 */
-.blog-post-container p code {
+.markdown-body p code {
   background: color-mix(in srgb, var(--primary-color) 12%, transparent);
   color: var(--primary-color);
   padding: 4px 8px;
@@ -389,7 +389,7 @@ article:not(.blog-post-container) a:hover:after {
 }
 
 /* 水平线样式 */
-.blog-post-container hr {
+.markdown-body hr {
   border: none;
   height: 6px;
   /* 可爱的波点分割线！ */
@@ -406,7 +406,7 @@ article:not(.blog-post-container) a:hover:after {
 }
 
 /* 图片样式 */
-.blog-post-container img {
+.markdown-body img {
   max-width: 100%;
   height: auto;
   border-radius: 1rem;
@@ -419,13 +419,13 @@ article:not(.blog-post-container) a:hover:after {
   /* 果冻动画 */
 }
 
-.blog-post-container img:hover {
+.markdown-body img:hover {
   transform: scale(1.02) translateY(-4px);
   /* 图片悬浮有轻微放大和上浮，非常Q弹 */
 }
 
 /* 强调文本样式 */
-.blog-post-container strong {
+.markdown-body strong {
   color: var(--text-primary);
   /* 换回主文本色，不和链接冲突 */
   font-weight: 750;
@@ -434,13 +434,13 @@ article:not(.blog-post-container) a:hover:after {
   padding: 0 2px;
 }
 
-.blog-post-container em {
+.markdown-body em {
   color: var(--theme-color);
   opacity: 0.9;
   font-style: italic;
 }
 
-.blog-post-container sup {
+.markdown-body sup {
   vertical-align: super;
   background: color-mix(in srgb, var(--bg-secondary) 80%, var(--primary-color));
   padding: 3px 6px;
@@ -451,7 +451,7 @@ article:not(.blog-post-container) a:hover:after {
 }
 
 /* 键盘按键样式 */
-.blog-post-container kbd {
+.markdown-body kbd {
   background-color: var(--bg-tertiary);
   border: 2px solid var(--border-color);
   /* 粗一点的边框更有玩具感 */
@@ -471,14 +471,14 @@ article:not(.blog-post-container) a:hover:after {
   transition: all 0.1s;
 }
 
-.blog-post-container kbd:active {
+.markdown-body kbd:active {
   transform: translateY(1px);
   /* 按下去的效果 */
   box-shadow: 0 0px 0 var(--border-color);
 }
 
 /* 脚注样式 */
-.blog-post-container .footnotes {
+.markdown-body .footnotes {
   margin-top: 3.5rem;
   padding-top: 1.5rem;
   border-top: 2px dashed color-mix(in srgb, var(--border-color) 50%, transparent);
