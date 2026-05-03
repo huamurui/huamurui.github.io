@@ -34,6 +34,19 @@ export interface SiteConfig {
     };
   };
   locale: string;
+  giscus: {
+    repo: string;
+    repoId: string;
+    category: string;
+    categoryId: string;
+    mapping: string;
+    strict: string;
+    reactionsEnabled: string;
+    emitMetadata: string;
+    inputPosition: string;
+    lang: string;
+    loading: 'lazy' | 'eager';
+  };
 }
 
 export const siteConfig: SiteConfig = {
@@ -67,5 +80,18 @@ export const siteConfig: SiteConfig = {
       primary: '#ff9eb6'
     }
   },
-  locale: 'zh-CN'
+  locale: 'zh-CN',
+  giscus: {
+    repo: "huamurui/huamurui.github.io",
+    repoId: "R_kgDOHFCWEQ",
+    category: "General",
+    categoryId: "DIC_kwDOHFCWEc4CR0iJ",
+    mapping: "pathname",
+    strict: "0",
+    reactionsEnabled: "1",
+    emitMetadata: "0",
+    inputPosition: "bottom",
+    lang: "zh-CN",
+    loading: "lazy"
+  }
 }

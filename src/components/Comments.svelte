@@ -1,19 +1,21 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { siteConfig } from '@/config/site.config';
+  const { giscus } = siteConfig;
 
-  // Placeholder for Giscus config - User can fill this later
-  const giscusConfig = {
-    repo: "huamurui/huamurui.github.io",
-    "repo-id": "R_kgDOHFCWEQ",
-    category: "General",
-    "category-id": "DIC_kwDOHFCWEc4CR0iJ",
-    mapping: "pathname",
-    strict: "0",
-    "reactions-enabled": "1",
-    "emit-metadata": "0",
-    "input-position": "bottom",
-    lang: "zh-CN",
-    loading: "lazy"
+  // Map camelCase to giscus data attributes
+  const giscusParams = {
+    repo: giscus.repo,
+    "repo-id": giscus.repoId,
+    category: giscus.category,
+    "category-id": giscus.categoryId,
+    mapping: giscus.mapping,
+    strict: giscus.strict,
+    "reactions-enabled": giscus.reactionsEnabled,
+    "emit-metadata": giscus.emitMetadata,
+    "input-position": giscus.inputPosition,
+    lang: giscus.lang,
+    loading: giscus.loading
   };
 
   function getThemeUrl() {
@@ -45,7 +47,7 @@
     const theme = getThemeUrl();
     
     Object.entries({
-      ...giscusConfig,
+      ...giscusParams,
       theme,
       crossorigin: "anonymous",
       async: "true"
