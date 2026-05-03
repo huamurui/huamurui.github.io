@@ -4,7 +4,7 @@
   const { giscus } = siteConfig;
 
   // Map camelCase to giscus data attributes
-  const giscusParams = {
+  const giscusParams = giscus ? {
     repo: giscus.repo,
     "repo-id": giscus.repoId,
     category: giscus.category,
@@ -16,7 +16,7 @@
     "input-position": giscus.inputPosition,
     lang: giscus.lang,
     loading: giscus.loading
-  };
+  } : null;
 
   function getThemeUrl() {
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
@@ -43,6 +43,7 @@
   }
 
   onMount(() => {
+    if (!giscusParams || !giscus?.enabled) return;
     const script = document.createElement('script');
     const theme = getThemeUrl();
     
@@ -74,9 +75,11 @@
   });
 </script>
 
-<div class="comments-section">
-  <div id="giscus-container"></div>
-</div>
+{#if giscusParams && giscus?.enabled}
+  <div class="comments-section">
+    <div id="giscus-container"></div>
+  </div>
+{/if}
 
 <style>
   .comments-section {

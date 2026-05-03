@@ -34,7 +34,8 @@ export interface SiteConfig {
     };
   };
   locale: string;
-  giscus: {
+  giscus?: {
+    enabled: boolean;
     repo: string;
     repoId: string;
     category: string;
@@ -82,6 +83,7 @@ export const siteConfig: SiteConfig = {
   },
   locale: 'zh-CN',
   giscus: {
+    enabled: true,
     repo: "huamurui/huamurui.github.io",
     repoId: "R_kgDOHFCWEQ",
     category: "General",
