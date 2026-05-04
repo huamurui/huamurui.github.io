@@ -49,7 +49,7 @@ const searchablePosts = allPosts.map((post) => ({
                         item.href.replace('/', '')
                     }}
                   >
-                    {item.label}
+                    {t(`header.nav.${item.labelKey}` as any)}
                   </a>
                 </li>
               ))
