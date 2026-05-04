@@ -272,8 +272,11 @@ const isHome = isHomePage(Astro.url.pathname);
         }
 
         async function showPreview(link) {
-          // Use absolute pathname from the URL object to avoid trailing slash issues
-          const url = new URL(link.href);
+          // Manually resolve relative paths to avoid the browser's trailing slash bias
+          const rawHref = link.getAttribute('href');
+          const base = window.location.origin + window.location.pathname.replace(/\/$/, '');
+          const url = new URL(rawHref, base);
+          
           const pathname = url.pathname.replace(/\/$/, '');
           const match = pathname.match(/\/posts\/(.+)$/);
           if (!match) return;
