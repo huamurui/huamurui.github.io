@@ -1,6 +1,6 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 import type { APIRoute } from 'astro'
-import { generateDirectoryStructure } from '@/utils/helpers'
+import { generateDirectoryStructure } from '@/utils/content'
 
 export const GET: APIRoute = async() => {
   const data = await  generateDirectoryStructure()
