@@ -9,7 +9,8 @@ import { Image } from 'astro:assets'
 import { extractExcerptFromHtml, formatDate, sanitizeViewTransitionName, generateBreadcrumbItems, countWords } from '@/utils/helpers'
 import { generatePostStructuredData } from '@/utils/structured-data'
 import { ANIMATION_DURATION, EASING } from '@/utils/constants'
-import type { PostFrontmatter } from '@/types'
+import PostList from '@/components/PostList/PostList.svelte'
+import '@/components/PostList/PostList.css'
 import '/node_modules/katex/dist/katex.min.css'
 
 type StaticPath = {
@@ -44,6 +45,20 @@ const description = extractExcerptFromHtml(post_str)
 
 const breadcrumbItems = generateBreadcrumbItems(post.id);
 const structuredData = generatePostStructuredData(post, description, Astro.url.origin, breadcrumbItems)
+
+// Backlinks logic
+const allPosts = await getCollection('posts');
+let backlinkData = {};
+try {
+  // Use import.meta.glob or direct import for the JSON
+  // Relative to src/pages/posts/[...slug].astro, .cache is at ../../../.cache
+  const data = await import('../../../.cache/backlinks.json');
+  backlinkData = data.default || {};
+} catch (e) {
+  console.log('No backlinks found yet');
+}
+const currentBacklinks = backlinkData[post.id] || [];
+const linkedPosts = allPosts.filter(p => currentBacklinks.includes(p.id));
 
 // page-specific title morph animation
 const anim = {
@@ -109,6 +124,22 @@ const customTransition = { forwards: anim, backwards: anim }
       </div>
 
       <footer class="post-footer">
+        {
+          linkedPosts.length > 0 && (
+            <section class="backlinks-section">
+              <div class="timeline-post">
+                <div class="post-info year">
+                  <span class="post-date year">referred</span>
+                  <div class="timeline-connector year">
+                    <div class="post-marker year" />
+                  </div>
+                  <span class="inline-tag">{linkedPosts.length} 篇文章引用</span>
+                </div>
+              </div>
+              <PostList posts={linkedPosts} client:load />
+            </section>
+          )
+        }
       </footer>
     </div>
   </article>
@@ -266,11 +297,32 @@ const customTransition = { forwards: anim, backwards: anim }
     color: var(--text-secondary);
   }
 
-  /* 文章底部 */
+  /* 文章底部 & 反向链接 (Timeline Style) */
   .post-footer {
     margin-top: 3rem;
     padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
   }
+
+  .backlinks-section {
+    margin-top: 2rem;
+  }
+
+  .backlinks-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+  }
+
+  .backlink-icon {
+    color: var(--theme-color);
+    opacity: 0.8;
+  }
+
 
   /* 响应式设计 */
   @media (max-width: 968px) {

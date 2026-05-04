@@ -347,7 +347,7 @@ const isHome = isHomePage(Astro.url.pathname);
 
         function initPreviews() {
           document.addEventListener('mouseover', (e) => {
-            const link = e.target.closest('.markdown-body a');
+            const link = e.target.closest('.markdown-body a, .posts-list a');
             if (link && link.pathname.includes('/posts/')) {
               // Find if this link belongs to any existing popup stack
               const level = getLevel(link);
@@ -373,7 +373,7 @@ const isHome = isHomePage(Astro.url.pathname);
           });
 
           document.addEventListener('mouseout', (e) => {
-            const link = e.target.closest('.markdown-body a');
+            const link = e.target.closest('.markdown-body a, .posts-list a');
             if (link && link.pathname.includes('/posts/')) {
               popupStack.forEach(p => {
                 if (p.link === link) p.isLinkHovered = false;

@@ -83,10 +83,9 @@
 
 <style>
   .comments-section {
-    margin-top: 4rem;
+    margin: 6rem auto 0;
     padding-top: 2rem;
     border-top: 1px solid var(--border-color);
     max-width: 800px;
-    margin: 0 auto;
   }
 </style>
