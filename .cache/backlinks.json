@@ -1,0 +1,27 @@
+{
+  "tech": [
+    "tech/vue-reactivity"
+  ],
+  "diary/notes": [
+    "nonsense/waiting-for-the-big-one",
+    "diary/2025"
+  ],
+  "nonsense/anfang": [
+    "nonsense/flesh-and-blood"
+  ],
+  "diary/tech/data-structure": [
+    "diary/notes"
+  ],
+  "diary": [
+    "diary/notes"
+  ],
+  "nonsense/waiting-for-the-big-one": [
+    "diary/notes"
+  ],
+  "tech/vue-reactivity": [
+    "diary/notes"
+  ],
+  "diary/soft-past": [
+    "diary/notes"
+  ]
+}

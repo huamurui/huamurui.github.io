@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "build:infos": "node scripts/build-backlinks.mjs && astro build",
     "astro": "astro",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"

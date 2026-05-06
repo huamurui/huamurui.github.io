@@ -1,0 +1,51 @@
+{
+  "https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API": {
+    "fetched": true,
+    "title": "View Transition API - Web APIs | MDN",
+    "description": "The View Transition API provides a mechanism for easily creating animated transitions between different website views. This includes animating between DOM states in a single-page app (SPA), and animating the navigation between documents in a multi-page app (MPA).",
+    "image": "https://developer.mozilla.org/mdn-social-image.46ac2375.png",
+    "site": "developer.mozilla.org"
+  },
+  "https://docs.astro.build/en/guides/view-transitions/": {
+    "fetched": true,
+    "title": "View transitions | Docs",
+    "description": "Enable seamless navigation between pages in Astro with view transitions.",
+    "image": "https://docs.astro.build/open-graph/en/guides/view-transitions.webp",
+    "site": "docs.astro.build"
+  },
+  "https://huamurui.github.io/html-s/shadow.html": {
+    "fetched": true,
+    "title": "shadow",
+    "description": null,
+    "image": null,
+    "site": "huamurui.github.io"
+  },
+  "https://github.com/stack-chan/stack-chan": {
+    "fetched": true,
+    "title": "GitHub - stack-chan/stack-chan: A JavaScript-driven M5Stack-embedded super-kawaii robot. · GitHub",
+    "description": "A JavaScript-driven M5Stack-embedded super-kawaii robot. - stack-chan/stack-chan",
+    "image": "https://repository-images.githubusercontent.com/374381865/15eebe83-6776-4e19-ae40-3197c7f7f681",
+    "site": "github.com"
+  },
+  "https://developer.chrome.com/docs/web-platform/view-transitions/": {
+    "fetched": true,
+    "title": "Smooth transitions with the View Transition API &nbsp;|&nbsp; View Transitions &nbsp;|&nbsp; Chrome for Developers",
+    "description": "The View Transition API lets you add transitions between views of a website.",
+    "image": null,
+    "site": "developer.chrome.com"
+  },
+  "https://github.com/huamurui/Snowfall": {
+    "fetched": true,
+    "title": "GitHub - huamurui/Snowfall: Snowfall.js is a little script that draws falling snow on top of a page, using a &lt;canvas&gt; and JavaScript. · GitHub",
+    "description": "Snowfall.js is a little script that draws falling snow on top of a page, using a &lt;canvas&gt; and JavaScript. - huamurui/Snowfall",
+    "image": "https://opengraph.githubassets.com/cd60bf4d28298fe5d2d8ae0d37a949195c45de05b035d3f0d7da1ee16360f4ba/huamurui/Snowfall",
+    "site": "github.com"
+  },
+  "https://www.bilibili.com/video/BV1By4y1U7zF": {
+    "fetched": true,
+    "title": "视频去哪了呢？_哔哩哔哩_bilibili",
+    "description": "undefined, 视频播放量 undefined、弹幕量 undefined、点赞数 undefined、投硬币枚数 undefined、收藏人数 undefined、转发人数 undefined, 视频作者 undefined, 作者简介 undefined，相关视频：",
+    "image": "@100w_100h_1c.png",
+    "site": "bilibili.com"
+  }
+}
