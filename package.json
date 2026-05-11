@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "build:infos": "node scripts/build-backlinks.mjs && astro build",
+    "build:infos": "node scripts/generate-sasayai.mjs && node scripts/build-backlinks.mjs && astro build",
     "astro": "astro",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
@@ -38,5 +38,11 @@
     "remark-parse": "^11.0.0",
     "typescript-eslint": "^8.52.0",
     "unist-util-visit": "^5.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }
