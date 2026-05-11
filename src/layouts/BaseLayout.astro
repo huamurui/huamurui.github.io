@@ -261,9 +261,22 @@ const isHome = isHomePage(Astro.url.pathname);
         async function fetchPostContent(id) {
           if (cache.has(id)) return cache.get(id);
           try {
-            const res = await fetch(`/api/post-content/${id}.json?v=${Date.now()}`);
+            const res = await fetch(`/api/post-content/${id}.html?v=${Date.now()}`);
             if (!res.ok) throw new Error('Not found');
-            const data = await res.json();
+            const htmlText = await res.text();
+            
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlText, 'text/html');
+            const wrapper = doc.getElementById('preview-wrapper');
+            
+            if (!wrapper) throw new Error('Invalid content');
+            
+            const data = {
+              title: wrapper.getAttribute('data-title'),
+              html: wrapper.innerHTML,
+              date: wrapper.getAttribute('data-date')
+            };
+            
             cache.set(id, data);
             return data;
           } catch (e) {
@@ -304,7 +317,6 @@ const isHome = isHomePage(Astro.url.pathname);
             
             if (!activePopup.classList.contains('is-visible') || activePopup.dataset.currentPost !== postId) {
               activePopup.innerHTML = '<div class="link-preview-loading">Loading...</div>';
-              activePopup.dataset.currentPost = postId;
             }
             activePopup.classList.add('is-visible');
 
@@ -314,33 +326,59 @@ const isHome = isHomePage(Astro.url.pathname);
               return;
             }
 
-            activePopup.innerHTML = `
-              <div class="link-preview-header">
-                <h5 class="link-preview-title">${post.title}</h5>
-              </div>
-              <div class="link-preview-body" id="preview-body-${level}">
-                <div class="markdown-body">
-                  ${post.html}
+            // 仅在文章改变时更新内容，避免闪烁和重置滚动
+            if (activePopup.dataset.currentPost !== postId) {
+              activePopup.innerHTML = `
+                <div class="link-preview-header">
+                  <h5 class="link-preview-title">${post.title}</h5>
                 </div>
-              </div>
-              <div class="link-preview-footer">
-                ${hash ? `Fragment: ${hash}` : `Level ${level} Preview`}
-              </div>
-            `;
+                <div class="link-preview-body" id="preview-body-${level}">
+                  <div class="markdown-body">
+                    ${post.html}
+                  </div>
+                </div>
+                <div class="link-preview-footer" id="preview-footer-${level}">
+                </div>
+              `;
+              activePopup.dataset.currentPost = postId;
+            }
 
+            // 始终更新页脚
+            const footer = activePopup.querySelector(`#preview-footer-${level}`);
+            if (footer) {
+              footer.innerHTML = hash ? `Fragment: ${hash}` : `Level ${level} Preview`;
+            }
+
+            // 滚动到指定位置
+            const container = activePopup.querySelector(`#preview-body-${level}`);
             if (hash) {
               const targetId = decodeURIComponent(hash.substring(1));
-              const container = activePopup.querySelector(`#preview-body-${level}`);
               const targetEl = activePopup.querySelector(`[id="${targetId}"], [id="${targetId.toLowerCase()}"], [name="${targetId}"]`);
               if (targetEl && container) {
                 setTimeout(() => {
                   const targetRect = targetEl.getBoundingClientRect();
                   const containerRect = container.getBoundingClientRect();
                   const relativeTop = targetRect.top - containerRect.top + container.scrollTop;
-                  container.scrollTo({ top: relativeTop - 10, behavior: 'smooth' });
+                  const targetScrollTop = relativeTop - 10;
+                  
+                  // 如果距离太远（比如超过 500px），先瞬间跳到附近，再平滑滚动
+                  const distance = Math.abs(targetScrollTop - container.scrollTop);
+                  if (distance > 500) {
+                    const startPos = targetScrollTop > container.scrollTop 
+                      ? targetScrollTop - 300 
+                      : targetScrollTop + 300;
+                    container.scrollTo({ top: startPos, behavior: 'auto' });
+                  }
+                  
+                  // 平滑滚动剩下的距离
+                  container.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
+                  
                   targetEl.classList.add('preview-highlight');
-                }, 200);
+                }, 50); // 缩短延迟
               }
+            } else if (container) {
+              // 如果没有 hash，确保回到顶部
+              container.scrollTop = 0;
             }
           }, 250);
         }
