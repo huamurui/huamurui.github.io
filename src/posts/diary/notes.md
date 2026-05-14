@@ -2049,6 +2049,8 @@ we are all lost stars, try to light up the dark...
 
 这些大厂的 app ...  堆了很大的规模与功能，也确实比我做的丝滑，但好像...  里面的技术也许不是最重要的，软件只是一种载体，够用就好。  
 
+gemini 说知乎渲染回答是搞了个 webview 资源池，哪里需要放哪里...  
+
 ---
 
 telegram 也许是个做的夸张的多的软件，它的服务端感觉更夸张。  
@@ -2089,3 +2091,15 @@ Telegram 的技术哲学可以概括为：不相信系统组件，一切皆可�
   - org.telegram.messenger.MessagesController：这是整个 App 的“大脑”，所有的业务逻辑都在这里。
   - org.telegram.tgnet.ConnectionsManager：这是 C++ 层的 Java 封装，看它如何进行底层的二进制通信。
   - org.telegram.ui.Components.RecyclerListView：看它如何魔改 RecyclerView，以支持那些复杂的聊天气泡和动效。
+
+## 2026-05-14
+
+看了一堆别的 app 感觉我好菜啊...  
+可能 ai 能很轻松的查到搞定某些具体的问题，或者找到原因。  
+一千行以内的比较复杂的设计大概也能搞定...  
+但到一定规模之后都一些整体风格与规则的控制...  yysy 就算用 ai 感觉这也不是加几个 skill 能搞定的（主要是我也不会可能也做不好做这些（又想起来当时画画练速写结果之后画啥东西都顶多半小时，之后就不知道怎么继续了，怎么搞都像画蛇添足。  
+
+telegram 那几个单文件就两三万行的 java...  
+还是感觉有些东西就算给我一伯年我也搞不定  
+
+那就不搞了，睡大觉。
