@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Antfu",
+    "url": "https://antfu.me",
+    "avatar": "https://github.com/antfu.png",
+    "descr": "A passionate open source developer, Vue/Vite core team member.",
+    "tag": "开源仙人",
+    "color": "#30b080",
+    "preset": "cyber"
+  },
+  {
+    "name": "Saicaca",
+    "url": "https://github.com/saicaca",
+    "avatar": "https://github.com/saicaca.png",
+    "descr": "Fuwari 主题作者，我的 Pudding 就是受他启发做的。",
+    "tag": "Fuwari",
+    "color": "#a18cd1",
+    "preset": "sunset"
+  },
+  {
+    "name": "DIYgod",
+    "url": "https://diygod.me",
+    "avatar": "https://github.com/DIYgod.png",
+    "descr": "写代码，改世界。RSSHub 等众多优秀开源项目作者。",
+    "tag": "写代码，改世界",
+    "color": "#ff5252",
+    "preset": "aurora"
+  },
+  {
+    "name": "Sukka",
+    "url": "https://skk.moe",
+    "avatar": "https://github.com/SukkaW.png",
+    "descr": "经常折腾各种前端前沿技术、网络性能优化与博客系统的硬核开发者。",
+    "tag": "性能仙人",
+    "color": "#0099ff",
+    "preset": "aurora"
+  },
+  {
+    "name": "Toyo",
+    "url": "https://liriliri.github.io",
+    "avatar": "https://github.com/liriliri.png",
+    "descr": "创造了 Eruda 移动端控制台等众多超实用调试玩具的宝藏开发者。",
+    "tag": "调试玩具专家",
+    "color": "#e91e63",
+    "preset": "sunset"
+  },
+  {
+    "name": "Kikobeats",
+    "url": "https://kikobeats.com",
+    "avatar": "https://github.com/kikobeats.png",
+    "descr": "Creator of Microlink. Making the web programmatically readable.",
+    "tag": "API Magic",
+    "color": "#00f6ff",
+    "preset": "cyber"
+  }
+]

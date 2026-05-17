@@ -16,7 +16,7 @@ export interface SiteConfig {
   navItems: Array<{
     href: string;
     labelKey: string;
-    label:string;
+    label: string;
   }>;
   socialLinks: Array<{
     nameKey: string;
@@ -56,16 +56,17 @@ export const siteConfig: SiteConfig = {
   url: 'https://huamurui.github.io',
   site: 'https://huamurui.github.io',
   base: '',
-  keywords: ['blog','云苔','huamurui','barssica','programming','tech','technology','Greenhouse between Clouds'],
+  keywords: ['blog', '云苔', 'huamurui', 'barssica', 'programming', 'tech', 'technology', 'Greenhouse between Clouds'],
   author: {
     name: '云苔',
     email: 'huamurui@outlook.com',
     github: 'https://github.com/huamurui'
   },
   navItems: [
-    { href: './', labelKey: 'home', label:'home' },
-    { href: './timeline', labelKey: 'timeline', label:'timeline'  },
-    { href: './about', labelKey: 'about', label:'about'  }
+    { href: './', labelKey: 'home', label: 'home' },
+    { href: './timeline', labelKey: 'timeline', label: 'timeline' },
+    { href: './about', labelKey: 'about', label: 'about' },
+    // { href: './links', labelKey: 'links', label:'links'  }
   ],
   socialLinks: [
     { nameKey: 'social.github', href: 'https://github.com/huamurui' },

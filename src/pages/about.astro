@@ -6,37 +6,401 @@ const pageTitle = 'About';
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <article class="blog-post-container">
-    <div class="blog-post-content markdown-body">
-      <header class="about-hero">
-        <h1 class="title">About Pudding</h1>
-        <p>A modern, simple Astro blog theme.</p>
-      </header>
-      <div class="github">
-        <p>
-          Check out <a
-            class="nav-link"
-            style="color: var(--primary-color);"
-            href="https://github.com/huamurui/pudding">GitHub repository</a
-          >
+  <article class="about-container">
+    <!-- Header / Hero Section -->
+    <header class="about-hero">
+      <div class="ambient-glow"></div>
+      <span class="badge">About Me</span>
+      <h1 class="title">花木瑞 <span class="sub-title">/ huamurui</span></h1>
+      <p class="poetic-intro">
+        “因为我想这么做。不要害怕积累的东西崩塌，给我记住构筑的喜悦。”
+      </p>
+    </header>
+
+    <!-- Main Spheres Grid -->
+    <div class="spheres-grid">
+      <!-- Card 1: Code -->
+      <section class="sphere-card code-sphere">
+        <div class="card-icon">💻</div>
+        <h2>码 <span class="card-subtitle">/ Code & Build</span></h2>
+        <p class="card-tagline">“它们是工具，不是规则。”</p>
+        <p class="card-body">
+          我喜欢在数字荒原中做一些散落但有趣的前端小玩具，比如在页面 <code>&lt;code&gt;</code> 标签上悄悄落雪的 Snowfall 脚本。
+          从 Vue 与 Vite 的构建生态，到最近尝试的 RAG（检索增强生成）、MCP 协议、Agent 伴生工具。
+          对我而言，代码是集邮，亦是构建。在这个由二进制构筑的绝对理性的空间里，我试图去寻得一份纯粹与治愈。
         </p>
-      </div>
+      </section>
+
+      <!-- Card 2: Craft -->
+      <section class="sphere-card craft-sphere">
+        <div class="card-icon">🪵</div>
+        <h2>物 <span class="card-subtitle">/ Handcrafts & Wood</span></h2>
+        <p class="card-tagline">“枝干里真正活着的部分，不超过 2mm 厚。”</p>
+        <p class="card-body">
+          在完全被数据化与信息洪流包围的世界里，我习惯将手伸向物理世界的粗粝与真实。
+          买一些质朴的木头，在静默的时间里用砂纸一下一下地慢慢打磨、抛光。
+          当细碎的木屑香气弥散，木质从粗糙逐渐变得温润圆滑时，那些迷茫、空洞或难过的时刻，仿佛也被一并抚平了。
+          用这薄薄一层的指尖触觉，去触碰一次具体的生活。
+        </p>
+      </section>
+
+      <!-- Card 3: Vision -->
+      <section class="sphere-card vision-sphere">
+        <div class="card-icon">📷</div>
+        <h2>影 <span class="card-subtitle">/ Vision & Capture</span></h2>
+        <p class="card-tagline">“像兔子的尾巴掠过秋天的草原。”</p>
+        <p class="card-body">
+          买来相机，去捕捉那些转瞬即逝的碎光和瞬间。
+          屏幕坏掉时，整个世界仿佛都被隔在一层冰冷的玻璃后面；而相机镜头，则是另一扇有温度的玻璃。
+          去拍照不为合群或攀比器材，只是想要以第三视角去确认这平凡的日常。
+          将那些脆弱的、稍纵即逝的快乐化为光影的切片，在日后感到寒冷时，可以反复翻看、擦拭。
+        </p>
+      </section>
+
+      <!-- Card 4: Thought -->
+      <section class="sphere-card thought-sphere">
+        <div class="card-icon">💭</div>
+        <h2>念 <span class="card-subtitle">/ Non-sense & Philosophy</span></h2>
+        <p class="card-tagline">“下一次，错得好看一些。”</p>
+        <p class="card-body">
+          画画时，我不害怕“蹭线”的瑕疵与不完美，因为接受不确定性和有限的错误本身就是必经的过程。
+          我常在碎碎念里看霍弗描述《狂热分子》，看黑格尔或尼采的思想碰撞，又或是调侃“尼采大战 TypeScript”。
+          在看似虚无的宏大叙事下，我们不过是在岁月的边际上漂浮。
+          但也正因如此，Rage, rage against the dying of the light —— 哪怕是杂鱼，我也想再做一次梦。
+        </p>
+      </section>
     </div>
+
+    <!-- Tools / Widget Section -->
+    <section class="tools-section">
+      <h2 class="section-title">They're not rules, they're tools!</h2>
+      <p class="section-desc">我日常把玩、学习与热爱的那些小碎片：</p>
+      <div class="tags-container">
+        <span class="tool-tag">Astro</span>
+        <span class="tool-tag">Vue.js</span>
+        <span class="tool-tag">TypeScript</span>
+        <span class="tool-tag">Vite & Build Tools</span>
+        <span class="tool-tag">RAG / Lorebook</span>
+        <span class="tool-tag">MCP (Model Context Protocol)</span>
+        <span class="tool-tag">Agentic Workflow</span>
+        <span class="tool-tag">SICP & DSL Experiments</span>
+        <span class="tool-tag">Wood Carving & Polishing</span>
+        <span class="tool-tag">Photography</span>
+        <span class="tool-tag">Philosophical Non-sense</span>
+      </div>
+    </section>
+
+    <!-- Theme Footnote -->
+    <footer class="about-footer">
+      <p>
+        这个博客基于我构建的 <a href="https://github.com/huamurui/pudding" class="theme-link">Pudding</a> 主题。
+      </p>
+      <p class="copyright">© 2026 huamurui. Made with 🤍 and lots of daydreaming.</p>
+    </footer>
   </article>
+
   <style>
-    /* 文章容器 */
-    .blog-post-container {
-      display: flex;
-      gap: 3rem;
+    /* Container & Layout */
+    .about-container {
+      max-width: 860px;
       margin: 0 auto;
-      padding: 1rem;
+      padding: var(--spacing-xl) var(--spacing-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-2xl);
+      position: relative;
     }
 
-    /* 主要内容区域 */
-    .blog-post-content {
-      flex: 1;
-      min-width: 0;
-      max-width: 800px;
+    /* Ambient Lighting Effect */
+    .ambient-glow {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 250px;
+      background: radial-gradient(circle, var(--color-theme-mix-20) 0%, transparent 70%);
+      filter: blur(40px);
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    /* Hero Section styling */
+    .about-hero {
+      text-align: center;
+      padding: var(--spacing-xl) 0 var(--spacing-md);
+      position: relative;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: var(--font-size-xs);
+      font-family: var(--font-family-mono);
+      color: var(--theme-color);
+      background-color: var(--color-theme-mix-10);
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-color);
+      margin-bottom: var(--spacing-md);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .about-hero .title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: var(--font-weight-extrabold);
+      color: var(--text-primary);
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .about-hero .sub-title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-normal);
+      color: var(--text-muted);
+      font-family: var(--font-family-mono);
+    }
+
+    .poetic-intro {
+      font-size: var(--font-size-lg);
+      font-style: italic;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: var(--spacing-md) auto 0;
+      line-height: var(--line-height-relaxed);
+      position: relative;
+    }
+
+    .poetic-intro::before,
+    .poetic-intro::after {
+      content: '“';
+      font-family: Georgia, serif;
+      font-size: var(--font-size-4xl);
+      color: var(--color-theme-mix-20);
+      position: absolute;
+      line-height: 1;
+      opacity: 0.5;
+    }
+
+    .poetic-intro::before {
+      top: -0.5rem;
+      left: -1.5rem;
+    }
+
+    .poetic-intro::after {
+      content: '”';
+      bottom: -1rem;
+      right: -1.5rem;
+    }
+
+    /* Spheres Grid Layout */
+    .spheres-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+
+    @media (min-width: 768px) {
+      .spheres-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Premium Glassmorphism Cards */
+    .sphere-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-sm);
+      transition: 
+        transform var(--transition-slow), 
+        box-shadow var(--transition-slow), 
+        border-color var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .sphere-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--theme-color), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .sphere-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: var(--shadow-lg), 0 10px 30px var(--color-theme-mix-10);
+      border-color: var(--theme-color);
+    }
+
+    .sphere-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      font-size: var(--font-size-3xl);
+      margin-bottom: var(--spacing-xs);
+      filter: drop-shadow(0 2px 8px var(--color-theme-mix-20));
+      transition: transform var(--transition-slow);
+    }
+
+    .sphere-card:hover .card-icon {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    .sphere-card h2 {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--text-primary);
+      margin: 0;
+      display: flex;
+      align-items: baseline;
+      gap: var(--spacing-xs);
+    }
+
+    .card-subtitle {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-normal);
+      color: var(--text-muted);
+      font-family: var(--font-family-mono);
+    }
+
+    .card-tagline {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--theme-color);
+      margin: 0;
+      font-family: var(--font-family-mono);
+    }
+
+    .card-body {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      line-height: var(--line-height-relaxed);
+      margin: 0;
+      text-align: justify;
+    }
+
+    .card-body code {
+      font-family: var(--font-family-mono);
+      font-size: 0.9em;
+      background-color: var(--bg-tertiary);
+      padding: 0.1rem 0.3rem;
+      border-radius: var(--radius-sm);
+      color: var(--theme-color);
+    }
+
+    /* Tools Section styling */
+    .tools-section {
+      background-color: color-mix(in srgb, var(--color-theme) 1%, var(--bg-secondary));
+      border: 1px dashed var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-xl) var(--spacing-lg);
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--text-primary);
+      margin: 0;
+      font-family: var(--font-family-mono);
+    }
+
+    .section-desc {
+      font-size: var(--font-size-sm);
+      color: var(--text-muted);
+      margin: var(--spacing-xs) 0 var(--spacing-lg);
+    }
+
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      justify-content: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .tool-tag {
+      font-size: var(--font-size-sm);
+      font-family: var(--font-family-mono);
+      color: var(--text-secondary);
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--radius-lg);
+      transition: 
+        transform var(--transition-slow), 
+        border-color var(--transition-normal), 
+        color var(--transition-normal), 
+        box-shadow var(--transition-normal);
+      cursor: default;
+      user-select: none;
+    }
+
+    .tool-tag:hover {
+      color: var(--theme-color);
+      border-color: var(--theme-color);
+      box-shadow: 0 4px 12px var(--color-theme-mix-15);
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    /* Footer styling */
+    .about-footer {
+      text-align: center;
+      padding: var(--spacing-lg) 0;
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+
+    .about-footer p {
+      margin: 0;
+    }
+
+    .theme-link {
+      color: var(--theme-color);
+      text-decoration: none;
+      font-weight: var(--font-weight-semibold);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--transition-normal);
+    }
+
+    .theme-link:hover {
+      border-bottom-color: var(--theme-color);
+    }
+
+    .copyright {
+      font-size: var(--font-size-xs);
+    }
+
+    /* Floating keyframe animation for badge */
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-4px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
     }
   </style>
 </BaseLayout>
