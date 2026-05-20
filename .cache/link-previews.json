@@ -47,5 +47,12 @@
     "description": "undefined, 视频播放量 undefined、弹幕量 undefined、点赞数 undefined、投硬币枚数 undefined、收藏人数 undefined、转发人数 undefined, 视频作者 undefined, 作者简介 undefined，相关视频：",
     "image": "@100w_100h_1c.png",
     "site": "bilibili.com"
+  },
+  "https://github.com/ouzhou/react-canvas": {
+    "fetched": true,
+    "title": "GitHub - ouzhou/react-canvas: Render React components directly to a &lt;canvas&gt;. · GitHub",
+    "description": "Render React components directly to a &lt;canvas&gt;. Contribute to ouzhou/react-canvas development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/3e4f2181b890ddd3654a4719753fed121825e01059c56cdeb7493ea5dc18b636/ouzhou/react-canvas",
+    "site": "github.com"
   }
 }
