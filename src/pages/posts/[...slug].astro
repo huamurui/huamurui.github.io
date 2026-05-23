@@ -6,7 +6,7 @@ import Comments from '@/components/Comments.svelte'
 import { getCollection, render, type CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { Image } from 'astro:assets'
-import { extractExcerptFromHtml, formatDate, sanitizeViewTransitionName, generateBreadcrumbItems, countWords } from '@/utils/helpers'
+import { extractExcerptFromMarkdown, formatDate, sanitizeViewTransitionName, generateBreadcrumbItems, countWords } from '@/utils/helpers'
 import { generatePostStructuredData } from '@/utils/structured-data'
 import { ANIMATION_DURATION, EASING } from '@/utils/constants'
 import PostList from '@/components/PostList/PostList.svelte'
@@ -30,9 +30,6 @@ export async function getStaticPaths(): Promise<StaticPath[]> {
   }))
 }
 
-import { experimental_AstroContainer } from 'astro/container'
-const container = await experimental_AstroContainer.create()
-
 interface Props {
   post: CollectionEntry<'posts'>;
 }
@@ -40,8 +37,7 @@ interface Props {
 const { post } = Astro.props as Props
 const { Content, headings } = await render(post)
 
-const post_str = await container.renderToString(Content)
-const description = extractExcerptFromHtml(post_str)
+const description = post.data.description || extractExcerptFromMarkdown(post.body || '').replace(/<[^>]+>/g, '')
 
 const breadcrumbItems = generateBreadcrumbItems(post.id);
 const structuredData = generatePostStructuredData(post, description, Astro.url.origin, breadcrumbItems)

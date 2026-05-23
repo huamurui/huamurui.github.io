@@ -13,12 +13,14 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.3.14",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.1",
     "@astrojs/svelte": "^7.2.5",
     "astro": "^5.16.8",
     "astro-expressive-code": "^0.41.6",
     "fuse.js": "^7.1.0",
+    "html-to-image": "^1.11.13",
     "katex": "^0.16.27",
     "medium-zoom": "^1.1.0",
     "overlayscrollbars": "^2.13.0",

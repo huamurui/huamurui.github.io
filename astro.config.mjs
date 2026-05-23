@@ -6,6 +6,7 @@ import remarkSpoiler from './src/plugin/remark-spoiler.js';
 import remarkLinkPreview from './src/plugin/remark-link-preview.js';
 import remarkImageOptimize from './src/plugin/remark-image-optimize.js';
 
+import mdx from '@astrojs/mdx';
 import svelte from '@astrojs/svelte';
 import expressiveCode from 'astro-expressive-code';
 import path from 'path';
@@ -26,7 +27,6 @@ export default defineConfig({
   },
   integrations: [
     svelte(),
-
     expressiveCode({
       themes: ['tokyo-night', 'one-light'],
       styleOverrides: {
@@ -48,6 +48,7 @@ export default defineConfig({
       // 使用暗色模式媒体查询
       useDarkModeMediaQuery: true,
     }),
+    mdx(),
   ],
   markdown: {
     remarkPlugins: [remarkMath, remarkSpoiler, remarkLinkPreview, remarkImageOptimize],

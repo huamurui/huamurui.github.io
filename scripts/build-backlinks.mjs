@@ -20,23 +20,23 @@ if (!fs.existsSync(CACHE_DIR)) {
 
 async function buildBacklinks() {
   console.log('🚀 Starting backlink scan...');
-  
+
   const files = globSync('**/*.{md,mdx}', { cwd: POSTS_DIR });
   const backlinks = {}; // TargetID -> Array of SourceIDs
 
   for (const file of files) {
     const filePath = path.join(POSTS_DIR, file);
     const content = fs.readFileSync(filePath, 'utf-8');
-    
+
     // 获取当前文件的 ID (例如: diary/notes)
     const sourceId = file.replace(/\.(md|mdx)$/, '');
-    
+
     // 使用 remark 解析 Markdown
     const tree = remark.parse(content);
 
     visit(tree, 'link', (node) => {
       const url = node.url;
-      
+
       // 忽略外部链接
       if (url.startsWith('http') || url.startsWith('mailto')) return;
 
@@ -53,18 +53,18 @@ async function buildBacklinks() {
 
         // 去掉 hash 和扩展名进行匹配
         const cleanTargetPath = targetPath.split('#')[0].replace(/\.(md|mdx)$/, '');
-        
+
         // 检查这个路径是否在我们的 posts 目录下
         if (cleanTargetPath.startsWith(POSTS_DIR)) {
           const targetId = path.relative(POSTS_DIR, cleanTargetPath);
-          
+
           // 自己引用自己通常不计入反向链接
           if (targetId === sourceId) return;
 
           if (!backlinks[targetId]) {
             backlinks[targetId] = [];
           }
-          
+
           // 避免重复记录
           if (!backlinks[targetId].includes(sourceId)) {
             backlinks[targetId].push(sourceId);

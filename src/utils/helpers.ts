@@ -33,6 +33,49 @@ export function buildUrl(path: string | string[]): string {
 }
 
 /**
+ * 从 Markdown / MDX 中提取摘要并包装成 HTML
+ */
+export function extractExcerptFromMarkdown(markdown: string, maxLength: number = 300): string {
+  if (!markdown) return ''
+  
+  // 1. 查找 <!-- more --> 标记
+  const moreMarker = /<!--\s*more\s*-->/i
+  if (moreMarker.test(markdown)) {
+    const parts = markdown.split(moreMarker)
+    return `<p>${parts[0].trim()}</p>`
+  }
+
+  // 2. 获取第一个普通段落 (排除标题、引用、列表、import/export语句、组件标签)
+  const paragraphs = markdown
+    .split(/\n\s*\n/)
+    .map(p => p.trim())
+    .filter(p => {
+      if (!p) return false
+      if (
+        p.startsWith('#') || 
+        p.startsWith('>') || 
+        p.startsWith('-') || 
+        p.startsWith('*') || 
+        p.startsWith('import ') || 
+        p.startsWith('export ') ||
+        p.startsWith('<')
+      ) {
+        return false
+      }
+      return true
+    })
+
+  const firstParagraph = paragraphs[0] || ''
+  const cleanText = firstParagraph
+    .replace(/\*\*|__/g, '')
+    .replace(/\*|_/g, '')
+    .replace(/`([^`]+)`/g, '$1')
+    .slice(0, maxLength)
+
+  return `<p>${cleanText}</p>`
+}
+
+/**
  * 从 HTML 中提取摘要
  */
 export function extractExcerptFromHtml(html: string, maxLength: number = 300): string {
