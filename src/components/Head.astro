@@ -26,6 +26,7 @@ const structuredDataJson = structuredData
   : null
 
 import { ClientRouter } from 'astro:transitions';
+import 'nprogress/nprogress.css';
 ---
 
 <head>
@@ -260,5 +261,19 @@ import { ClientRouter } from 'astro:transitions';
       runPostScripts(document)
     }
   })()
+  </script>
+
+  <script>
+    import NProgress from 'nprogress';
+
+    NProgress.configure({ showSpinner: false, minimum: 0.1 });
+
+    document.addEventListener('astro:before-preparation', () => {
+      NProgress.start();
+    });
+
+    document.addEventListener('astro:page-load', () => {
+      NProgress.done();
+    });
   </script>
 </head>
