@@ -13,7 +13,14 @@ const pageTitle = 'About';
       <h1 class="title">花木瑞 <span class="sub-title">/ huamurui</span></h1>
       <p class="tagline">A blog about web tech and nonsense.</p>
       <p class="poetic-intro">
-        "因为我想这么做。不要害怕积累的东西崩塌，给我记住构筑的喜悦。"
+        "痛苦如此持久，像蜗牛充满耐心地移动；快乐如此短暂，像兔子的尾巴掠过秋天的草原。"
+      </p>
+      <p class="poetic-intro2">
+        关于 `礼仪` 与 `规则` 的讨论还有一大段，  </br>
+        我现在还会想到一个线性代数公开课上的一句 `they're not rules,they're tools`。 </br>
+        世界是物质的，粗粝的，不为意志所转移的，  </br>
+        但这个世界上总有些东西，对你而言不是冷冰冰的必须服从的规则，  </br>
+        而是发自内心的喜爱，与珍视和呵护。  </br>
       </p>
     </header>
 
@@ -22,15 +29,10 @@ const pageTitle = 'About';
 
       <section class="about-section">
         <p>
-          嗯…大概是一个在编程和胡说八道之间反复横跳的人。
+          这是一个编程和胡说八道混在一起的 blog。
         </p>
         <p>
-          大学时从 Vue 和 Element 开始写页面，然后像考古一样回去了解更基础的东西。
-          喜欢在浏览器里做一些散落的小玩具——比如在页面上悄悄落雪的脚本，或者试图在 canvas 里下雨但被 web 的渲染管线拦住。
-          最近在折腾 React Native、知乎三方客户端、RAG、还有液态玻璃的 shader。
-        </p>
-        <p>
-          也会偷偷看别人的 GitHub 和博客。<span class="aside">（虽然这种事我现在可能还在做）</span>
+          许多文章看起来很碎片化，嗯，它们确实挺碎片的，它们就是碎片。也许有时候我会尝试翻翻这堆东西，从里找出那么几段拼出一个还算连贯的东西，但，更多的时候，它们就是这样碎碎的。
         </p>
       </section>
 
@@ -39,17 +41,29 @@ const pageTitle = 'About';
       <section class="about-section">
         <p>
           除了写代码，还会做些别的。
-          买一些木头，用砂纸慢慢打磨、抛光，直到它变得温润圆滑。
+          买过一些木头磨。
           买了个相机，想去拍一些好看的没见过的东西。
         </p>
         <p>
-          "碎碎念"栏目里有一堆关于意识形态、精神分析、黑格尔、尼采、齐泽克的胡说八道，
+          里面的文章大概分三类：
+        </p>
+        <p>
+          <span class="list-label">1.</span>
+          "nonsense" 栏目里有一堆关于意识形态、精神分析、黑格尔、尼采、齐泽克的胡说八道，
           以及让 AI 扮演齐泽克用排泄物辩证法分析 Rust 的所有权系统之类的…嗯，东西。
+        </p>
+        <p>
+          <span class="list-label">2.</span>
+          "tech" 里是一些和编程相关的东西，其实之前有更多的，但都删掉，藏起来了。有些...笨拙，也没什么用了。倒是余下的笑话片段多少还有些有趣。
         </p>
         <p class="aside-block">
           也许那时所有东西都还很新奇，但现在看就是，像什么都不懂还爱絮絮叨叨的老妈妈。
           但还是想记下些东西，什么都好。
           一些，在我知道和不知道，熟悉和不熟悉之间的东西。
+        </p>
+        <p>
+          <span class="list-label">3.</span>
+          "diary" 就是纯粹的日记，碎片中的碎片。
         </p>
       </section>
 
@@ -57,18 +71,10 @@ const pageTitle = 'About';
 
       <section class="about-section">
         <p>
-          这个博客叫 <strong>Pudding</strong>，主题也是我自己糊的。
+          这个博客的主题叫 <strong>Pudding</strong>, 是我自己糊的。
           名字来源大概是…小布丁？
           <span class="aside">好想做小布…小布尔乔亚啊…啊，不对，是小布尔什维克…小布丁。</span>
         </p>
-        <p>
-          里面的文章大概分三类：
-        </p>
-        <ul class="about-list">
-          <li><span class="list-label">tech</span> — 编程笔记，从数据结构到 Vue 响应式到 GPU 编程</li>
-          <li><span class="list-label">nonsense</span> — 胡说八道，用软件工程概念做精神分析</li>
-          <li><span class="list-label">diary</span> — 日记，技术和存在焦虑交替出现的那种</li>
-        </ul>
       </section>
 
       <div class="divider">· · ·</div>
@@ -165,6 +171,16 @@ const pageTitle = 'About';
       max-width: 520px;
       margin: var(--spacing-md) auto 0;
       line-height: var(--line-height-relaxed);
+    }
+
+    .poetic-intro2 {
+      font-size: var(--font-size-sm);
+      font-style: italic;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: var(--spacing-md) auto 0;
+      line-height: var(--line-height-relaxed);
+      text-align: start;
     }
 
     /* Body */
