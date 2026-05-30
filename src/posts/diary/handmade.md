@@ -2,7 +2,7 @@
 icon: edit
 date: 2025-01-01
 title: 手工
-tags: ['handmade','note','diray'] 
+tags: ['handmade','note','diary'] 
 ---
 
 小时候和大学时主要可能是画画
