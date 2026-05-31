@@ -54,5 +54,12 @@
     "description": "Render React components directly to a &lt;canvas&gt;. Contribute to ouzhou/react-canvas development by creating an account on GitHub.",
     "image": "https://opengraph.githubassets.com/3e4f2181b890ddd3654a4719753fed121825e01059c56cdeb7493ea5dc18b636/ouzhou/react-canvas",
     "site": "github.com"
+  },
+  "https://github.com/huamurui/zhihu-minus-minus": {
+    "fetched": true,
+    "title": "GitHub - huamurui/zhihu-minus-minus: 知乎-- ｜zhihu-- ｜ zhihu-minus-minus｜一款轻量、简洁的第三方知乎客户端 · GitHub",
+    "description": "知乎-- ｜zhihu-- ｜ zhihu-minus-minus｜一款轻量、简洁的第三方知乎客户端 - huamurui/zhihu-minus-minus",
+    "image": "https://opengraph.githubassets.com/f744a143b93dea6b6c183d91725fff66ef957428593f094aaf6cc16e52660294/huamurui/zhihu-minus-minus",
+    "site": "github.com"
   }
 }
