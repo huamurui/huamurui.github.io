@@ -7,7 +7,7 @@ author: "momomomo"
 image:
   url: "https://docs.astro.build/assets/rose.webp"
   alt: "The Astro logo on a dark background with a pink glow."
-tags: ['web',"astro", "blogging",'编程']
+tags: ['web', 'astro', '编程']
 ---
 
 ## SSG blog 的一些事

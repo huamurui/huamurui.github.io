@@ -2,7 +2,7 @@
 title: Waiting for the Big One
 icon: edit
 date: 2026-01-19
-tags: ['AI', '胡说八道','编程','笑话','Gemini']
+tags: ['胡说八道', 'Gemini', '编程', '笑话']
 description: "著名的知识恐怖分子拉康有言，人类是被“大他者”（The Big Other）的语言寄生的机器。并非是我们的血肉在说话，而是语言在通过我们的血肉说话。"
   
 ---

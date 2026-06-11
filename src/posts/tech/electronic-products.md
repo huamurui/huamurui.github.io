@@ -2,7 +2,7 @@
 icon: edit
 date: 2025-11-20
 title: 电子产品
-tags: ['电子产品']
+tags: ['电子产品','tech','note']
 
 ---
 

@@ -2,7 +2,7 @@
 title: soft of past
 icon: edit
 date: 2019-08-30
-tags: ['知乎', 'diary']
+tags: ['note','diary']
   
 ---
 

@@ -2,7 +2,7 @@
 title: 失败
 icon: edit
 date: 2021-12-28
-tags: ['失败', '胡说八道']
+tags: ['胡说八道']
   
 ---
 

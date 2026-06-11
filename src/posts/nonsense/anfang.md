@@ -2,7 +2,7 @@
 title: 开端。
 icon: edit
 date: 2021-11-08
-tags: ['开端', '胡说八道']
+tags: ['胡说八道']
   
 star: true
 sticky: true

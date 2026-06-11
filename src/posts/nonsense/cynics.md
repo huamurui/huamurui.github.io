@@ -2,7 +2,7 @@
 icon: edit
 date: 2021-11-08
 title: 保保
-tags:  ['胡说八道','日记']
+tags: ['胡说八道','diary']
 ---
 
 # n...

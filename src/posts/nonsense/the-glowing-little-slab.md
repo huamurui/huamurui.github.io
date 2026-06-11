@@ -2,7 +2,7 @@
 icon: edit
 date: 2026-05-23
 title: 发光小板板
-tags: ['nonsense','tech', 'phone'] 
+tags: ['胡说八道', 'tech', '电子产品'] 
 ---
 >手机触屏坏了，好像整个世界都隔了一层玻璃...   ——2026-01-25
 
