@@ -65,7 +65,7 @@ export const siteConfig: SiteConfig = {
   navItems: [
     { href: './', labelKey: 'home', label: 'home' },
     { href: './timeline', labelKey: 'timeline', label: 'timeline' },
-    { href: './about', labelKey: 'about', label: 'about' },
+    { href: './about', labelKey: 'about', label: 'about' }
     // { href: './links', labelKey: 'links', label:'links'  }
   ],
   socialLinks: [
@@ -85,16 +85,16 @@ export const siteConfig: SiteConfig = {
   locale: 'zh-CN',
   giscus: {
     enabled: true,
-    repo: "huamurui/huamurui.github.io",
-    repoId: "R_kgDOHFCWEQ",
-    category: "General",
-    categoryId: "DIC_kwDOHFCWEc4CR0iJ",
-    mapping: "pathname",
-    strict: "0",
-    reactionsEnabled: "1",
-    emitMetadata: "0",
-    inputPosition: "bottom",
-    lang: "zh-CN",
-    loading: "lazy"
+    repo: 'huamurui/huamurui.github.io',
+    repoId: 'R_kgDOHFCWEQ',
+    category: 'General',
+    categoryId: 'DIC_kwDOHFCWEc4CR0iJ',
+    mapping: 'pathname',
+    strict: '0',
+    reactionsEnabled: '1',
+    emitMetadata: '0',
+    inputPosition: 'bottom',
+    lang: 'zh-CN',
+    loading: 'lazy'
   }
 }

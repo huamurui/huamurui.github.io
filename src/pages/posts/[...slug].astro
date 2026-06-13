@@ -43,22 +43,22 @@ const { Content, headings } = await render(post)
 const post_str = await container.renderToString(Content)
 const description = extractExcerptFromHtml(post_str)
 
-const breadcrumbItems = generateBreadcrumbItems(post.id);
+const breadcrumbItems = generateBreadcrumbItems(post.id)
 const structuredData = generatePostStructuredData(post, description, Astro.url.origin, breadcrumbItems)
 
 // Backlinks logic
-const allPosts = await getCollection('posts');
-let backlinkData = {};
+const allPosts = await getCollection('posts')
+let backlinkData = {}
 try {
   // Use import.meta.glob or direct import for the JSON
   // Relative to src/pages/posts/[...slug].astro, .cache is at ../../../.cache
-  const data = await import('../../../.cache/backlinks.json');
-  backlinkData = data.default || {};
+  const data = await import('../../../.cache/backlinks.json')
+  backlinkData = data.default || {}
 } catch (e) {
-  console.log('No backlinks found yet');
+  console.log('No backlinks found yet')
 }
-const currentBacklinks = backlinkData[post.id] || [];
-const linkedPosts = allPosts.filter(p => currentBacklinks.includes(p.id));
+const currentBacklinks = backlinkData[post.id] || []
+const linkedPosts = allPosts.filter(p => currentBacklinks.includes(p.id))
 
 // page-specific title morph animation
 const anim = {
@@ -109,7 +109,7 @@ const customTransition = { forwards: anim, backwards: anim }
               width={1200}
               height={600}
               class="banner-image"
-              loading="eager" 
+              loading="eager"
               decoding="async"
             />
             {post.data.image.alt && (
@@ -150,48 +150,48 @@ const customTransition = { forwards: anim, backwards: anim }
   </div>
 
   <script>
-    (function() {
-      function initBlur() {
-        document.querySelectorAll('.blur-wrapper').forEach(btn => {
-          // 防止重复绑定
-          if (btn.dataset.spoilerInitialized === 'true') return
-          btn.dataset.spoilerInitialized = 'true'
+  (function() {
+    function initBlur() {
+      document.querySelectorAll('.blur-wrapper').forEach(btn => {
+        // 防止重复绑定
+        if (btn.dataset.spoilerInitialized === 'true') return
+        btn.dataset.spoilerInitialized = 'true'
 
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation() // 阻止冒泡
-            const wrapper = btn.closest('.blur-wrapper')
-            if (!wrapper) return
-            const isHidden = wrapper.dataset.hidden === 'true'
-            wrapper.dataset.hidden = (!isHidden).toString()
-          })
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation() // 阻止冒泡
+          const wrapper = btn.closest('.blur-wrapper')
+          if (!wrapper) return
+          const isHidden = wrapper.dataset.hidden === 'true'
+          wrapper.dataset.hidden = (!isHidden).toString()
         })
-      }
-
-      // 初始加载时绑定
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initBlur)
-      } else {
-        initBlur()
-      }
-
-      // 在客户端路由切换后重新绑定（等待内容插入）
-      document.addEventListener('astro:page-load', () => setTimeout(initBlur, 50))
-    })()
-
-    // Medium Zoom Initialization
-    import mediumZoom from 'medium-zoom'
-    
-    function initZoom() {
-      const isDark = document.documentElement.classList.contains('dark')
-      const zoom = mediumZoom('.post-content img, .post-image img', {
-        margin: 24,
-        background: isDark ? '#121212' : '#ffffff',
       })
     }
 
-    document.addEventListener('astro:page-load', initZoom)
-    // Initial load
-    initZoom()
+    // 初始加载时绑定
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBlur)
+    } else {
+      initBlur()
+    }
+
+    // 在客户端路由切换后重新绑定（等待内容插入）
+    document.addEventListener('astro:page-load', () => setTimeout(initBlur, 50))
+  })()
+
+  // Medium Zoom Initialization
+  import mediumZoom from 'medium-zoom'
+
+  function initZoom() {
+    const isDark = document.documentElement.classList.contains('dark')
+    const zoom = mediumZoom('.post-content img, .post-image img', {
+      margin: 24,
+      background: isDark ? '#121212' : '#ffffff'
+  })
+  }
+
+  document.addEventListener('astro:page-load', initZoom)
+  // Initial load
+  initZoom()
   </script>
 </BaseLayout>
 

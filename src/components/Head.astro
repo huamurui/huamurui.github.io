@@ -25,7 +25,7 @@ const structuredDataJson = structuredData
   ? JSON.stringify(structuredData).replace(/<\/script/gi, '<\\/script')
   : null
 
-import { ClientRouter } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions'
 import 'nprogress/nprogress.css';
 ---
 
@@ -82,60 +82,60 @@ import 'nprogress/nprogress.css';
     )
   }
 
-  <link 
-    rel="preload" 
-    href="/fonts/Nunito/static/Nunito-Regular.ttf" 
-    as="font" 
-    type="font/ttf" 
-    crossorigin 
+  <link
+    rel="preload"
+    href="/fonts/Nunito/static/Nunito-Regular.ttf"
+    as="font"
+    type="font/ttf"
+    crossorigin
   />
-  <link 
-    rel="preload" 
-    href="/fonts/Nunito/static/Nunito-Bold.ttf" 
-    as="font" 
-    type="font/ttf" 
-    crossorigin 
+  <link
+    rel="preload"
+    href="/fonts/Nunito/static/Nunito-Bold.ttf"
+    as="font"
+    type="font/ttf"
+    crossorigin
   />
-  <link 
-    rel="preload" 
-    href="/fonts/ChillRoundFRegular/862367d4db6a95f86fc8b4fb4cf3b1e7.woff2" 
-    as="font" 
-    type="font/woff2" 
-    crossorigin 
+  <link
+    rel="preload"
+    href="/fonts/ChillRoundFRegular/862367d4db6a95f86fc8b4fb4cf3b1e7.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
   />
-  <link 
-    rel="preload" 
-    href="/fonts/ChillRoundFRegular/596b1e644d3ea13847eaac7729c256b1.woff2" 
-    as="font" 
-    type="font/woff2" 
-    crossorigin 
+  <link
+    rel="preload"
+    href="/fonts/ChillRoundFRegular/596b1e644d3ea13847eaac7729c256b1.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
   />
 
   <!-- 为文章页预载代码字体 -->
   {needGiscus && (
-    <link 
-      rel="preload" 
-      href="/fonts/JetBrainsMono/fonts/variable/JetBrainsMono[wght].ttf" 
-      as="font" 
-      type="font/ttf" 
-      crossorigin 
+    <link
+      rel="preload"
+      href="/fonts/JetBrainsMono/fonts/variable/JetBrainsMono[wght].ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
     />
   )}
 
   <!-- 引入字体 (本地切片加载) -->
-  <link 
-    rel="stylesheet" 
-    href="/fonts/ChillRoundFRegular/result.css" 
-    media="print" 
-    onload="this.setAttribute('media','all')" 
+  <link
+    rel="stylesheet"
+    href="/fonts/ChillRoundFRegular/result.css"
+    media="print"
+    onload="this.setAttribute('media','all')"
   />
-  <link 
-    rel="stylesheet" 
-    href="/fonts/ChillRoundFBold/result.css" 
-    media="print" 
-    onload="this.setAttribute('media','all')" 
+  <link
+    rel="stylesheet"
+    href="/fonts/ChillRoundFBold/result.css"
+    media="print"
+    onload="this.setAttribute('media','all')"
   />
-  
+
   <!-- 预连接外部资源 (仅在需要时) -->
   {needGiscus && (
     <>
@@ -171,26 +171,26 @@ import 'nprogress/nprogress.css';
   </style>
 
   <script is:inline>
-  (function() {
-    function getTheme() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) return savedTheme;
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    const theme = getTheme();
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
+(function() {
+  function getTheme() {
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme) return savedTheme
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  }
+  const theme = getTheme()
+  document.documentElement.classList.toggle('dark', theme === 'dark')
+  document.documentElement.setAttribute('data-theme', theme)
 
-    // 兼容 SPA 模式
-    const applyTheme = (doc = document) => {
-      const theme = getTheme();
-      doc.documentElement.classList.toggle('dark', theme === 'dark');
-      doc.documentElement.setAttribute('data-theme', theme);
-    };
+  // 兼容 SPA 模式
+  const applyTheme = (doc = document) => {
+    const theme = getTheme()
+    doc.documentElement.classList.toggle('dark', theme === 'dark')
+    doc.documentElement.setAttribute('data-theme', theme)
+  }
 
-    document.addEventListener('astro:after-swap', () => applyTheme());
-    document.addEventListener('astro:before-swap', (ev) => applyTheme(ev.newDocument));
-  })();
+  document.addEventListener('astro:after-swap', () => applyTheme())
+  document.addEventListener('astro:before-swap', (ev) => applyTheme(ev.newDocument))
+})()
   </script>
 
   <ClientRouter />
@@ -264,16 +264,16 @@ import 'nprogress/nprogress.css';
   </script>
 
   <script>
-    import NProgress from 'nprogress';
+import NProgress from 'nprogress'
 
-    NProgress.configure({ showSpinner: false, minimum: 0.1 });
+NProgress.configure({ showSpinner: false, minimum: 0.1 })
 
-    document.addEventListener('astro:before-preparation', () => {
-      NProgress.start();
-    });
+document.addEventListener('astro:before-preparation', () => {
+  NProgress.start()
+})
 
-    document.addEventListener('astro:page-load', () => {
-      NProgress.done();
-    });
+document.addEventListener('astro:page-load', () => {
+  NProgress.done()
+})
   </script>
 </head>

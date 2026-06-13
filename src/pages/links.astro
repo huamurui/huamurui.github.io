@@ -55,7 +55,7 @@ const pageTitle = 'Links';
       <p class="exchange-desc">
         如果你也想在这个角落里挂上你的徽章，欢迎在下方留言贴出你的名片。
       </p>
-      
+
       <div class="contract-grid">
         <div class="contract-item">
           <span class="label">名称 (Name)</span>
@@ -182,20 +182,20 @@ const pageTitle = 'Links';
       display: flex;
       align-items: center;
       gap: var(--spacing-md);
-      
+
       /* Reset global article a styles from md.css */
       text-decoration: none !important;
       color: inherit !important;
       font-weight: normal !important;
-      
+
       position: relative;
       overflow: hidden;
       box-shadow: var(--shadow-sm);
       height: 76px; /* Strict uniform height prevents grid breaking and overflow */
       box-sizing: border-box;
-      transition: 
-        transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
-        border-color 0.3s ease, 
+      transition:
+        transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+        border-color 0.3s ease,
         box-shadow 0.3s ease,
         background-color 0.3s ease,
         color 0.3s ease,
@@ -248,8 +248,8 @@ const pageTitle = 'Links';
     .friend-card:hover {
       transform: translateY(-3px) scale(1.01);
       border-color: var(--friend-color);
-      box-shadow: 
-        var(--shadow-md), 
+      box-shadow:
+        var(--shadow-md),
         0 6px 18px color-mix(in srgb, var(--friend-color) 12%, transparent);
     }
 
@@ -450,7 +450,7 @@ const pageTitle = 'Links';
     /* ---------------------------------------------------- */
     /* 6. RESTRAINED ELEGANT AMBIENT MORPHING (:has)       */
     /* ---------------------------------------------------- */
-    
+
     /* Gentle fading of non-hovered cards (very soft and clear) */
     .friends-grid:has(.friend-card:hover) .friend-card:not(:hover) {
       opacity: 0.6;

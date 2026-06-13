@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro'
 import { generateDirectoryStructure } from '@/utils/content'
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async() => {
   const data = await generateDirectoryStructure()
   const data_str = JSON.stringify(data)
   return new Response(data_str, {
