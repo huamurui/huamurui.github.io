@@ -173,11 +173,11 @@ h6:hover::after {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 6px 9px;
   background-color: var(--bg-secondary);
   border-radius: 20px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-primary);
   white-space: nowrap;
 
@@ -289,6 +289,7 @@ ul.breadcrumb-dropdown-menu li {
   border-radius: 8px;
   font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+
 /* NProgress Customization */
 #nprogress {
   pointer-events: none;
