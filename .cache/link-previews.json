@@ -61,5 +61,19 @@
     "description": "知乎-- ｜zhihu-- ｜ zhihu-minus-minus｜一款轻量、简洁的第三方知乎客户端 - huamurui/zhihu-minus-minus",
     "image": "https://opengraph.githubassets.com/f744a143b93dea6b6c183d91725fff66ef957428593f094aaf6cc16e52660294/huamurui/zhihu-minus-minus",
     "site": "github.com"
+  },
+  "https://es6.ruanyifeng.com/": {
+    "fetched": true,
+    "title": "ES6 入门教程",
+    "description": null,
+    "image": null,
+    "site": "es6.ruanyifeng.com"
+  },
+  "https://huamurui.github.io/photo-viewer": {
+    "fetched": true,
+    "title": "Photos of HMR",
+    "description": "看看我拍的照片",
+    "image": "https://huamurui.github.io/photo-viewer/photos/thumbs/P1070261-%E5%B7%B2%E5%A2%9E%E5%BC%BA-NR.jpg",
+    "site": "huamurui.github.io"
   }
 }
