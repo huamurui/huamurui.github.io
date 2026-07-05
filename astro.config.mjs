@@ -14,6 +14,9 @@ import { siteConfig } from "./src/config/site.config.ts";
 export default defineConfig({
   site: siteConfig.site,
   base: siteConfig.base,
+  build: {
+    format: 'file'
+  },
   image: {
     domains: [
       'docs.astro.build',
