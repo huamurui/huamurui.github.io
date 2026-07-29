@@ -271,3 +271,8 @@ for (let y = 0; y < validGridSize; y++) {
     display: block;"
   src="https://huamurui.github.io/html-s/jelly-mario"
 ></iframe>
+
+还有一件事，更具体的工程与现成品工具，也许可以去看看 Box2D 和 LiquidFun.    
+Box2D 用许多奇奇妙妙优化让这些能在各种设备上很高效稳定的运行。基础的是改进欧拉积分、碰撞检测分区...  还有神奇的 Sequential Impulse Solver，解决大量物体碰撞穿模时跳动的问题。  
+之后的 LiquidFun 除了粒子流体，似乎还有直接做好的 Soft Bodies，类似果冻效果的模拟了x。  
+<https://google.github.io/liquidfun/>.  
