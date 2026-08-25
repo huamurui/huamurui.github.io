@@ -53,6 +53,25 @@ export function extractExcerptFromHtml(html: string, maxLength: number = 300): s
   return html.slice(0, maxLength).replace(/<[^>]+$/, '') + '...'
 }
 
+/** 从 Markdown 中提取适合列表和 meta description 的纯文本摘要。 */
+export function extractExcerptFromMarkdown(markdown: string, maxLength: number = 300): string {
+  const source = markdown.split(/<!--\s*more\s*-->/i)[0]
+  const paragraph = source
+    .split(/\n\s*\n/)
+    .map(block => block.trim())
+    .find(block => block && !/^(---|#|```|>|!\[)/.test(block)) || ''
+
+  const text = paragraph
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/[`*_~|]/g, '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+  return text.length > maxLength ? `${text.slice(0, maxLength).trim()}…` : text
+}
+
 /**
  * 计算阅读时间（分钟）
  */
@@ -159,4 +178,3 @@ export function generateBreadcrumbItems(postId: string, isCategory: boolean = fa
 
   return items
 }
-

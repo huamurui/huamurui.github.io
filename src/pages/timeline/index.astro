@@ -1,11 +1,12 @@
 ---
 import PostList from "@/components/PostList/PostList.svelte";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { type CollectionEntry } from "astro:content";
+import { getPublishedPosts } from '@/utils/content'
 import "@/components/PostList/PostList.css";
 import { t } from "@/utils/i18n";
 
-const posts: CollectionEntry<"posts">[] = await getCollection("posts");
+const posts: CollectionEntry<"posts">[] = await getPublishedPosts();
 const sortedPosts = [...posts].sort(
   (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
 );

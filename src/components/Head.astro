@@ -1,7 +1,6 @@
 ---
 import { siteConfig } from '@/config/site.config'
 import type { StructuredData } from '@/types'
-import { t } from '@/utils/i18n'
 import { buildUrl } from '@/utils/helpers'
 
 interface Props {
@@ -34,7 +33,7 @@ import 'nprogress/nprogress.css';
   <link rel="icon" type="image/svg+xml" href={buildUrl('favicon.svg')} />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="generator" content={Astro.generator} />
-  <link rel="sitemap" href={buildUrl('sitemap-index.xml')} />
+  <link rel="sitemap" href={buildUrl('sitemap.xml')} />
 
   <title>{pageTitle}</title>
   <meta name="description" content={description} />
@@ -50,16 +49,16 @@ import 'nprogress/nprogress.css';
 
   <meta property="og:title" content={pageTitle} />
   <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={needGiscus ? 'article' : 'website'} />
   <meta property="og:url" content={canonicalUrl} />
-  <meta property="og:image" content={ogImage} />
+  {ogImage && <meta property="og:image" content={ogImage} />}
   <meta property="og:site_name" content={siteConfig.name} />
   <meta property="og:locale" content={siteConfig.locale} />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={pageTitle} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={ogImage} />
+  {ogImage && <meta name="twitter:image" content={ogImage} />}
 
   <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*; font-src 'self' data:;" /> -->
   <!-- <meta http-equiv="X-XSS-Protection" content="1; mode=block" /> -->

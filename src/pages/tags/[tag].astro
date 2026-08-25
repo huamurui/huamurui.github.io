@@ -1,5 +1,6 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content'
+import { type CollectionEntry } from 'astro:content'
+import { getPublishedPosts } from '@/utils/content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PostList from '@/components/PostList/PostList.svelte'
 import '@/components/PostList/PostList.css'
@@ -15,7 +16,7 @@ type StaticPath = {
 };
 
 export async function getStaticPaths(): Promise<StaticPath[]> {
-  const posts = await getCollection('posts')
+  const posts = await getPublishedPosts()
   const tags = new Map<string, CollectionEntry<'posts'>[]>()
 
   for (const post of posts) {

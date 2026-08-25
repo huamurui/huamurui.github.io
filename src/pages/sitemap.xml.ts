@@ -1,10 +1,10 @@
 import type { APIRoute } from 'astro'
-import { getCollection } from 'astro:content'
+import { getPublishedPosts } from '@/utils/content'
 import { siteConfig } from '@/config/site.config'
 import { getPostUrl } from '@/utils/helpers'
 
 export const GET: APIRoute = async() => {
-  const posts = await getCollection('posts')
+  const posts = await getPublishedPosts()
   const baseUrl = siteConfig.site + siteConfig.base
 
   // 1. 获取所有静态导航页
@@ -35,7 +35,6 @@ export const GET: APIRoute = async() => {
 
   // 3. 拼接完整的 XML
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${staticPages}
 ${postPages}

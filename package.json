@@ -40,11 +40,5 @@
     "remark-parse": "^11.0.0",
     "typescript-eslint": "^8.52.0",
     "unist-util-visit": "^5.0.0"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ]
   }
 }

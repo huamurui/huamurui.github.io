@@ -1,10 +1,11 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content'
+import { type CollectionEntry } from 'astro:content'
 import { buildUrl } from '@/utils/helpers'
+import { getPublishedPosts } from '@/utils/content'
 
 type TagPostsMap = Map<string, CollectionEntry<'posts'>[]>;
 const post = Astro.props.post as CollectionEntry<'posts'> | null
-const posts: CollectionEntry<'posts'>[] = await getCollection('posts')
+const posts: CollectionEntry<'posts'>[] = await getPublishedPosts()
 const tagsPosts: TagPostsMap = new Map()
 
 for (const post of posts) {

@@ -1,10 +1,15 @@
-import { getCollection } from 'astro:content'
+import { getCollection, type CollectionEntry } from 'astro:content'
+
+/** 获取应公开展示的文章，避免草稿进入页面、索引和订阅源。 */
+export async function getPublishedPosts(): Promise<CollectionEntry<'posts'>[]> {
+  return getCollection('posts', ({ data }) => !data.draft)
+}
 
 /**
  * 生成目录结构数据（基于文件目录）
  */
 export async function generateDirectoryStructure() {
-  const posts = await getCollection('posts')
+  const posts = await getPublishedPosts()
   const structure: Record<string, any> = {}
   for (const post of posts) {
     const pathParts = post.id.split('/').filter(Boolean)

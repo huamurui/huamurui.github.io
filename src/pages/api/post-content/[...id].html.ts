@@ -1,5 +1,6 @@
-import { getCollection, render } from 'astro:content'
+import { render } from 'astro:content'
 import { experimental_AstroContainer } from 'astro/container'
+import { getPublishedPosts } from '@/utils/content'
 
 function escapeHtml(text: string) {
   return text
@@ -11,7 +12,7 @@ function escapeHtml(text: string) {
 }
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts')
+  const posts = await getPublishedPosts()
 
   const paths = posts.map(post => ({
     params: { id: post.id }
@@ -35,7 +36,7 @@ export async function getStaticPaths() {
 }
 
 export async function GET({ params }: { params: { id: string } }) {
-  const posts = await getCollection('posts')
+  const posts = await getPublishedPosts()
   const cleanId = params.id.replace(/\.html$/, '')
 
   const post = posts.find(p => p.id === cleanId)

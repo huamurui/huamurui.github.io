@@ -3,13 +3,14 @@ import ToC from '@/components/ToC.astro'
 import Breadcrumb from '@/components/Breadcrumb.svelte'
 import ReadingProgress from '@/components/ReadingProgress.svelte'
 import Comments from '@/components/Comments.svelte'
-import { getCollection, render, type CollectionEntry } from 'astro:content'
+import { render, type CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { Image } from 'astro:assets'
-import { extractExcerptFromHtml, formatDate, sanitizeViewTransitionName, generateBreadcrumbItems, countWords } from '@/utils/helpers'
+import { extractExcerptFromMarkdown, formatDate, sanitizeViewTransitionName, generateBreadcrumbItems, countWords } from '@/utils/helpers'
 import { generatePostStructuredData } from '@/utils/structured-data'
 import { ANIMATION_DURATION, EASING } from '@/utils/constants'
 import PostList from '@/components/PostList/PostList.svelte'
+import type { PostFrontmatter } from '@/types'
 import '@/components/PostList/PostList.css'
 import '/node_modules/katex/dist/katex.min.css'
 
@@ -23,15 +24,14 @@ type StaticPath = {
 };
 
 export async function getStaticPaths(): Promise<StaticPath[]> {
-  const posts = await getCollection('posts')
+  const posts = await getPublishedPosts()
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post }
   }))
 }
 
-import { experimental_AstroContainer } from 'astro/container'
-const container = await experimental_AstroContainer.create()
+import { getPublishedPosts } from '@/utils/content'
 
 interface Props {
   post: CollectionEntry<'posts'>;
@@ -40,21 +40,20 @@ interface Props {
 const { post } = Astro.props as Props
 const { Content, headings } = await render(post)
 
-const post_str = await container.renderToString(Content)
-const description = extractExcerptFromHtml(post_str)
+const description = post.data.description || extractExcerptFromMarkdown(post.body || '')
 
 const breadcrumbItems = generateBreadcrumbItems(post.id)
 const structuredData = generatePostStructuredData(post, description, Astro.url.origin, breadcrumbItems)
 
 // Backlinks logic
-const allPosts = await getCollection('posts')
+const allPosts = await getPublishedPosts()
 let backlinkData = {}
 try {
   // Use import.meta.glob or direct import for the JSON
   // Relative to src/pages/posts/[...slug].astro, .cache is at ../../../.cache
   const data = await import('../../../.cache/backlinks.json')
   backlinkData = data.default || {}
-} catch (e) {
+} catch {
   console.log('No backlinks found yet')
 }
 const currentBacklinks = backlinkData[post.id] || []
@@ -183,7 +182,7 @@ const customTransition = { forwards: anim, backwards: anim }
 
   function initZoom() {
     const isDark = document.documentElement.classList.contains('dark')
-    const zoom = mediumZoom('.post-content img, .post-image img', {
+    mediumZoom('.post-content img, .post-image img', {
       margin: 24,
       background: isDark ? '#121212' : '#ffffff'
   })

@@ -2,9 +2,8 @@
 import ThemeToggle from './ThemeToggle.svelte'
 import { siteConfig } from '@/config/site.config'
 import { isPostPage, buildUrl } from '@/utils/helpers'
-import { SCROLL_THRESHOLD } from '@/utils/constants'
 import Search from './Search.svelte'
-import { getCollection } from 'astro:content'
+import { getPublishedPosts } from '@/utils/content'
 import { t } from '@/utils/i18n'
 
 interface Props {
@@ -16,7 +15,7 @@ const { pageTitle } = Astro.props as Props
 const navItems = siteConfig.navItems
 
 const isPostsPage = isPostPage(Astro.url.pathname)
-const allPosts = await getCollection('posts')
+const allPosts = await getPublishedPosts()
 const searchablePosts = allPosts.map((post) => ({
   id: post.id,
   title: post.data.title,

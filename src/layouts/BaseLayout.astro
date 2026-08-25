@@ -279,7 +279,7 @@ const isHome = isHomePage(Astro.url.pathname);
 
       cache.set(id, data)
       return data
-    } catch (e) {
+    } catch {
       return null
     }
   }

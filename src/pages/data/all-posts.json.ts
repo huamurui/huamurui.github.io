@@ -1,5 +1,6 @@
-import { getCollection, type CollectionEntry } from 'astro:content'
+import { type CollectionEntry } from 'astro:content'
 import type { APIRoute } from 'astro'
+import { getPublishedPosts } from '@/utils/content'
 
 interface PostData {
   id: string;
@@ -22,7 +23,7 @@ interface ApiResponse {
 }
 
 export const GET: APIRoute = async() => {
-  const allBlogPosts: CollectionEntry<'posts'>[] = await getCollection('posts')
+  const allBlogPosts: CollectionEntry<'posts'>[] = await getPublishedPosts()
 
   // 用于统计标签的Map
   const tagCountMap: Map<string, number> = new Map()

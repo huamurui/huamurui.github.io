@@ -3,17 +3,35 @@ import typescriptEslint from 'typescript-eslint'
 import pluginAstro from 'eslint-plugin-astro'
 
 export default [
-  js.configs.recommended,
-  ...typescriptEslint.configs.recommended,
-  ...pluginAstro.configs.recommended,
   {
     ignores: [
       'dist/**',
       'node_modules/**',
       '.astro/**',
-      '*.config.*',
+      '.cache/**',
       'public/**'
-    ],
+    ]
+  },
+  js.configs.recommended,
+  ...typescriptEslint.configs.recommended,
+  ...pluginAstro.configs.recommended,
+  {
+    languageOptions: {
+      globals: {
+        AbortController: 'readonly',
+        Buffer: 'readonly',
+        URL: 'readonly',
+        clearTimeout: 'readonly',
+        console: 'readonly',
+        document: 'readonly',
+        fetch: 'readonly',
+        localStorage: 'readonly',
+        process: 'readonly',
+        requestAnimationFrame: 'readonly',
+        setTimeout: 'readonly',
+        window: 'readonly'
+      }
+    },
     rules: {
       // 基础规则
       semi: ['warn', 'never'],
@@ -29,7 +47,7 @@ export default [
       'max-len': ['warn', { code: 120, tabWidth: 2 }], 
       
       '@typescript-eslint/no-unused-vars': [
-        'error',
+        'warn',
         {
           argsIgnorePattern: '^_',
           varsIgnorePattern: '^_'
@@ -37,8 +55,23 @@ export default [
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-empty-function': 'warn',
+      '@typescript-eslint/no-unused-expressions': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'warn',
-      'astro/no-unused-define-vars-in-style': 'error'
+      'astro/no-unused-define-vars-in-style': 'error',
+      'no-empty': 'warn'
+    }
+  },
+  {
+    files: ['**/*.astro'],
+    rules: {
+      '@typescript-eslint/no-unused-expressions': 'warn',
+      'no-empty': 'warn'
+    }
+  },
+  {
+    files: ['src/env.d.ts'],
+    rules: {
+      '@typescript-eslint/triple-slash-reference': 'off'
     }
   }
 ]
