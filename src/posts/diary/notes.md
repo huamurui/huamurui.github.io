@@ -2608,6 +2608,20 @@ https://github.com/huamurui/zhihu-minus-minus/issues/71
 
 但昨晚弄出这堆完之后，挖完了坑第二天醒过来就不想动了x
 
+> sol 跟我说可以算我说的对，非 astra 不可甚至 astra 都不一定搞得定的更多的是这类事情：
+> - 从非常稀疏证据里反推出一个反直觉根因；
+> - 解决跨很多层的隐藏依赖；
+> - 提出一个很新、很非标准的架构；
+> - 在互相冲突的目标间做很尖锐的取舍；
+> - 发现仓库作者自己都没意识到的产品战略问题。
+>
+> 过去很多被包装成“senior judgment”的工作，其实相当大一部分是成熟范式的识别、枚举、归类和规范化表达。  
+> [#40](https://github.com/huamurui/zhihu-minus-minus/issues/40) 会更有趣一些，也许也会比 [#71](https://github.com/huamurui/zhihu-minus-minus/issues/71) 更需要强一些的逻辑能力。40 也确实是 sol 写的。  
+
+> 这下 luna 指挥 sol 了。
+>Sol = 偶尔请来的 staff/principal architect.   
+>Luna = 一个速度离谱、记性极好、工程常识覆盖极广，但在真正模糊的问题上没那么可靠的 senior-ish 执行层。
+
 ### 那吃🍽️什么好呢
 
 最近两天似乎又没睡好。  
