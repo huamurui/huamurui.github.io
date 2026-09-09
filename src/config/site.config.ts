@@ -52,7 +52,7 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   name: 'Greenhouse between Clouds',
-  description: 'A blog about web tech and nonsense.',
+  description: '这是一个四处捡东西的 blog。捡一点代码、图画、历史和胡说八道，看看它们背后藏着怎样的结构，又是怎么慢慢变成今天这样的。',
   url: 'https://huamurui.github.io',
   site: 'https://huamurui.github.io',
   base: '',
