@@ -55,7 +55,7 @@ export interface I18nConfig {
   };
 }
 
-export const i18nConfig: Record<string, I18nConfig> = {
+export const i18nConfig = {
   'zh-CN': {
     common: {
       brand: 'Pudding',
@@ -169,35 +169,33 @@ export const i18nConfig: Record<string, I18nConfig> = {
       sitemap: 'Sitemap'
     }
   }
-}
+} satisfies Record<string, I18nConfig>
 
 export type SupportedLocale = keyof typeof i18nConfig;
 
 export const defaultLocale: SupportedLocale = 'zh-CN'
 
 export function getLocale(locale?: string): SupportedLocale {
-  if (locale && locale in i18nConfig) {
+  if (locale && Object.hasOwn(i18nConfig, locale)) {
     return locale as SupportedLocale
   }
   return defaultLocale
 }
 
 export function t(locale: SupportedLocale, path: string, params?: Record<string, string | number>): string {
-  const config = i18nConfig[locale]
+  const config = i18nConfig[getLocale(locale)]
   const keys = path.split('.')
-  let value: any = config
+  let value: unknown = config
 
   for (const key of keys) {
-    value = value?.[key]
-    if (value === undefined) {
+    if (typeof value !== 'object' || value === null || !Object.hasOwn(value, key)) {
       console.warn(`i18n: Missing translation for "${path}" in locale "${locale}"`)
       return path
     }
+    value = (value as Record<string, unknown>)[key]
   }
 
-  if (typeof value === 'string' && params) {
-    return value.replace(/\{(\w+)\}/g, (_, key) => params[key]?.toString() || `{${key}}`)
-  }
-
-  return value
+  if (typeof value !== 'string') return path
+  if (!params) return value
+  return value.replace(/\{(\w+)\}/g, (_, key: string) => params[key]?.toString() ?? `{${key}}`)
 }

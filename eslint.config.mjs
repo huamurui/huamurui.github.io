@@ -1,6 +1,8 @@
 import js from '@eslint/js'
 import typescriptEslint from 'typescript-eslint'
 import pluginAstro from 'eslint-plugin-astro'
+import pluginSvelte from 'eslint-plugin-svelte'
+import globals from 'globals'
 
 export default [
   {
@@ -15,22 +17,16 @@ export default [
   js.configs.recommended,
   ...typescriptEslint.configs.recommended,
   ...pluginAstro.configs.recommended,
+  ...pluginSvelte.configs['flat/recommended'],
+  {
+    files: ['**/*.svelte'],
+    languageOptions: {
+      parserOptions: { parser: typescriptEslint.parser }
+    }
+  },
   {
     languageOptions: {
-      globals: {
-        AbortController: 'readonly',
-        Buffer: 'readonly',
-        URL: 'readonly',
-        clearTimeout: 'readonly',
-        console: 'readonly',
-        document: 'readonly',
-        fetch: 'readonly',
-        localStorage: 'readonly',
-        process: 'readonly',
-        requestAnimationFrame: 'readonly',
-        setTimeout: 'readonly',
-        window: 'readonly'
-      }
+      globals: { ...globals.browser, ...globals.node }
     },
     rules: {
       // 基础规则

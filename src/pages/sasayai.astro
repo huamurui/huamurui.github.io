@@ -17,8 +17,8 @@ const renderedPosts = await Promise.all(
 )
 
 // 瀑布流列数
-const col1 = []
-const col2 = []
+const col1: typeof renderedPosts = []
+const col2: typeof renderedPosts = []
 renderedPosts.forEach((item, index) => {
   if (index % 2 === 0) col1.push(item)
   else col2.push(item)
@@ -27,7 +27,7 @@ renderedPosts.forEach((item, index) => {
 const title = 'Sasayai | 絮语';
 ---
 
-<BaseLayout title={title}>
+<BaseLayout pageTitle={title}>
   <div class="sasayai-container">
     <header class="sasayai-header">
       <h1 class="glow-text">Sasayai</h1>
@@ -64,6 +64,7 @@ const title = 'Sasayai | 絮语';
             <div class="thought-header">
               <span class="thought-date">
                 {post.data.date.toLocaleString('zh-CN', {
+                  timeZone: 'Asia/Shanghai',
                   month: '2-digit',
                   day: '2-digit',
                   hour: '2-digit',
@@ -86,6 +87,7 @@ const title = 'Sasayai | 絮语';
             <div class="thought-header">
               <span class="thought-date">
                 {post.data.date.toLocaleString('zh-CN', {
+                  timeZone: 'Asia/Shanghai',
                   month: '2-digit',
                   day: '2-digit',
                   hour: '2-digit',
@@ -296,132 +298,132 @@ const title = 'Sasayai | 絮语';
 </style>
 
 <script>
-// 客户端脚本：处理 GitHub API (现在直接创建独立的 md 文件)
-const OWNER = 'huamurui'
-const REPO = 'huamurui.github.io'
+import { decodeGitHubFile, encodeGitHubFile } from '@/scripts/sasayai'
 
-const tokenInput = document.getElementById('token-input')
-const saveTokenBtn = document.getElementById('save-token-btn')
-const showSettingsBtn = document.getElementById('show-settings-btn')
-const tokenStatus = document.getElementById('token-status')
-const settingsArea = document.getElementById('settings-area')
-const inputArea = document.getElementById('input-area')
-const thoughtInput = document.getElementById('thought-input')
-const publishBtn = document.getElementById('publish-btn')
-const charCount = document.getElementById('char-count')
+let cleanupPublishPanel: (() => void) | undefined
 
-// 初始化检查
-const token = localStorage.getItem('github_token')
-if (token) {
-  showInputArea()
-}
+function initPublishPanel() {
+  cleanupPublishPanel?.()
+  const tokenInput = document.querySelector<HTMLInputElement>('#token-input')
+  const saveTokenBtn = document.querySelector<HTMLButtonElement>('#save-token-btn')
+  const tokenStatus = document.getElementById('token-status')
+  const showSettingsBtn = document.querySelector<HTMLButtonElement>('#show-settings-btn')
+  const settingsArea = document.getElementById('settings-area')
+  const inputArea = document.getElementById('input-area')
+  const thoughtInput = document.querySelector<HTMLTextAreaElement>('#thought-input')
+  const publishBtn = document.querySelector<HTMLButtonElement>('#publish-btn')
+  const charCount = document.getElementById('char-count')
+  if (!tokenInput || !saveTokenBtn || !showSettingsBtn || !tokenStatus || !settingsArea || !inputArea || !thoughtInput || !publishBtn) return
 
-// 交互逻辑
-showSettingsBtn?.addEventListener('click', () => {
-  settingsArea?.classList.toggle('hidden')
-})
+  const controller = new AbortController()
+  cleanupPublishPanel = () => controller.abort()
+  let token = ''
+  let sending = false
+  try { token = localStorage.getItem('github_token') || '' } catch { /* Session-only tokens still work. */ }
 
-saveTokenBtn?.addEventListener('click', () => {
-  const val = tokenInput?.value.trim()
-  if (val) {
-    localStorage.setItem('github_token', val)
-    alert('Token 已保存在本地浏览器中')
-    showInputArea()
+  const statusText = document.createElement('span')
+  const settingsButton = showSettingsBtn
+  settingsButton.id = 'show-settings-btn'
+  settingsButton.type = 'button'
+  settingsButton.className = 'text-btn'
+  const clearButton = showSettingsBtn.cloneNode(true) as HTMLButtonElement
+  clearButton.id = 'clear-token-btn'
+  clearButton.type = 'button'
+  clearButton.className = 'text-btn'
+  clearButton.textContent = '清除'
+  tokenStatus.replaceChildren(statusText, settingsButton, clearButton)
+
+  function updateTokenStatus(persistent = true) {
+    statusText.textContent = token
+      ? persistent ? '🔓 Token 已保存在此浏览器' : '🔓 Token 仅用于本次页面访问'
+      : '🔒 未设置 GitHub Token'
+    settingsButton.textContent = token ? '更换' : '去设置'
+    clearButton.hidden = !token
+    inputArea!.classList.toggle('hidden', !token)
+    settingsArea!.classList.add('hidden')
   }
-})
+  updateTokenStatus()
+  tokenInput.setAttribute('aria-label', 'GitHub Fine-grained Token')
+  thoughtInput.setAttribute('aria-label', '絮语内容')
+  thoughtInput.maxLength = 500
 
-thoughtInput?.addEventListener('input', (e) => {
-  const len = e.target.value.length
-  if (charCount) charCount.textContent = `${len}/500`
-})
+  settingsButton.addEventListener('click', () => {
+    settingsArea.classList.toggle('hidden')
+    if (!settingsArea.classList.contains('hidden')) tokenInput.focus()
+  }, { signal: controller.signal })
+  saveTokenBtn.addEventListener('click', () => {
+    const value = tokenInput.value.trim()
+    if (!value) return
+    token = value
+    let persistent = true
+    try { localStorage.setItem('github_token', token) } catch { persistent = false }
+    tokenInput.value = ''
+    updateTokenStatus(persistent)
+  }, { signal: controller.signal })
+  clearButton.addEventListener('click', () => {
+    try { localStorage.removeItem('github_token') } catch { /* Storage may be unavailable. */ }
+    token = ''
+    tokenInput.value = ''
+    updateTokenStatus()
+  }, { signal: controller.signal })
+  thoughtInput.addEventListener('input', () => {
+    if (charCount) charCount.textContent = `${thoughtInput.value.length}/500`
+  }, { signal: controller.signal })
 
-publishBtn?.addEventListener('click', async() => {
-  const content = thoughtInput?.value.trim()
-  const token = localStorage.getItem('github_token')
-
-  if (!content) {
-    alert('写点什么吧...')
-    return
-  }
-  if (!token) {
-    alert('请先设置 Token')
-    return
-  }
-
-  publishBtn.disabled = true
-  publishBtn.textContent = '正在发送...'
-
-  try {
-    const jsonUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/src/data/sasayai.json`
-
-    // 1. 获取当前 JSON 文件
-    const getRes = await fetch(jsonUrl, {
-      headers: {
-        Authorization: `Bearer ${token}`
+  publishBtn.addEventListener('click', async() => {
+    if (sending) return
+    const content = thoughtInput.value.trim()
+    if (!content || content.length > 500) {
+      alert(content ? '请将内容控制在 500 字符以内' : '写点什么吧...')
+      return
+    }
+    if (!token) { alert('请先设置 Token'); return }
+    const requestToken = token
+    sending = true
+    publishBtn.disabled = true
+    publishBtn.textContent = '正在发送...'
+    const jsonUrl = 'https://api.github.com/repos/huamurui/huamurui.github.io/contents/src/data/sasayai.json'
+    const headers = {
+      Authorization: `Bearer ${requestToken}`,
+      Accept: 'application/vnd.github+json'
+    }
+    try {
+      const response = await fetch(jsonUrl, { headers, signal: controller.signal, cache: 'no-store' })
+      if (!response.ok) throw new Error(`无法获取源文件 (HTTP ${response.status})，请检查 Token 或网络`)
+      const file = await response.json()
+      if (typeof file.sha !== 'string' || typeof file.content !== 'string' || file.encoding !== 'base64') {
+        throw new Error('源文件响应不正确，已取消更新')
       }
-    })
-
-    if (!getRes.ok) {
-      throw new Error('无法获取源文件，请检查 Token 或网络')
-    }
-
-    const fileData = await getRes.json()
-    const sha = fileData.sha
-    // 解码 base64
-    const currentContent = decodeURIComponent(escape(window.atob(fileData.content)))
-    const jsonData = JSON.parse(currentContent)
-
-    // 2. 追加新内容
-    const timestamp = Date.now()
-    const newItem = {
-      id: `${timestamp}`,
-      date: new Date().toISOString(),
-      content: content
-    }
-    jsonData.push(newItem)
-
-    // 3. 编码并推回
-    const newJsonStr = JSON.stringify(jsonData, null, 2)
-    const base64Content = window.btoa(unescape(encodeURIComponent(newJsonStr)))
-
-    const putRes = await fetch(jsonUrl, {
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message: 'Add whisper via web',
-        content: base64Content,
-        sha: sha
+      const data = decodeGitHubFile(file.content)
+      const now = new Date()
+      data.push({ id: `${now.getTime()}`, date: now.toISOString(), content })
+      const result = await fetch(jsonUrl, {
+        method: 'PUT',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        signal: controller.signal,
+        body: JSON.stringify({ message: 'Add whisper via web', content: encodeGitHubFile(data), sha: file.sha })
       })
-    })
-
-    if (putRes.ok) {
+      if (!result.ok) {
+        if (result.status === 409) throw new Error('源文件已被其他更新修改，请重新点击发送')
+        throw new Error(`更新失败 (HTTP ${result.status})`)
+      }
+      if (controller.signal.aborted) return
       alert('发送成功！GitHub 正在重新构建博客，请稍等几分钟后刷新页面。')
       thoughtInput.value = ''
       if (charCount) charCount.textContent = '0/500'
-    } else {
-      const errData = await putRes.json()
-      throw new Error(errData.message || '更新失败')
+    } catch (error) {
+      if (!controller.signal.aborted) alert(`出错啦: ${error instanceof Error ? error.message : String(error)}`)
+    } finally {
+      sending = false
+      if (!controller.signal.aborted) {
+        publishBtn.disabled = false
+        publishBtn.textContent = '发送'
+      }
     }
-  } catch (err) {
-    alert('出错啦: ' + err.message)
-    console.error(err)
-  } finally {
-    publishBtn.disabled = false
-    publishBtn.textContent = '发送'
-  }
-})
-
-function showInputArea() {
-  if (tokenStatus) tokenStatus.innerHTML = '<span>🔓 Token 已就位 (只存在你的浏览器里)</span> <button id="clear-token-btn" class="text-btn">清除</button>'
-  settingsArea?.classList.add('hidden')
-  inputArea?.classList.remove('hidden')
-
-  document.getElementById('clear-token-btn')?.addEventListener('click', () => {
-    localStorage.removeItem('github_token')
-    location.reload()
-  })
+  }, { signal: controller.signal })
 }
+
+document.addEventListener('astro:page-load', initPublishPanel)
+document.addEventListener('astro:before-swap', () => cleanupPublishPanel?.())
+initPublishPanel()
 </script>

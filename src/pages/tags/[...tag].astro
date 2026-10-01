@@ -5,6 +5,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import PostList from '@/components/PostList/PostList.svelte'
 import '@/components/PostList/PostList.css'
 import { t } from '@/utils/i18n'
+import { getTagRoutePath } from '@/utils/helpers'
 type StaticPath = {
   params: {
     tag: string;
@@ -30,8 +31,8 @@ export async function getStaticPaths(): Promise<StaticPath[]> {
 
   return Array.from(tags.entries()).map(
     ([tag, posts]): StaticPath => ({
-      params: { tag },
-      props: { tag, posts }
+      params: { tag: getTagRoutePath(tag) },
+      props: { tag, posts: posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()) }
     })
   )
 }

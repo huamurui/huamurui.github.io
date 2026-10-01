@@ -19,7 +19,7 @@
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
   };
 
   onMount(() => {
@@ -40,6 +40,8 @@
   style:right={fabPosition.right} 
   on:click={scrollToTop} 
   title="回到顶部"
+  disabled={!isVisible}
+  aria-hidden={!isVisible}
   aria-label="回到顶部" 
 >
   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -65,6 +67,7 @@
     align-items: center;
     cursor: pointer;
     z-index: 999;
+    visibility: hidden;
     opacity: 0;
     transform: scale(0.8) translateY(20px);
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -72,6 +75,7 @@
   }
 
   .visible {
+    visibility: visible;
     opacity: 1;
     transform: scale(1) translateY(0);
     pointer-events: auto;
@@ -93,6 +97,11 @@
     transform: translateY(-2px);
   }
 
+  .fab:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+  }
+
   .fab:active {
     transform: scale(0.95);
   }
@@ -104,5 +113,8 @@
       bottom: 24px !important;
       right: 24px !important;
     }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fab, .icon { transition: none; }
   }
 </style>

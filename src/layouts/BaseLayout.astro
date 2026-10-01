@@ -14,6 +14,7 @@ import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 import FAB from '@/components/FAB.svelte'
 import Sidebar from '@/components/Sidebar.astro'
+import { resolveCanonicalUrl } from '@/scripts/canonical'
 
 // 判断是否为文章页面
 const isPostsPage = isPostPage(Astro.url.pathname)
@@ -34,10 +35,10 @@ let {
   ogImage = '',
   canonicalUrl = Astro.url.href,
   post = null,
-  structuredData = null
+  structuredData = null,
+  description = siteConfig.description
 } = Astro.props as Props
 
-let description = siteConfig.description
 if (postFrontmatter?.description) {
   // Override default description with post-specific one
   // and erase any HTML tags
@@ -47,7 +48,7 @@ if (postFrontmatter?.image?.url) {
   ogImage = postFrontmatter.image.url
 }
 if (postFrontmatter?.url) {
-  canonicalUrl = Astro.url.origin + postFrontmatter.url
+  canonicalUrl = resolveCanonicalUrl(postFrontmatter.url, Astro.site || Astro.url.origin, canonicalUrl)
 }
 if (postFrontmatter?.title) {
   pageTitle = `${postFrontmatter.title} | ${siteConfig.name}`
@@ -57,9 +58,7 @@ const isHome = isHomePage(Astro.url.pathname);
 ---
 
 <!DOCTYPE html>
-<html lang={siteConfig.locale}
-  data-overlayscrollbars-initialize
->
+<html lang={siteConfig.locale}>
   <Head
     pageTitle={pageTitle}
     description={description}
@@ -69,7 +68,7 @@ const isHome = isHomePage(Astro.url.pathname);
     needGiscus={isPostsPage}
   />
 
-  <body data-overlayscrollbars-initialize>
+  <body>
     <style>
       /* View transition keyframes for title morphing */
       @keyframes title-old {
@@ -158,30 +157,13 @@ const isHome = isHomePage(Astro.url.pathname);
     <Footer />
     <FAB client:only="svelte" />
     <script>
-      import { OverlayScrollbars } from 'overlayscrollbars'
+      import { ClickScrollPlugin, OverlayScrollbars } from 'overlayscrollbars'
+      import { installScrollbars } from '@/scripts/scrollbars'
 
-      const changeBars = () => {
-        const bodyElement = document.querySelector('body')
-        if (!bodyElement) return
-
-        OverlayScrollbars(bodyElement, {
-          scrollbars: {
-            theme: 'os-theme-dark',
-            autoHide: 'leave',
-            clickScroll: true
-          }
-        })
-      }
-
-      const scheduleInit = () => {
-        if ('requestIdleCallback' in window) {
-          (window as any).requestIdleCallback(() => changeBars())
-        } else {
-          setTimeout(changeBars, 500)
-        }
-      }
-
-      document.addEventListener('astro:page-load', scheduleInit)
+      OverlayScrollbars.plugin(ClickScrollPlugin)
+      installScrollbars(document, body => OverlayScrollbars(body, {
+        scrollbars: { theme: 'os-theme-dark', autoHide: 'leave', clickScroll: true }
+      }))
     </script>
     <script>
       import { initLinkPreviews } from '@/scripts/link-preview'

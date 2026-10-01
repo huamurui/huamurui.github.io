@@ -1,6 +1,7 @@
 import { type CollectionEntry } from 'astro:content'
 import type { APIRoute } from 'astro'
 import { getPublishedPosts } from '@/utils/content'
+import { getPostUrl } from '@/utils/helpers'
 
 interface PostData {
   id: string;
@@ -49,7 +50,7 @@ export const GET: APIRoute = async() => {
       date: post.data.date,
       description: post.data.description,
       tags: tags,
-      url: `/posts/${post.id}/`,
+      url: getPostUrl(post.id),
       content: post.body || ''
     }
   })

@@ -2,7 +2,7 @@
 import PostList from '@/components/PostList/PostList.svelte'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { type CollectionEntry } from 'astro:content'
-import { getPublishedPosts } from '@/utils/content'
+import { getPublishedPosts, groupPostsByDirectory } from '@/utils/content'
 import '@/components/PostList/PostList.css'
 import { t } from '@/utils/i18n'
 import Breadcrumb from '@/components/Breadcrumb.svelte'
@@ -20,20 +20,9 @@ type StaticPath = {
 
 export async function getStaticPaths(): Promise<StaticPath[]> {
   const posts = await getPublishedPosts()
-  const categories = new Map<string, CollectionEntry<'posts'>[]>()
+  const categories = groupPostsByDirectory(posts)
 
-  for (const post of posts) {
-    const pathParts = post.id.split('/')
-    if (pathParts.length > 1) {
-      const category = pathParts[0]
-      if (!categories.has(category)) {
-        categories.set(category, [])
-      }
-      categories.get(category)!.push(post)
-    }
-  }
-
-  return Array.from(categories.entries()).map(
+  return Array.from(categories.entries()).filter(([category]) => !category.includes('/')).map(
     ([category, posts]): StaticPath => ({
       params: { category },
       props: { category, posts }

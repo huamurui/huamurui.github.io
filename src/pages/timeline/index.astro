@@ -13,7 +13,7 @@ const sortedPosts = [...posts].sort(
 
 const yearPostsMap: Map<string, CollectionEntry<"posts">[]> = new Map();
 for (const post of sortedPosts) {
-  const year = new Date(post.data.date).getFullYear().toString();
+  const year = new Date(post.data.date).getUTCFullYear().toString();
   if (!yearPostsMap.has(year)) {
     yearPostsMap.set(year, []);
   }

@@ -9,22 +9,25 @@
       progress = 0;
       return;
     }
-    progress = (window.scrollY / scrollHeight) * 100;
+    progress = Math.min(100, Math.max(0, (window.scrollY / scrollHeight) * 100));
   }
 
   onMount(() => {
     window.addEventListener('scroll', updateProgress, { passive: true });
     window.addEventListener('resize', updateProgress);
+    const observer = new ResizeObserver(updateProgress);
+    observer.observe(document.body);
     updateProgress();
 
     return () => {
+      observer.disconnect();
       window.removeEventListener('scroll', updateProgress);
       window.removeEventListener('resize', updateProgress);
     };
   });
 </script>
 
-<div class="progress-container">
+<div class="progress-container" role="progressbar" aria-label="阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow={Math.round(progress)}>
   <div class="progress-bar" style="width: {progress}%"></div>
 </div>
 

@@ -2,7 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PostCardList from '@/components/PostCardList/PostCardList.svelte'
 import { render } from 'astro:content'
-import { extractExcerptFromHtml, getPostUrl } from '@/utils/helpers'
+import { getPostUrl } from '@/utils/helpers'
+import { createSafeExcerpt } from '@/utils/excerpt'
 import { generatePostListStructuredData } from '@/utils/structured-data'
 import type { PostData } from '@/types'
 import { experimental_AstroContainer } from 'astro/container'
@@ -22,7 +23,7 @@ const postsWithExcerpt: PostData[] = await Promise.all(
       date: post.data.date,
       tags: post.data.tags || [],
       url: getPostUrl(post.id),
-      excerptHtml: extractExcerptFromHtml(html),
+      excerptHtml: createSafeExcerpt(html),
       pinned: post.data.pinned || false
     }
   })
@@ -35,7 +36,7 @@ const posts = sortedPosts
 
 const structuredData = generatePostListStructuredData(
   sortedPosts.map(p => ({ title: p.title, url: p.url })),
-  Astro.url.origin
+  Astro.site?.origin || Astro.url.origin
 );
 
 ---

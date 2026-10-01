@@ -1,3 +1,6 @@
+import { buildUrl } from '@/utils/helpers'
+import { activePreviewCount } from './preview-state'
+
 type PreviewContent = {
   title: string
   html: string
@@ -14,14 +17,17 @@ type PopupState = {
 const LINK_SELECTOR = '.markdown-body a, .backlinks-section .posts-list a, .preview-link'
 const cache = new Map<string, PreviewContent>()
 const popupStack: PopupState[] = []
-let openTimer: ReturnType<typeof setTimeout> | undefined
-let closeTimer: ReturnType<typeof setTimeout> | undefined
+let openTimer: number | undefined
+let pendingLink: HTMLAnchorElement | null = null
+let closeTimer: number | undefined
 let initialized = false
 
 function getPreviewLink(target: EventTarget | null): HTMLAnchorElement | null {
   if (!(target instanceof Element)) return null
   const link = target.closest<HTMLAnchorElement>(LINK_SELECTOR)
-  return link?.pathname.includes('/posts/') ? link : null
+  if (!link || link.origin !== window.location.origin) return null
+  const root = buildUrl('posts').replace(/\/$/, '')
+  return link.pathname.startsWith(`${root}/`) ? link : null
 }
 
 function getLevel(link: HTMLAnchorElement): number {
@@ -34,12 +40,14 @@ function closeFrom(level: number): void {
     const popup = popupStack.pop()
     if (!popup) continue
     popup.element.classList.remove('is-visible')
+    popup.element.inert = true
     window.setTimeout(() => popup.element.remove(), 200)
   }
 }
 
 function closeAll(): void {
   window.clearTimeout(openTimer)
+  pendingLink = null
   window.clearTimeout(closeTimer)
   closeFrom(0)
 }
@@ -47,15 +55,7 @@ function closeAll(): void {
 function scheduleClose(): void {
   window.clearTimeout(closeTimer)
   closeTimer = window.setTimeout(() => {
-    let highestActiveLevel = -1
-    for (let index = popupStack.length - 1; index >= 0; index--) {
-      const popup = popupStack[index]
-      const hasActiveChild = index < popupStack.length - 1 && highestActiveLevel > index
-      if (popup.isHovered || popup.isLinkHovered || hasActiveChild) {
-        highestActiveLevel = index
-      }
-    }
-    closeFrom(highestActiveLevel + 1)
+    closeFrom(activePreviewCount(popupStack))
   }, 300)
 }
 
@@ -95,7 +95,7 @@ async function fetchPostContent(id: string): Promise<PreviewContent | null> {
   if (cached) return cached
 
   try {
-    const response = await fetch(`/api/post-content/${id}.html`)
+    const response = await fetch(buildUrl(['api', 'post-content', `${id}.html`]))
     if (!response.ok) return null
 
     const documentFragment = new DOMParser().parseFromString(await response.text(), 'text/html')
@@ -155,7 +155,8 @@ function scrollToFragment(element: HTMLDivElement, hash: string, level: number):
     return
   }
 
-  const targetId = decodeURIComponent(hash.slice(1))
+  let targetId = hash.slice(1)
+  try { targetId = decodeURIComponent(targetId) } catch { /* Invalid fragments are still literal IDs. */ }
   const targets = element.querySelectorAll<HTMLElement>('[id], [name]')
   const target = Array.from(targets).find(candidate => {
     const candidateId = candidate.id || candidate.getAttribute('name') || ''
@@ -164,24 +165,27 @@ function scrollToFragment(element: HTMLDivElement, hash: string, level: number):
   if (!target) return
 
   window.setTimeout(() => {
+    if (!element.isConnected || element.inert) return
     const relativeTop = target.getBoundingClientRect().top
       - container.getBoundingClientRect().top
       + container.scrollTop
-    container.scrollTo({ top: Math.max(0, relativeTop - 10), behavior: 'smooth' })
+    container.scrollTo({ top: Math.max(0, relativeTop - 10), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
     target.classList.add('preview-highlight')
   }, 50)
 }
 
 async function showPreview(link: HTMLAnchorElement): Promise<void> {
-  const base = window.location.origin + window.location.pathname.replace(/\/$/, '')
-  const url = new URL(link.getAttribute('href') || '', base)
-  const match = url.pathname.replace(/\/$/, '').match(/\/posts\/(.+)$/)
-  if (!match) return
-
-  const postId = match[1]
+  const url = new URL(link.href)
+  const root = buildUrl('posts').replace(/\/$/, '')
+  if (url.origin !== window.location.origin || !url.pathname.startsWith(`${root}/`)) return
+  const postId = url.pathname.slice(root.length + 1).replace(/\/$/, '')
+  if (!postId) return
   const level = getLevel(link)
   window.clearTimeout(openTimer)
+  pendingLink = link
   openTimer = window.setTimeout(async() => {
+    if (pendingLink !== link || !link.isConnected) return
+    pendingLink = null
     const popup = createPopup(level, link)
     const rect = link.getBoundingClientRect()
     const popupWidth = Math.min(550, window.innerWidth - 30)
@@ -197,6 +201,7 @@ async function showPreview(link: HTMLAnchorElement): Promise<void> {
     }
 
     const post = await fetchPostContent(postId)
+    if (popupStack[level]?.element !== popup || !popup.isConnected || popup.inert) return
     if (!post) {
       renderStatus(popup, 'Unavailable')
       return
@@ -225,6 +230,10 @@ function handleMouseOver(event: MouseEvent): void {
 function handleMouseOut(event: MouseEvent): void {
   const link = getPreviewLink(event.target)
   if (!link || (event.relatedTarget instanceof Node && link.contains(event.relatedTarget))) return
+  if (pendingLink === link) {
+    window.clearTimeout(openTimer)
+    pendingLink = null
+  }
   popupStack.forEach(popup => {
     if (popup.link === link) popup.isLinkHovered = false
   })
@@ -237,4 +246,5 @@ export function initLinkPreviews(): void {
   document.addEventListener('mouseover', handleMouseOver)
   document.addEventListener('mouseout', handleMouseOut)
   document.addEventListener('astro:before-swap', closeAll)
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeAll() })
 }

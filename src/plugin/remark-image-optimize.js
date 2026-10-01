@@ -10,8 +10,9 @@ export default function remarkImageOptimize() {
       if (/^https?:\/\//i.test(node.url)) {
         const src = escapeAttribute(node.url)
         const alt = escapeAttribute(node.alt || '')
+        const title = node.title ? ` title="${escapeAttribute(node.title)}"` : ''
         node.type = 'html'
-        node.value = `<img src="${src}" alt="${alt}" loading="lazy" decoding="async" class="post-content-image">`
+        node.value = `<img src="${src}" alt="${alt}"${title} loading="lazy" decoding="async" class="post-content-image">`
         return
       }
 
