@@ -2,6 +2,7 @@
 import { siteConfig } from '@/config/site.config'
 import type { StructuredData } from '@/types'
 import { buildUrl } from '@/utils/helpers'
+import { serializeStructuredData } from '@/utils/structured-data'
 
 interface Props {
   pageTitle: string;
@@ -21,7 +22,7 @@ const {
   needGiscus = false
 } = Astro.props as Props
 const structuredDataJson = structuredData
-  ? JSON.stringify(structuredData).replace(/<\/script/gi, '<\\/script')
+  ? serializeStructuredData(structuredData)
   : null
 
 import { ClientRouter } from 'astro:transitions'

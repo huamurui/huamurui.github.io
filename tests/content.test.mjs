@@ -125,6 +125,24 @@ test('sitemap contains nested directories and tags without repeating deployment 
   assert.doesNotMatch(xml, /\/blog\/blog\//)
 })
 
+test('JSON-LD serialization preserves text without exposing HTML script delimiters', async() => {
+  const structured = await sourceModule('src/utils/structured-data.ts', {
+    '@/config/site.config': configUrl,
+    './helpers': helpersModule.url
+  })
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: '<!--<script>',
+    description: '</script><img src=x> 中文 "quotes"',
+    nested: { text: 'Before < after', values: ['Unicode: 云苔', '\\', '& >'] }
+  }
+  const json = structured.exports.serializeStructuredData(data)
+  assert.doesNotMatch(json, /</)
+  assert.match(json, /\\u003c/)
+  assert.deepEqual(JSON.parse(json), data)
+})
+
 test('structured data includes deployment base in navigation and publisher assets', async t => {
   withBase(t, '/blog')
   const structured = await sourceModule('src/utils/structured-data.ts', {

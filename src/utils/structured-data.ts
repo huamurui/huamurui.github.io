@@ -2,6 +2,10 @@ import { siteConfig } from '@/config/site.config'
 import type { PostEntry, StructuredData } from '@/types'
 import { buildUrl, getPostUrl } from './helpers'
 
+/** Encode JSON-LD as script text without allowing HTML tokenizer transitions. */
+export function serializeStructuredData(data: StructuredData): string {
+  return JSON.stringify(data).replace(/</g, '\\u003c')
+}
 
 export function generatePostStructuredData(
   post: PostEntry,
