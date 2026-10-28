@@ -35,6 +35,8 @@ tags: ['胡说八道', 'tech', '电子产品']
 做这个客户端最无聊的部分，大概就是被各家的大门挡在外面。那个知乎的 x-zse-96 加密有点难搞，听说还会偷偷更新。知乎的加密如果只是意思意思...那小红书就是动了点真格的了，知乎学学 js 逆向还能掰一下，小红书的 App 的加密能涉及 Native 层。抖音微信这些...就更不用说了。  
 发光小板板里的世界变得越来越封闭。每一个 App 都是一座建着高墙的城堡。即使是懂一些编程的人，想把自己的数据搞出来，也要花好多功夫，而想要和别人分享，可能还是离不开互联网这些平台。
 
+>没事了，已经不需要再悲伤了，ai 大人会干掉一切的。——— 10.28
+
 ### 编程仙人
 
 我还去看了看 Telegram Android，也不是我看的，一个文件四五万行我还是顶不住的，只是 ai 告诉我了我那些代码大概在做什么事情。  
@@ -96,3 +98,21 @@ gpu 上许多时候不会有循环之类的东西，而是直接就很... 声明
 
 嗯...  我试了试回来了，上面的可以说只是个很初步的点子，我还尝试过做作下雪和云的特效。  
 但想把这些比较有意思的融入 app 中的其他元素...可能需要的不止是代码。
+
+## 2026-10-28 后记
+
+从我创建知乎那个仓库，半年多了，上个月开了个 gpt pro，把整个 app 里想做的基本做了个遍，还去抽离了些东西弄了个包。  
+
+https://github.com/huamurui/react-native-rich-flow
+
+然后最后一张重置卡拿去分析了 patches 里的问题，给上游丢了些 issue 和 pr。  
+
+https://github.com/software-mansion/react-native-gesture-handler/pull/4637  
+https://github.com/callstack/react-native-pager-view/issues/1196  
+
+react-native 直接在 react 下；
+software-mansion 给 react-native 接了许多很重要的大腿，和 expo 也有许多 py，
+react-native-reanimated
+react-native-gesture-handler；
+callstack，也很重要，但许多产品相对可能会更偏上层，会有一些替代品；
+两家公司竟然都在波兰...  
