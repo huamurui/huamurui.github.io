@@ -13,21 +13,23 @@ const { headings = [] } = Astro.props as Props;
 ---
 
 <nav class="blog-toc main-toc" aria-label="文章目录">
-  <ul class="toc-list" id="toc-list">
-    {
-      headings.filter(item => item.depth < 5).map((heading) => (
-        <li class={`toc-item toc-item-depth-${heading.depth -1}`}>
-          <a
-            href={`#${heading.slug}`}
-            class="toc-link"
-            data-slug={heading.slug}
-          >
-            {heading.text}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="toc-scroll" id="toc-scroll">
+    <ul class="toc-list" id="toc-list">
+      {
+        headings.filter(item => item.depth < 5).map((heading) => (
+          <li class={`toc-item toc-item-depth-${heading.depth -1}`}>
+            <a
+              href={`#${heading.slug}`}
+              class="toc-link"
+              data-slug={heading.slug}
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
   <div class="toc-indicator" id="toc-indicator"></div>
 </nav>
 
@@ -73,16 +75,17 @@ const { headings = [] } = Astro.props as Props;
     overflow: hidden;
   }
 
+  .toc-scroll {
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+  }
+
   .toc-list {
     padding: 0.3rem;
     list-style: none;
     border-left: 1px solid var(--border-color);
     margin: 0 0 0 1px;
     position: relative;
-    max-height: calc(100vh - 8rem);
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: thin;
   }
 
   .toc-item {
@@ -261,6 +264,8 @@ const { headings = [] } = Astro.props as Props;
 </style>
 
 <script>
+import { ClickScrollPlugin, OverlayScrollbars } from 'overlayscrollbars'
+
 (function() {
   let cleanupFn: (() => void) | null = null
 
@@ -279,6 +284,7 @@ const { headings = [] } = Astro.props as Props;
       indicator: document.getElementById('toc-indicator'),
       mainTocLinks: document.querySelectorAll<HTMLAnchorElement>('.toc-link'),
       tocList: document.getElementById('toc-list'),
+      tocScroll: document.getElementById('toc-scroll'),
 
       scrollTocToggle: document.getElementById('scroll-toc-toggle'),
       scrollToc: document.getElementById('scroll-toc'),
@@ -290,6 +296,21 @@ const { headings = [] } = Astro.props as Props;
     }
 
     if (!DOM.mainTocLinks.length && !DOM.scrollTocLinks.length) return
+
+    let tocScrollbars: OverlayScrollbars | undefined
+    let tocViewport = DOM.tocScroll
+    if (DOM.tocScroll) {
+      try {
+        OverlayScrollbars.plugin(ClickScrollPlugin)
+        tocScrollbars = OverlayScrollbars(DOM.tocScroll, {
+          scrollbars: { theme: 'os-theme-dark', autoHide: 'leave', clickScroll: true }
+        })
+        if (!tocScrollbars.state().destroyed) tocViewport = tocScrollbars.elements().viewport
+      } catch {
+        tocScrollbars?.destroy()
+        tocScrollbars = undefined
+      }
+    }
 
     // 2. State
     const state = {
@@ -320,7 +341,7 @@ const { headings = [] } = Astro.props as Props;
 
       window.addEventListener('scroll', handleWindowScroll, { passive: true, signal: controller.signal })
 
-      DOM.tocList?.addEventListener('scroll', updateIndicatorPosition, { passive: true, signal: controller.signal })
+      tocViewport?.addEventListener('scroll', updateIndicatorPosition, { passive: true, signal: controller.signal })
 
       window.addEventListener('resize', handleWindowResize, { signal: controller.signal })
 
@@ -336,6 +357,7 @@ const { headings = [] } = Astro.props as Props;
     function cleanup() {
       controller.abort()
       observer?.disconnect()
+      tocScrollbars?.destroy()
       timers.forEach(timer => clearTimeout(timer))
       timers.clear()
     }
@@ -516,7 +538,7 @@ const { headings = [] } = Astro.props as Props;
     }
 
     function updateIndicatorPosition() {
-      if (!DOM.indicator || !DOM.tocList || window.innerWidth <= 968 || state.activeIndex === -1) return
+      if (!DOM.indicator || !DOM.tocList || !tocViewport || window.innerWidth <= 968 || state.activeIndex === -1) return
 
       // 找到 visible或active 类的第一个元素
       const visibleItems = DOM.tocList.querySelectorAll('.toc-item.visible, .toc-item.active')
@@ -529,27 +551,27 @@ const { headings = [] } = Astro.props as Props;
       const firstOffsetTop = firstVisibleItem.offsetTop
       const lastOffsetTop = lastVisibleItem.offsetTop
       const lastItemHeight = lastVisibleItem.clientHeight
-      const tocListScrollTop = DOM.tocList.scrollTop
+      const tocListScrollTop = tocViewport.scrollTop
       DOM.indicator.style.top = `${firstOffsetTop - tocListScrollTop}px`
       DOM.indicator.style.height = `${(lastOffsetTop + lastItemHeight) - firstOffsetTop}px`
       DOM.indicator.style.opacity = '1'
     }
 
     function adjustTocListScroll() {
-      if (!DOM.tocList || window.innerWidth <= 968) return
+      if (!DOM.tocList || !tocViewport || window.innerWidth <= 968) return
 
       const activeTocItem = DOM.tocList.querySelector('.toc-item.active')
       if (!activeTocItem) return
 
-      const tocListClientHeight = DOM.tocList.clientHeight
+      const tocListClientHeight = tocViewport.clientHeight
       const activeItemOffsetTop = (activeTocItem as HTMLElement).offsetTop
       const activeItemHeight = (activeTocItem as HTMLElement).clientHeight
-      const tocListScrollHeight = DOM.tocList.scrollHeight
+      const tocListScrollHeight = tocViewport.scrollHeight
 
       if (tocListScrollHeight <= tocListClientHeight) return
 
       const targetScrollTop = activeItemOffsetTop - (tocListClientHeight - activeItemHeight) * state.config.scrollRatio
-      DOM.tocList.scrollTo({
+      tocViewport.scrollTo({
         top: Math.max(0, targetScrollTop), // 避免负数值（滚到顶部）
         behavior: 'smooth'
       })
