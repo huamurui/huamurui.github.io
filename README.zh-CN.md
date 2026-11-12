@@ -41,7 +41,7 @@ pnpm build
 pnpm preview
 ```
 
-`dev`、`check` 和 `build` 会先生成 sasayai 集合与反向链接。可用 `pnpm generate` 单独刷新这些数据；编辑 `src/data/sasayai.json` 或修改文章链接后，需要重启开发服务器。`pnpm build:infos` 保留为 `pnpm build` 的别名。
+`dev`、`check` 和 `build` 会先生成反向链接，可用 `pnpm generate` 单独刷新；修改文章链接后需要重启开发服务器。Sasayai 直接从 Markdown 文件加载，开发服务器运行时修改内容会自动更新。`pnpm build:infos` 保留为 `pnpm build` 的别名。
 
 ### 验证
 
@@ -116,7 +116,7 @@ draft: false  # 设置 true 后不会出现在公开页面、搜索和订阅中
 
 ### Sasayai 与反向链接
 
-编辑 `src/data/sasayai.json` 可以添加 Markdown 短消息。每条数据需要有效的日期字符串和字符串 `content`；可选的唯一字符串 `id` 支持字母、数字、连字符和下划线。缺少 ID 时会生成稳定的 ID。无效数据或重复 ID 会中止生成，并保留上一次成功的缓存。
+在 `src/data/sasayai.md` 顶部添加短消息：用 `<!-- note: 2026-11-03T14:42:00+08:00; tags: 开发, 随笔 -->` 这样的顶层注释作为分隔符，空一行后写 Markdown 正文。时间必须带时区，标签可省略。每个时间戳都会生成基于 UTC 的稳定页面锚点；无效或重复的时间戳会中止加载，并保留上一次成功的内容。页面编辑器也会写入这个文件。
 
 反向链接从本地 Markdown 文章链接生成，支持引用式链接、查询参数与锚点。可使用 `../tech/example.md#heading` 这样的相对路径，或 `/posts/tech/example/` 这样的站点路径。只有存在的文章会产生反向链接。生成的 `.cache/` 文件不提交到 Git。
 

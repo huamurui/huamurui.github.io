@@ -80,6 +80,7 @@ test('post metadata rejects blank tags and normalizes duplicate labels', async()
   const config = await sourceModule('src/content.config.ts', {
     'astro:content': collectionStub,
     'astro/loaders': globStub,
+    './loaders/sasayai': new URL('../src/loaders/sasayai.ts', import.meta.url).href,
     'astro/zod': import.meta.resolve('astro/zod')
   })
   const schema = config.exports.collections.posts.schema

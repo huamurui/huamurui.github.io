@@ -5,7 +5,7 @@
   "private": true,
   "packageManager": "pnpm@12.8.1",
   "scripts": {
-    "generate": "node scripts/generate-sasayai.mjs && node scripts/build-backlinks.mjs",
+    "generate": "node scripts/build-backlinks.mjs",
     "dev": "pnpm generate && astro dev",
     "build": "pnpm generate && astro build",
     "preview": "astro preview",

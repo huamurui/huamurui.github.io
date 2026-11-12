@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content'
 import { z } from 'astro/zod'
 import { glob } from 'astro/loaders'
+import { sasayaiLoader } from './loaders/sasayai'
 
 const postImageSchema = z.object({
   url: z.url(),
@@ -29,11 +30,12 @@ const posts = defineCollection({
 
 const sasayaiSchema = z.object({
   date: z.coerce.date(),
-  id: z.string().optional()
+  id: z.string(),
+  tags: z.array(z.string()).default([])
 })
 
 const sasayai = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './.cache/sasayai/' }),
+  loader: sasayaiLoader(),
   schema: sasayaiSchema
 })
 

@@ -16,13 +16,9 @@ const renderedPosts = await Promise.all(
   })
 )
 
-// 瀑布流列数
-const col1: typeof renderedPosts = []
-const col2: typeof renderedPosts = []
-renderedPosts.forEach((item, index) => {
-  if (index % 2 === 0) col1.push(item)
-  else col2.push(item)
-})
+// 保持原有瀑布流的两列排列。
+const columns = [renderedPosts.filter((_, index) => index % 2 === 0),
+  renderedPosts.filter((_, index) => index % 2 === 1)]
 
 const title = 'Sasayai | 絮语';
 ---
@@ -55,53 +51,26 @@ const title = 'Sasayai | 絮语';
       </div>
     </div>
 
-    <!-- 瀑布流列表区域 -->
     <div class="masonry-grid">
-      <!-- 第一列 -->
-      <div class="masonry-col">
-        {col1.map(({ post, Content }) => (
-          <div class="thought-card card">
-            <div class="thought-header">
-              <span class="thought-date">
-                {post.data.date.toLocaleString('zh-CN', {
-                  timeZone: 'Asia/Shanghai',
-                  month: '2-digit',
-                  day: '2-digit',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}
-              </span>
-              <span class="thought-id">#{post.data.id || 'N/A'}</span>
-            </div>
-            <div class="thought-content markdown-body">
-              <Content />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <!-- 第二列 -->
-      <div class="masonry-col">
-        {col2.map(({ post, Content }) => (
-          <div class="thought-card card">
-            <div class="thought-header">
-              <span class="thought-date">
-                {post.data.date.toLocaleString('zh-CN', {
-                  timeZone: 'Asia/Shanghai',
-                  month: '2-digit',
-                  day: '2-digit',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}
-              </span>
-              <span class="thought-id">#{post.data.id || 'N/A'}</span>
-            </div>
-            <div class="thought-content markdown-body">
-              <Content />
-            </div>
-          </div>
-        ))}
-      </div>
+      {columns.map(column => (
+        <div class="masonry-col">
+          {column.map(({ post, Content }) => (
+            <article class="thought-card card" id={post.data.id}>
+              <div class="thought-header">
+                <time class="thought-date" datetime={post.data.date.toISOString()}>
+                  {post.data.date.toLocaleString('zh-CN', {
+                    timeZone: 'Asia/Shanghai',
+                    month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'
+                  })}
+                </time>
+                <a class="thought-id" href={`#${post.data.id}`} aria-label={`链接到 ${post.data.id}`}>#{post.data.id}</a>
+              </div>
+              <div class="thought-content markdown-body"><Content /></div>
+              {post.data.tags.length > 0 && <div class="thought-tags">{post.data.tags.map(tag => <span>#{tag}</span>)}</div>}
+            </article>
+          ))}
+        </div>
+      ))}
     </div>
   </div>
 </BaseLayout>
@@ -255,12 +224,28 @@ const title = 'Sasayai | 絮语';
   .thought-header {
     display: flex;
     justify-content: space-between;
+    gap: 0.5rem;
     font-size: 0.8rem;
     color: var(--color-text-muted, #777);
     margin-bottom: 0.6rem;
   }
 
+  .thought-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    color: var(--color-text-muted, #777);
+    font-size: 0.85rem;
+  }
+
+  .thought-card { scroll-margin-top: 5rem; }
+
   .thought-id {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-family: var(--font-mono, monospace);
     opacity: 0.5;
   }
@@ -382,22 +367,21 @@ function initPublishPanel() {
     sending = true
     publishBtn.disabled = true
     publishBtn.textContent = '正在发送...'
-    const jsonUrl = 'https://api.github.com/repos/huamurui/huamurui.github.io/contents/src/data/sasayai.json'
+    const sourceUrl = 'https://api.github.com/repos/huamurui/huamurui.github.io/contents/src/data/sasayai.md'
     const headers = {
       Authorization: `Bearer ${requestToken}`,
       Accept: 'application/vnd.github+json'
     }
     try {
-      const response = await fetch(jsonUrl, { headers, signal: controller.signal, cache: 'no-store' })
+      const response = await fetch(sourceUrl, { headers, signal: controller.signal, cache: 'no-store' })
       if (!response.ok) throw new Error(`无法获取源文件 (HTTP ${response.status})，请检查 Token 或网络`)
       const file = await response.json()
       if (typeof file.sha !== 'string' || typeof file.content !== 'string' || file.encoding !== 'base64') {
         throw new Error('源文件响应不正确，已取消更新')
       }
-      const data = decodeGitHubFile(file.content)
-      const now = new Date()
-      data.push({ id: `${now.getTime()}`, date: now.toISOString(), content })
-      const result = await fetch(jsonUrl, {
+      const source = decodeGitHubFile(file.content)
+      const data = `<!-- note: ${new Date().toISOString()} -->\n\n${content}\n\n${source}`
+      const result = await fetch(sourceUrl, {
         method: 'PUT',
         headers: { ...headers, 'Content-Type': 'application/json' },
         signal: controller.signal,

@@ -41,7 +41,7 @@ pnpm build
 pnpm preview
 ```
 
-`dev`, `check`, and `build` generate the sasayai collection and backlinks first. `pnpm generate` refreshes this data on its own; restart the development server after editing `src/data/sasayai.json` or changing article links. `pnpm build:infos` remains an alias for `pnpm build`.
+`dev`, `check`, and `build` generate backlinks first. `pnpm generate` refreshes them on its own; restart the development server after changing article links. Sasayai is loaded directly from its Markdown source and updates while the development server is running. `pnpm build:infos` remains an alias for `pnpm build`.
 
 ### Validation
 
@@ -115,7 +115,7 @@ Breadcrumb navigation is automatically generated based on the file directory str
 
 ### Sasayai and Backlinks
 
-Edit `src/data/sasayai.json` to add short Markdown entries. Each entry needs a valid date string and string `content`; a unique string `id` can contain letters, digits, hyphens and underscores. Missing IDs are generated deterministically. Invalid or duplicate entries stop generation while preserving the previous cache.
+Add entries to `src/data/sasayai.md` using a top-level comment such as `<!-- note: 2026-11-03T14:42:00+08:00; tags: development, diary -->`, followed by a blank line and Markdown content. The timezone is required; tags are optional. Put new entries at the top. Each timestamp produces a stable UTC-based link on the Sasayai page. Invalid or duplicate timestamps stop loading while preserving the previous collection. The page editor also writes to this file.
 
 Backlinks are generated from local Markdown article links, including reference links, query strings and anchors. Link to a relative article such as `../tech/example.md#heading` or a site route such as `/posts/tech/example/`. Only existing articles contribute backlinks. Generated `.cache/` files are excluded from Git.
 

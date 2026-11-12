@@ -5,7 +5,7 @@ import path from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import test from 'node:test'
-import { generateSasayai } from '../scripts/generate-sasayai.mjs'
+import { parseSasayai } from '../src/utils/parse-sasayai.mjs'
 import { buildBacklinks } from '../scripts/build-backlinks.mjs'
 import { createPostIdMap, createPostPathData, resolveLocalPostId } from '../scripts/post-paths.mjs'
 
@@ -28,54 +28,43 @@ function scriptFixture(t) {
   fs.mkdirSync(path.join(root, 'scripts'), { recursive: true })
   fs.mkdirSync(cwd)
   fs.symlinkSync(path.join(repository, 'node_modules'), path.join(root, 'node_modules'), 'dir')
-  for (const script of ['generate-sasayai.mjs', 'build-backlinks.mjs', 'post-paths.mjs']) {
+  for (const script of ['build-backlinks.mjs', 'post-paths.mjs']) {
     fs.copyFileSync(path.join(repository, 'scripts', script), path.join(root, 'scripts', script))
   }
   return { root, cwd }
 }
 
-test('sasayai rejects unsafe or duplicate IDs and leaves the previous cache intact', t => {
-  const dir = fixture(t)
-  const jsonPath = path.join(dir, 'source.json')
-  const cacheDir = path.join(dir, 'cache')
-  const entry = { id: 'safe', date: '2026-05-11T20:00:00Z', content: 'hello' }
-  write(jsonPath, JSON.stringify([entry]))
-  generateSasayai({ jsonPath, cacheDir })
-  const original = fs.readFileSync(path.join(cacheDir, 'safe.md'), 'utf8')
-  for (const source of [
-    [{ ...entry, id: '../outside' }],
-    [{ ...entry, id: 'unsafe"\nother: true' }],
-    [entry, entry],
-    [entry, { ...entry, id: 'SAFE' }],
-    [{ ...entry, date: 'not a date' }],
-    [{ ...entry, content: null }],
-    {}
-  ]) {
-    write(jsonPath, JSON.stringify(source))
-    assert.throws(() => generateSasayai({ jsonPath, cacheDir }))
-    assert.equal(fs.readFileSync(path.join(cacheDir, 'safe.md'), 'utf8'), original)
-  }
-  write(jsonPath, '{invalid JSON')
-  assert.throws(() => generateSasayai({ jsonPath, cacheDir }))
-  assert.equal(fs.readFileSync(path.join(cacheDir, 'safe.md'), 'utf8'), original)
-  assert.equal(fs.existsSync(path.join(dir, 'outside.md')), false)
+test('sasayai parses top-level note comments while preserving Markdown and tags', () => {
+  const entries = parseSasayai(`<!-- note: 2026-11-03T14:42:00+08:00; tags: 开发, 随笔 -->
+
+## Heading
+
+\`\`\`html
+<!-- note: 2026-01-01T00:00:00Z -->
+\`\`\`
+
+> <!-- note: 2026-01-02T00:00:00Z -->
+
+<!-- note: 2026-11-02T23:10:00+08:00 -->
+
+Second entry
+`)
+  assert.deepEqual(entries.map(entry => entry.id), ['20261103064200', '20261102151000'])
+  assert.deepEqual(entries[0].tags, ['开发', '随笔'])
+  assert.match(entries[0].content, /## Heading/)
+  assert.match(entries[0].content, /<!-- note: 2026-01-01T00:00:00Z -->/)
 })
 
-test('sasayai missing IDs are stable and repeated builds remove stale files and directories', t => {
-  const dir = fixture(t)
-  const jsonPath = path.join(dir, 'source.json')
-  const cacheDir = path.join(dir, 'cache')
-  write(jsonPath, JSON.stringify([
-    { date: '2026-05-11T20:00:00Z', content: 'first\n---\nbody' },
-    { date: '2026-05-11T20:00:00Z', content: 'second' }
-  ]))
-  assert.equal(generateSasayai({ jsonPath, cacheDir }), 2)
-  const names = fs.readdirSync(cacheDir)
-  write(path.join(cacheDir, 'stale/nested.md'), 'stale')
-  generateSasayai({ jsonPath, cacheDir })
-  assert.deepEqual(fs.readdirSync(cacheDir), names)
-  const content = fs.readFileSync(path.join(cacheDir, names[0]), 'utf8')
-  assert.match(content, /^---\ndate: "2026-05-11T20:00:00\.000Z"\nid: "entry-/)
+test('sasayai rejects invalid or duplicate timestamps', () => {
+  const valid = '<!-- note: 2026-05-11T20:00:00Z -->\n\nhello\n'
+  for (const source of [
+    'unexpected content',
+    '<!-- note: invalid -->\n\nhello',
+    '<!-- note: 2026-02-30T20:00:00Z -->\n\nhello',
+    '<!-- note: 2026-05-11T20:00:00 -->\n\nhello',
+    '<!-- note: 2026-05-11T20:00:00Z -->',
+    valid + '\n<!-- note: 2026-05-12T04:00:00+08:00 -->\n\nduplicate'
+  ]) assert.throws(() => parseSasayai(source))
 })
 
 test('backlinks resolve existing local posts, references, encodings and root article URLs', t => {
@@ -173,20 +162,18 @@ test('post metadata distinguishes drafts and backlinks exclude draft sources and
 
 test('generators resolve repository paths when invoked from another directory', t => {
   const { root, cwd } = scriptFixture(t)
-  write(path.join(root, 'src/data/sasayai.json'), '[{"id":"sample","date":"2026-01-01","content":"Sample"}]')
   write(path.join(root, 'src/posts/example.md'), 'Example')
-  for (const script of ['generate-sasayai.mjs', 'build-backlinks.mjs']) {
+  for (const script of ['build-backlinks.mjs']) {
     const result = spawnSync(process.execPath, [path.join(root, 'scripts', script)], { cwd, encoding: 'utf8' })
     assert.equal(result.status, 0, result.stderr)
     assert.equal(fs.existsSync(path.join(cwd, '.cache')), false)
   }
-  assert.equal(fs.existsSync(path.join(root, '.cache/sasayai/sample.md')), true)
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(root, '.cache/backlinks.json'), 'utf8')), {})
 })
 
 test('generator CLI failures return a nonzero status', t => {
   const { root, cwd } = scriptFixture(t)
-  for (const script of ['generate-sasayai.mjs', 'build-backlinks.mjs']) {
+  for (const script of ['build-backlinks.mjs']) {
     const result = spawnSync(process.execPath, [path.join(root, 'scripts', script)], { cwd, encoding: 'utf8' })
     assert.equal(result.status, 1)
     assert.match(result.stderr, /Failed to generate/)

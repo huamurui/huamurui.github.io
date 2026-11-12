@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { activePreviewCount } from '../src/scripts/preview-state.ts'
-import { resolveCanonicalUrl } from '../src/scripts/canonical.ts'
+import { canonicalPageUrl, resolveCanonicalUrl } from '../src/scripts/canonical.ts'
 import { breadcrumbDirectoryPath } from '../src/scripts/breadcrumb.ts'
 import { generateExcerpt, highlightSegments } from '../src/scripts/search.ts'
 import { decodeGitHubFile, encodeGitHubFile } from '../src/scripts/sasayai.ts'
@@ -35,12 +35,11 @@ test('breadcrumb directories preserve URL case, Unicode, and base prefixes', () 
   assert.equal(breadcrumbDirectoryPath('/blog/posts/%broken', '/blog/posts'), '%broken')
 })
 
-test('GitHub whisper files round-trip UTF-8 content and reject corrupt source shapes', () => {
-  const data = [{ id: '1', date: '2026-10-01T01:00:00.000Z', content: '中文 🍣\n' + '字'.repeat(100_000) }]
-  assert.deepEqual(decodeGitHubFile(encodeGitHubFile(data)), data)
+test('GitHub whisper files round-trip UTF-8 Markdown and reject corrupt source shapes', () => {
+  const source = '<!-- note: 2026-10-01T01:00:00.000Z -->\n\n中文 🍣\n' + '字'.repeat(100_000)
+  assert.equal(decodeGitHubFile(encodeGitHubFile(source)), source)
+  assert.equal(decodeGitHubFile(encodeGitHubFile('')), '')
   assert.throws(() => decodeGitHubFile(btoa('{"unexpected":true}')), /源文件格式/)
-  assert.throws(() => decodeGitHubFile(btoa('[{"id":1,"date":"date","content":"text"}]')), /源文件格式/)
-  assert.throws(() => decodeGitHubFile(btoa('[{"id":"1","date":"date"}]')), /源文件格式/)
 })
 
 test('search worker initializes, bounds results, and echoes request IDs for stale-response protection', async() => {
@@ -84,4 +83,10 @@ test('frontmatter canonical links resolve absolute and relative HTTP URLs and re
   for (const invalid of ['javascript:alert(1)', 'data:text/html,example', 'ftp://example.com/file', 'http://[', ' ']) {
     assert.equal(resolveCanonicalUrl(invalid, site, fallback), fallback)
   }
+})
+
+test('page canonical URLs use a trailing slash while retaining file paths', () => {
+  assert.equal(canonicalPageUrl('https://example.com/sasayai'), 'https://example.com/sasayai/')
+  assert.equal(canonicalPageUrl('https://example.com/sasayai/?view=1'), 'https://example.com/sasayai/?view=1')
+  assert.equal(canonicalPageUrl('https://example.com/404.html'), 'https://example.com/404.html')
 })
