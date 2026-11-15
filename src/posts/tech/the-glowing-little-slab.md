@@ -5,7 +5,7 @@ title: 发光小板板
 tags: ['胡说八道', 'tech', '电子产品'] 
 ---
 
-更早的一段时间，看了一些嵌入式开发的东西，我没有看很多，大概只是点个灯的水平、然后收集癖一样买了堆[奇奇怪怪小元件](./electronic-products#一些-小玩具)。一开始是 esp32，然后看了些性能算力更强的芯片，还有一堆小屏幕...  但是意识到有些东西可能没法靠个人整出来，或者是我还是太菜；总之，各种器件和芯片资料，甚至一个好看好摸的外壳都不是个人能轻松搞到的...  然后，有一天，我突然意识到，你说，做 android/ios 的 app 算不算嵌入式开发啊。就算 ios 和安卓也是一坨，但总比直面各种奇奇怪怪小配件容易多了。  
+更早的一段时间，看了一些嵌入式开发的东西，我没有看很多，大概只是点个灯的水平、然后收集癖一样买了堆[奇奇怪怪小元件](./electronic-products#一些-小玩具)。一开始是 esp32，然后看了些性能算力更强的芯片，还有一堆小屏幕...  但是意识到有些东西可能没法靠个人整出来，或者是我还是太菜；总之，各种器件和芯片资料，甚至一个好看好摸的外壳都不是个人能轻松搞到的...  然后，有一天，我突然意识到，你说，做 android/ios 的 app 算不算嵌入式开发啊。就算 ios 和安卓也是一坨，但手机已经塞了这么多各种各样的传感器和软件基础，面对它们总比直面各种来路不明奇奇怪怪小配件容易多了。  
 
 ### 发光小板板
 
@@ -35,7 +35,7 @@ tags: ['胡说八道', 'tech', '电子产品']
 做这个客户端最无聊的部分，大概就是被各家的大门挡在外面。那个知乎的 x-zse-96 加密有点难搞，听说还会偷偷更新。知乎的加密如果只是意思意思...那小红书就是动了点真格的了，知乎学学 js 逆向还能掰一下，小红书的 App 的加密能涉及 Native 层。抖音微信这些...就更不用说了。  
 发光小板板里的世界变得越来越封闭。每一个 App 都是一座建着高墙的城堡。即使是懂一些编程的人，想把自己的数据搞出来，也要花好多功夫，而想要和别人分享，可能还是离不开互联网这些平台。
 
->没事了，已经不需要再悲伤了，ai 大人会干掉一切的。——— 10.28
+>没事了，已经不需要再悲伤了，ai 大人会干掉一切的，别说破解加密数据或 root 之类，小米上最近都能运行 ios 了。——— 10.28
 
 ### 编程仙人
 
@@ -47,7 +47,7 @@ tags: ['胡说八道', 'tech', '电子产品']
 ### 我想下雨，但 web 不让。
 
 看到 ios 酷酷的液态玻璃，我也想搞点东西，但 web 不让。
-*(ps: 好像最近也让了， <https://developer.chrome.com/blog/html-in-canvas-origin-trial?hl=zh-cn> 这下是我不知道致远星战况如何了)*
+*(ps: 好像最近也让了， <https://developer.chrome.com/blog/html-in-canvas-origin-trial?hl=zh-cn> 这下又是我不知道致远星战况如何了)*
 
 css 的一些 shadow，bg-filter， svg 的一些奇技淫巧倒是可以和 dom 有相互影响，但效果还是有限。  
 
@@ -99,6 +99,15 @@ gpu 上许多时候不会有循环之类的东西，而是直接就很... 声明
 嗯...  我试了试回来了，上面的可以说只是个很初步的点子，我还尝试过做作下雪和云的特效。  
 但想把这些比较有意思的融入 app 中的其他元素...可能需要的不止是代码。
 
+### 一个，不那么普通的电子产品
+
+>手机触屏坏了，好像整个世界都隔了一层玻璃...
+
+不管是公司们有意设计引导，还是发现了人本就有的需求，  
+手机现在可以算是人最亲密的物品。  
+也许几乎算是一种外置器官🫀。  
+不管是好事还是坏事，很长一段时间可能大家还是离不开这个发光小板板。  
+
 ## 2026-10-28 后记
 
 从我创建知乎那个仓库，半年多了，上个月开了个 gpt pro，把整个 app 里想做的基本做了个遍，还去抽离了些东西弄了个包。  
@@ -116,3 +125,270 @@ react-native-reanimated
 react-native-gesture-handler；
 callstack，也很重要，但许多产品相对可能会更偏上层，会有一些替代品；
 两家公司竟然都在波兰...  
+
+---
+
+苹果最近好像占领中国了。  
+国产的手机，只有一个比较便宜商家走量的华为畅享能挤上销量榜前几，剩下都是苹果，虽然也能用苹果产品 SKU 少所以单系列走量多来解释...但不管怎么样那个榜单还是有点震撼，安卓高端全员阵亡。  
+嗯...  似乎也可以解释鸿蒙所谓一亿装机量是哪来的了...  
+
+也许还是内存硬盘涨价的问题，安卓五千涨到八千，苹果八千涨到一万，国产的利润被干没啥都卖不了，整体下行而苹果涨点价进一步压供应链利润率反而更高了...    
+所以...会不会库克才是把苹果变成苹果的那个角色，创意与新奇也许会被偷走被赶上也会过时，但这一大片的供应链帝国是别人拿不走的。如此高的利润，也是让自己产品和其他产品搞出代差的效果的资本，做得好几乎是理所当然...。  
+
+然后我做的那个知乎客户端也被苹果占领了...  这是在没有应用商店ios安装过程比安卓麻烦的多的情况下被占领了...
+
+<details>
+<summary></summary>
+192 (not set)
+160 iPhone 17 Pro Max
+128 iPhone 14 Pro Max
+124 iPhone 15 Pro Max
+113 iPhone 17
+102 iPhone Air
+91 iPhone 16 Pro Max
+85 iPhone 15 Pro
+79 iPhone 16 Pro
+76 iPhone 14 Pro
+73 iPhone 13 Pro Max
+71 iPhone 18 Pro Max
+55 iPhone 17 Pro
+53 24129PN74C
+49 iPhone 13 Pro
+47 (not set)
+38 iPhone 18 Pro
+33 iPhone 13
+30 PJZ110
+27 25102RKBEC
+27 iPhone 14
+26 23049RAD8C
+26 V2509A
+25 25053RT47C
+24 25060RK16C
+23 2211133C
+22 23127PN0CC
+22 iPhone 11
+22 iPhone Duo
+21 iPhone 12
+20 2410DPN6CC
+20 25098PN5AC
+19 24117RK2CC
+19 25113PN0EC
+19 iPhone 12 Pro Max
+18 23113RKC6C
+18 ADA-AL00
+17 24122RKC7C
+16 iPhone SE (3rd generation)
+15 2509FPN0BC
+15 PKG110
+15 PKR110
+15 PKX110
+14 2407FRK8EC
+14 IN2025
+13 2510DRK44C
+13 M2012K11AC
+13 PLK110
+13 V2338A
+13 iPhone 13 mini
+13 iPhone 14 Plus
+13 iPhone 15
+13 iPhone 15 Plus
+12 21
+12 23116PN5BC
+12 24031PN0DC
+12 2602BRT18C
+11 PJE110
+11 SM-S9280
+11 V2352A
+11 V2505A
+11 iPad mini (6th generation)
+10 AAK-AN0
+10 PJD110
+10 SM-S9180
+10 iPhone 16
+9 20
+9 A7000
+9 MEP-AN00
+9 V2314A
+9 V2408A
+9 iPhone 16e
+9 iPhone XS Max
+8 23013RK75C
+8 2304FPN6DC
+8 2311DRK48C
+8 2605EPN8EC
+8 M2102J2SC
+8 PKB110
+8 PLB110
+8 PLQ110
+8 SM-S9110
+8 V2419A
+7 2206123SC
+7 23117RK66C
+7 25019PNF3C
+7 MI 6X
+7 PKT110
+7 iPad Pro (11-inch) (4th generation)
+6 22081212C
+6 23054RA19C
+6 DBY-W09
+6 EBG-AN00
+6 PLG110
+6 RMX3888
+6 RMX5010
+6 SM-S9260
+6 SM-S9380
+6 SM-S9480
+6 V2307A
+6 V2405A
+6 V2458A
+6 iPad Air (5th gen)
+6 iPhone 12 Pro
+6 iPhone 8 Plus
+5 22041211AC
+5 2210132C
+5 25079RPDCC
+5 CPH2841
+5 HLK-AL00
+5 NX741J
+5 NX789J
+5 OPD2515
+5 PHY110
+5 PLJ110
+5 RMX6688
+5 Redmi K20 Pro
+5 SM-S9310
+5 V2520A
+5 V2536A
+5 iPad
+5 iPhone 11 Pro Max
+5 iPhone 12 mini
+4 2112123AC
+4 2312DRA50C
+4 ANY-AN00
+4 BVL-AN00
+4 M2105K81AC
+4 MI 6
+4 PGT-AN00
+4 PGZ110
+4 PJA110
+4 PKJ110
+4 PLC110
+4 PPG-AN00
+4 Pixel 7
+4 RMX3370
+4 RMX3800
+4 RMX5080
+4 SM-F9660
+4 SM-S908N
+4 SM-S9210
+4 V2527A
+4 V2546A
+4 iPad Pro (11-inch)
+4 iPad Pro (11-inch) (5th generation)
+4 iPhone 17e
+3 20 Pro
+3 22041216C
+3 23078RKD5C
+3 24115RA8EC
+3 25128PNA1C
+3 BKQ-AN00
+3 BKQ-AN10
+3 BKQ-AN90
+3 CPH2747
+3 KB2000
+3 M2007J3SC
+3 Mi 10 Pro
+3 Mi MIX 2S
+3 NOH-AN00
+3 PHK110
+3 PLR110
+3 PME110
+3 PTP-AN10
+3 PTP-AN70
+3 Pixel 9a
+3 RMX3560
+3 RMX3850
+3 RMX6699
+3 Redmi Note 8 Pro
+3 SM-F9710
+3 TNN-AN00
+3 V2220A
+3 V2232A
+3 V2241A
+3 V2241HA
+3 V2309A
+3 V2329A
+3 V2337A
+3 V2339A
+3 V2417A
+3 V2426A
+3 V2445EA
+3 V2463A
+3 V2502DA
+3 VYG-AL30
+3 XT2533-4
+3 iPad (9th gen)
+3 iPad Pro (11-inch) (3rd generation)
+3 iPad Pro (12.9-inch) (3rd generation)
+3 iPad Pro (12.9-inch) (5th generation)
+3 iPad Pro (12.9-inch) (6th generation)
+3 iPad mini (5th generation)
+3 iPad mini (7th generation)
+3 iPhone 16 Plus
+3 iPhone XR
+2 2106118C
+2 22
+2 22011211C
+2 2201123C
+2 2203121C
+2 22081283C
+2 22101316C
+2 2211133G
+2 24018RPACC
+2 24069RA21C
+2 24117RK2CG
+2 25042PN24C
+2 25091RP04C
+2 ALN-AL00
+2 AMP-AN10
+2 BRC-AN00
+2 BSN-AN00
+2 BVL-AN20
+2 CPH2653
+2 DNP-AN00
+2 ELS-AN00
+2 HOP-AL00
+2 JER-AN10
+2 JER-AN20
+2 L71091
+2 LIO-AN00
+2 M2004J7AC
+2 M2006J10C
+2 M2007J22C
+2 M2012K11C
+2 MAA-AN00
+2 MAA-AN10
+2 MI PAD 4
+2 MTN-AN00
+2 OCE-AN10
+2 OXF-AN10
+2 PFFM20
+2 PGEM10
+2 PGT-AN10
+2 PGU110
+2 PHB110
+2 PJF110
+2 PJG110
+2 PJX110
+2 PLS120
+2 PLU110
+2 Pixel 10 Pro
+2 Pixel 4
+2 Pixel 7 Pro
+2 Pixel 7a
+2 Pixel 9 Pro
+2 Pixel 9 Pro XL
+2 REA-AN00
+
+......
+</details>
