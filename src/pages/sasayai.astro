@@ -283,7 +283,7 @@ const title = 'Sasayai | 絮语';
 </style>
 
 <script>
-import { decodeGitHubFile, encodeGitHubFile } from '@/scripts/sasayai'
+import { decodeGitHubFile, encodeGitHubFile, prepareSasayaiUpdate } from '@/scripts/sasayai'
 
 let cleanupPublishPanel: (() => void) | undefined
 
@@ -380,7 +380,7 @@ function initPublishPanel() {
         throw new Error('源文件响应不正确，已取消更新')
       }
       const source = decodeGitHubFile(file.content)
-      const data = `<!-- note: ${new Date().toISOString()} -->\n\n${content}\n\n${source}`
+      const data = await prepareSasayaiUpdate(source, content)
       const result = await fetch(sourceUrl, {
         method: 'PUT',
         headers: { ...headers, 'Content-Type': 'application/json' },

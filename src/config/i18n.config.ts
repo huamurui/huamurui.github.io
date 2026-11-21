@@ -1,6 +1,13 @@
 export interface I18nConfig {
   common: {
     brand: string;
+    comments: {
+      title: string;
+      loading: string;
+      error: string;
+      retry: string;
+      discussions: string;
+    };
     menu: {
       toggle: string;
     };
@@ -59,6 +66,13 @@ export const i18nConfig = {
   'zh-CN': {
     common: {
       brand: 'Pudding',
+      comments: {
+        title: '评论',
+        loading: '正在加载评论…',
+        error: '评论暂时无法加载。',
+        retry: '重试',
+        discussions: '前往 GitHub Discussions'
+      },
       menu: {
         toggle: '切换菜单'
       },
@@ -116,6 +130,13 @@ export const i18nConfig = {
   'en-US': {
     common: {
       brand: 'Pudding',
+      comments: {
+        title: 'Comments',
+        loading: 'Loading comments…',
+        error: 'Comments could not be loaded.',
+        retry: 'Retry',
+        discussions: 'Open GitHub Discussions'
+      },
       search: {
         placeholder: 'Search articles...',
         ariaLabel: {

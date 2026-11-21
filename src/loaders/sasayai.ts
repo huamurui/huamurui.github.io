@@ -18,7 +18,9 @@ export function sasayaiLoader(): Loader {
           const data = await parseData({ id: entry.id, data: {
             id: entry.id, date: entry.date, tags: entry.tags
           } })
-          const rendered = await renderMarkdown(entry.content, { fileURL })
+          // Metadata lives in the note marker. Prevent leading Markdown rules from
+          // being consumed as YAML frontmatter by Astro's renderMarkdown helper.
+          const rendered = await renderMarkdown(`<!-- -->\n${entry.content}`, { fileURL })
           return { id: entry.id, data, body: entry.content, rendered,
             filePath: 'src/data/sasayai.md', assetImports: rendered.metadata?.imagePaths }
         }))

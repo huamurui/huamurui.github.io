@@ -3,8 +3,10 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { spawnSync } from 'node:child_process'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import test from 'node:test'
+import { parseFrontmatter, unified } from '@astrojs/markdown-remark'
+import { sasayaiLoader } from '../src/loaders/sasayai.ts'
 import { parseSasayai } from '../src/utils/parse-sasayai.mjs'
 import { buildBacklinks } from '../scripts/build-backlinks.mjs'
 import { createPostIdMap, createPostPathData, resolveLocalPostId } from '../scripts/post-paths.mjs'
@@ -65,6 +67,29 @@ test('sasayai rejects invalid or duplicate timestamps', () => {
     '<!-- note: 2026-05-11T20:00:00Z -->',
     valid + '\n<!-- note: 2026-05-12T04:00:00+08:00 -->\n\nduplicate'
   ]) assert.throws(() => parseSasayai(source))
+})
+
+test('sasayai renders leading Markdown rules as body content rather than frontmatter', async t => {
+  const root = fixture(t)
+  const body = '---\nA thought\n---\n\nThe rest'
+  write(path.join(root, 'src/data/sasayai.md'), `<!-- note: 2026-11-21T00:00:00Z -->\n\n${body}`)
+  const entries = new Map()
+  const renderer = await unified({}).createRenderer({})
+  await sasayaiLoader().load({
+    config: { root: pathToFileURL(`${root}${path.sep}`) },
+    store: { clear: () => entries.clear(), set: entry => entries.set(entry.id, entry) },
+    parseData: async({ data }) => data,
+    renderMarkdown: async(source, options) => {
+      const { content } = parseFrontmatter(source)
+      const { code, metadata } = await renderer.render(content, options)
+      return { html: code, metadata }
+    }
+  })
+  const entry = [...entries.values()][0]
+  assert.equal(entry.body, body)
+  assert.match(entry.rendered.html, /<hr>/)
+  assert.match(entry.rendered.html, /<h2[^>]*>A thought<\/h2>/)
+  assert.match(entry.rendered.html, /<p>The rest<\/p>/)
 })
 
 test('backlinks resolve existing local posts, references, encodings and root article URLs', t => {

@@ -16,10 +16,10 @@ A modern, customizable Astro blog theme.
 
 ### Installation
 
-Use Node.js 22.12 or newer (Node 22 is pinned in `.nvmrc`) and the pnpm version in `package.json`.
+Use Node.js 22.12 or newer and pnpm 10 (10.26 or newer). The repository’s `.nvmrc` selects Node 22.
 
 ```bash
-npm install --global pnpm@12.8.1
+npm install --global pnpm@10 # if pnpm 10 is not already installed
 pnpm install --frozen-lockfile
 ```
 

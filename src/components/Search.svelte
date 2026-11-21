@@ -15,6 +15,7 @@
   let isWorkerReady = false;
   let isIndexLoading = false;
   let isIndexLoaded = false;
+  let isSearchPending = false;
   let indexError = false;
   let mounted = false;
   let requestId = 0;
@@ -36,6 +37,7 @@
   };
 
   function fallbackSearch() {
+    isSearchPending = false;
     searchResults = searchQuery ? fuse?.search(searchQuery, { limit: 5 }) || [] : [];
   }
 
@@ -49,10 +51,13 @@
   function search() {
     requestId++;
     if (!searchQuery) {
+      isSearchPending = false;
       searchResults = [];
       return;
     }
     if (isWorkerReady && searchWorker) {
+      searchResults = [];
+      isSearchPending = true;
       const message: SearchWorkerMessage = { type: 'SEARCH', payload: { query: searchQuery, requestId } };
       try {
         searchWorker.postMessage(message);
@@ -72,7 +77,10 @@
           isWorkerReady = true;
           search();
         } else if (event.data.type === 'SEARCH_RESULTS') {
-          if (event.data.requestId === requestId && isSearchOpen) searchResults = event.data.payload;
+          if (event.data.requestId === requestId && isSearchOpen) {
+            searchResults = event.data.payload;
+            isSearchPending = false;
+          }
         } else {
           disableWorker();
         }
@@ -113,6 +121,7 @@
     isSearchOpen = false;
     searchQuery = '';
     searchResults = [];
+    isSearchPending = false;
     requestId++;
     if (restoreFocus) searchToggle?.focus();
   }
@@ -141,7 +150,7 @@
     if (event.key === 'Escape') {
       event.preventDefault();
       closeSearch(true);
-    } else if (event.key === 'Enter' && !event.isComposing && searchResults.length > 0) {
+    } else if (event.key === 'Enter' && !event.isComposing && !isSearchPending && searchResults.length > 0) {
       event.preventDefault();
       window.location.href = searchResults[0].item.url;
     }
@@ -189,12 +198,12 @@
         on:keydown={handleSearchKeydown}
         aria-label="输入关键词搜索文章"
         aria-controls="search-results-list"
-        aria-busy={isIndexLoading}
+        aria-busy={isIndexLoading || isSearchPending}
       />
       <p class="search-status" role="status">
         {#if indexError}全文索引加载失败，暂时仅搜索标题。重新打开可重试。
         {:else if isIndexLoading}正在加载全文索引…
-        {:else if searchQuery && searchResults.length === 0}没有找到相关文章。
+        {:else if searchQuery && !isSearchPending && searchResults.length === 0}没有找到相关文章。
         {/if}
       </p>
       <ul class="search-results" id="search-results-list">

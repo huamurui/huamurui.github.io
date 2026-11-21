@@ -14,3 +14,24 @@ export function encodeGitHubFile(source: string): string {
   for (const byte of bytes) binary += String.fromCharCode(byte)
   return btoa(binary)
 }
+
+/** Validate the complete archive before publishing author-supplied Markdown. */
+export async function prepareSasayaiUpdate(
+  source: string,
+  content: string,
+  timestamp = new Date().toISOString()
+): Promise<string> {
+  // Publishing is rare; ordinary readers do not need to download the Markdown parser.
+  const { parseSasayai } = await import('../utils/parse-sasayai.mjs')
+  const body = content.trim()
+  if (!body) throw new Error('絮语内容不能为空')
+  const previous = parseSasayai(source)
+  const updated = `<!-- note: ${timestamp} -->\n\n${body}\n\n${source}`
+  const entries = parseSasayai(updated)
+  if (entries.length !== previous.length + 1 || entries[0].content !== body
+    || previous.some((entry, index) => entries[index + 1].id !== entry.id
+      || entries[index + 1].content !== entry.content)) {
+    throw new Error('絮语内容不能包含顶层 note 标记或影响其他记录的未闭合 Markdown')
+  }
+  return updated
+}

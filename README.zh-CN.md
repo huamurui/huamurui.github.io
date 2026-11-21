@@ -16,10 +16,10 @@
 
 ### 安装
 
-使用 Node.js 22.12 或以上版本（`.nvmrc` 固定使用 Node 22），以及 `package.json` 中指定的 pnpm 版本。
+使用 Node.js 22.12 或更新版本和 pnpm 10（至少 10.26）。仓库中的 `.nvmrc` 选择 Node 22。
 
 ```bash
-npm install --global pnpm@12.8.1
+npm install --global pnpm@10 # 如果尚未安装 pnpm 10
 pnpm install --frozen-lockfile
 ```
 

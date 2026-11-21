@@ -4,7 +4,7 @@ import { activePreviewCount } from '../src/scripts/preview-state.ts'
 import { canonicalPageUrl, resolveCanonicalUrl } from '../src/scripts/canonical.ts'
 import { breadcrumbDirectoryPath } from '../src/scripts/breadcrumb.ts'
 import { generateExcerpt, highlightSegments } from '../src/scripts/search.ts'
-import { decodeGitHubFile, encodeGitHubFile } from '../src/scripts/sasayai.ts'
+import { decodeGitHubFile, encodeGitHubFile, prepareSasayaiUpdate } from '../src/scripts/sasayai.ts'
 
 test('search highlights literal punctuation and keeps HTML content as plain text segments', () => {
   for (const query of ['[', '(', '\\', '.*', '<img', '$']) {
@@ -40,6 +40,24 @@ test('GitHub whisper files round-trip UTF-8 Markdown and reject corrupt source s
   assert.equal(decodeGitHubFile(encodeGitHubFile(source)), source)
   assert.equal(decodeGitHubFile(encodeGitHubFile('')), '')
   assert.throws(() => decodeGitHubFile(btoa('{"unexpected":true}')), /源文件格式/)
+})
+
+test('whisper publishing validates the archive and prevents Markdown from changing record boundaries', async() => {
+  const source = '<!-- note: 2026-11-20T00:00:00Z; tags: 随笔 -->\n\nExisting **note**\n'
+  const timestamp = '2026-11-21T00:00:00Z'
+  const content = '中文 🍣\n\n```html\n<!-- note: example -->\n```'
+  assert.equal(await prepareSasayaiUpdate(source, content, timestamp),
+    `<!-- note: ${timestamp} -->\n\n${content}\n\n${source}`)
+  assert.equal(await prepareSasayaiUpdate('', 'First note', timestamp),
+    `<!-- note: ${timestamp} -->\n\nFirst note\n\n`)
+  for (const body of [
+    'Body\n\n<!-- note: invalid -->',
+    'Body\n\n<!-- note: 2026-11-19T00:00:00Z -->\n\nInjected note',
+    'Body\n\n```html\nUnclosed fence',
+    '   '
+  ]) await assert.rejects(prepareSasayaiUpdate(source, body, timestamp))
+  await assert.rejects(prepareSasayaiUpdate(source + '\n<!-- note: invalid -->\n\nBroken', 'New note', timestamp))
+  await assert.rejects(prepareSasayaiUpdate(source, 'Duplicate date', '2026-11-20T00:00:00Z'))
 })
 
 test('search worker initializes, bounds results, and echoes request IDs for stale-response protection', async() => {
