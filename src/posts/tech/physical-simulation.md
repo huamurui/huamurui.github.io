@@ -37,9 +37,13 @@ function draw(now) {
 
 ### 最简单的
 
-$$x(t + \Delta t) = x(t) + v(t) \Delta t$$
+$$
+x(t + \Delta t) = x(t) + v(t) \Delta t
+$$
 
-$$v(t + \Delta t) = v(t) + a(t) \Delta t$$
+$$
+v(t + \Delta t) = v(t) + a(t) \Delta t
+$$
 
 这应该算最简单的方法了，简单到我甚至才知道它还有个专门名字，叫欧拉方法，知道它们有好多种，统称数值方法。
 
@@ -47,13 +51,19 @@ $$v(t + \Delta t) = v(t) + a(t) \Delta t$$
 
 最近又看到一个 Verlet 积分：
 
-$$x(t+\Delta t) = 2x(t) - x(t-\Delta t) + a(t)\Delta t^2$$
+$$
+x(t+\Delta t) = 2x(t) - x(t-\Delta t) + a(t)\Delta t^2
+$$
 
 还有带速度版本的：
 
-$$x(t + \Delta t) = x(t) + v(t) \Delta t + \frac{1}{2} a(t) \Delta t^2$$
+$$
+x(t + \Delta t) = x(t) + v(t) \Delta t + \frac{1}{2} a(t) \Delta t^2
+$$
 
-$$v(t + \Delta t) = v(t) + \frac{a(t) + a(t + \Delta t)}{2} \Delta t $$
+$$
+v(t + \Delta t) = v(t) + \frac{a(t) + a(t + \Delta t)}{2} \Delta t
+$$
 
 >看起来它在计算位移时不仅考虑了 v 还同时考虑了 a，像泰勒展开多展开了几项，应该会更精确一些吧...  
 >去查了查那些别的数值方法，这些东西长的都像是能用泰勒展开推出来的，一些更简单方便计算的式子...？  
@@ -63,22 +73,36 @@ $$v(t + \Delta t) = v(t) + \frac{a(t) + a(t + \Delta t)}{2} \Delta t $$
 
 ### 胡克定律  
 
-$$F = -k \Delta x$$
+$$
+F = -k \Delta x
+$$
 
 然而，在实际应用中，许多材料的弹性行为是非线性的。当应力超过一定阈值时，材料的应变与应力之间的关系将不再保持线性。为了描述这种非线性行为，需要对胡克定律进行扩展。一种常见的非线性扩展形式是：​
 
-$$F = -k \Delta x - b (\Delta x)^3$$
+$$
+F = -k \Delta x - b (\Delta x)^3
+$$
 
 >### 物理中的碰撞
 >弹性碰撞时的动量,能量守恒
->$$m_1 v_1 + m_2 v_2 = m_1 v_1' + m_2 v_2'$$  
->$$\frac{1}{2} m_1 v_1^2 + \frac{1}{2} m_2 v_2^2 = \frac{1}{2} m_1 v_1'^2 + \frac{1}{2} m_2 v_2'^2$$  
+> $$
+> m_1 v_1 + m_2 v_2 = m_1 v_1' + m_2 v_2'
+> $$
+> $$
+> \frac{1}{2} m_1 v_1^2 + \frac{1}{2} m_2 v_2^2 = \frac{1}{2} m_1 v_1'^2 + \frac{1}{2} m_2 v_2'^2
+> $$
 >推导碰撞后的速度  
->$$v_1' = \frac{m_1 - m_2}{m_1 + m_2} v_1 + \frac{2 m_2}{m_1 + m_2} v_2$$  
->$$v_2' = \frac{2 m_1}{m_1 + m_2} v_1 + \frac{m_2 - m_1}{m_1 + m_2} v_2$$  
+> $$
+> v_1' = \frac{m_1 - m_2}{m_1 + m_2} v_1 + \frac{2 m_2}{m_1 + m_2} v_2
+> $$
+> $$
+> v_2' = \frac{2 m_1}{m_1 + m_2} v_1 + \frac{m_2 - m_1}{m_1 + m_2} v_2
+> $$
 >最后推导的结果其实是，某种对称的，交换 `1` `2` 位置就是互相的式子。    
 >所以，对于 `1` 和 `2` 如果将当前想要求解速度的物体记为 `self` ，另一个物体记为 `other` ，最后的这两个式子其实是一个  
->$$v_{\text{self}}' = v_{\text{self}} + \frac{2 m_{\text{other}}}{m_{\text{self}} + m_{\text{other}}} (v_{\text{other}} - v_{\text{self}})$$  
+> $$
+> v_{\text{self}}' = v_{\text{self}} + \frac{2 m_{\text{other}}}{m_{\text{self}} + m_{\text{other}}} (v_{\text{other}} - v_{\text{self}})
+> $$
 
 ### 游戏中的碰撞
 
