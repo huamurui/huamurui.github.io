@@ -1,8 +1,14 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import '@/styles/global.css'
+import { renderLinkCard } from '@/plugin/remark-link-preview'
 
 const pageTitle = 'About';
+const photoAlbum = renderLinkCard('https://huamurui.github.io/photo-viewer/', {
+  title: 'Photos of HMR',
+  description: '看看我拍的照片。',
+  image: 'photos/thumbs/P1070261-已增强-NR.jpg'
+})
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -96,6 +102,7 @@ const pageTitle = 'About';
         </div>
       </section>
 
+      <Fragment set:html={photoAlbum} />
     </div>
 
     <!-- Footer -->
@@ -126,6 +133,7 @@ const pageTitle = 'About';
       left: 50%;
       transform: translateX(-50%);
       width: 350px;
+      max-width: 100%;
       height: 200px;
       background: radial-gradient(circle, var(--color-theme-mix-20) 0%, transparent 70%);
       filter: blur(40px);
